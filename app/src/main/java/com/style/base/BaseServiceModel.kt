@@ -8,8 +8,8 @@ import com.style.toast.ToastManager
 import com.style.utils.LogManager
 import com.style.data.db.AppDatabase
 import com.style.data.prefs.AppPrefsManager
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
+import io.reactivex.rxjava3..disposables.CompositeDisposable
+import io.reactivex.rxjava3..disposables.Disposable
 
 
 abstract class BaseServiceModel {

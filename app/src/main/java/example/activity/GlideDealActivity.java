@@ -44,7 +44,7 @@ import org.jetbrains.annotations.Nullable;
 import java.io.File;
 import java.io.IOException;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import tech.gaolinfeng.imagecrop.lib.ImageCropActivity;
 
 

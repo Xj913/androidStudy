@@ -12,10 +12,11 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 
 /**
  * Created by xiajun on 2018/4/29.
@@ -33,16 +34,14 @@ public class AddressViewModel extends BaseViewModel {
 
         Disposable d = Observable.just("").map(param -> {
             List<UploadPhone> list = ContactHelper.getContacts(getApplication());
-            if (null != list) {
-                int size = list.size();
-                for (int i = 0; i < size; i++) {
-                    String sortLetter = PinyinUtils.getAbbreviation(list.get(i).getName()).substring(0, 1);
-                    list.get(i).setSortLetters(sortLetter);
-                }
-                // 根据a-z进行排序源数据
-                Collections.sort(list, new UploadPhoneComparator());
-            }
-            return list;
+                    int size = list.size();
+                    for (int i = 0; i < size; i++) {
+                        String sortLetter = PinyinUtils.getAbbreviation(list.get(i).getName()).substring(0, 1);
+                        list.get(i).setSortLetters(sortLetter);
+                    }
+                    // 根据a-z进行排序源数据
+                    Collections.sort(list, new UploadPhoneComparator());
+                    return list;
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(list -> contacts.postValue(list));

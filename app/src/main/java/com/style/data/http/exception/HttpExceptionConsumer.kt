@@ -4,7 +4,7 @@ import com.style.data.app.AppActivityManager
 import com.style.toast.ToastManager
 import com.style.http.exception.HttpResultException
 import com.style.http.exception.HttpThrowableUtil
-import io.reactivex.functions.Consumer
+import io.reactivex.rxjava3.functions.Consumer
 
 open class HttpExceptionConsumer : Consumer<Throwable> {
     override fun accept(e: Throwable) {

@@ -1,27 +1,5 @@
 package example.viewPagerBanner;
 
-/*
- *                   _ooOoo_
- *                  o8888888o
- *                  88" . "88
- *                  (| -_- |)
- *                  O\  =  /O
- *               ____/`---'\____
- *             .'  \\|     |//  `.
- *            /  \\|||  :  |||//  \
- *           /  _||||| -:- |||||-  \
- *           |   | \\\  -  /// |   |
- *           | \_|  ''\---/''  |   |
- *           \  .-\__  `-`  ___/-. /
- *         ___`. .'  /--.--\  `. . __
- *      ."" '<  `.___\_<|>_/___.'  >'"".
- *     | | :  `- \`.;`\ _ /`;.`/ - ` : | |
- *     \  \ `-.   \_ __\ /__ _/   .-` /  /
- *======`-.____`-.___\_____/___.-`____.-'======
- *                   `=---='
- *^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- *         佛祖保佑       永无BUG
- */
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
@@ -35,6 +13,7 @@ import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.github.chrisbanes.photoview.PhotoView
+import com.style.app.MyApp.databinding.BannerActivityBinding
 import com.style.base.BaseActivity
 import com.style.base.BaseRecyclerViewAdapter
 import com.style.framework.R

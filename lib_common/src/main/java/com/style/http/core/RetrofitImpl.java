@@ -17,7 +17,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 
 /**
  * Created by xiajun on 2017/12/21.
@@ -54,7 +54,7 @@ public final class RetrofitImpl {
         Retrofit mRetrofit = new Retrofit.Builder()
                 .baseUrl(AssembleConfig.URL_BASE)
                 .addConverterFactory(CustomConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .client(mOkHttpClient)
                 .build();
         return mRetrofit;

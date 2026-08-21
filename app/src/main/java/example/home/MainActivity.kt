@@ -24,8 +24,6 @@ import com.style.toast.ToastManager
 import com.style.utils.DeviceInfoUtil
 import com.style.utils.NetWorkUtil
 import example.home.contact.HomeListFragment
-import org.simple.eventbus.EventBus
-
 
 class MainActivity : BaseActivity() {
 
@@ -74,7 +72,7 @@ class MainActivity : BaseActivity() {
         filter.addAction(Intent.ACTION_USER_PRESENT)//用户解锁
         registerReceiver(appStateReceiver, filter)
         isRegisterBroadcastReceiver = true
-        EventBus.getDefault().register(this)
+
         setToolbarTitle(titles[0])
         /*Intent i = new Intent(this, MQTTService.class);
         i.setAction(MQTTService.ACTION_LOGIN);
@@ -223,8 +221,6 @@ class MainActivity : BaseActivity() {
     }
 
     override fun onDestroy() {
-        //取消事件注册
-        EventBus.getDefault().unregister(this)
         //BleManager.getInstance().close();
         if (isRegisterBroadcastReceiver && appStateReceiver != null) {
             unregisterReceiver(appStateReceiver)

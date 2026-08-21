@@ -16,8 +16,8 @@ import com.style.http.exception.HttpResultException;
 
 import org.jetbrains.annotations.NotNull;
 
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.functions.Consumer;
 import okhttp3.ResponseBody;
 
 
