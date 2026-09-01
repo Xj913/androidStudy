@@ -20,8 +20,8 @@ allprojects {
         }
     }
 }
-tasks.register("clean", Delete::class) {
-    description = ""
-    delete(rootProject.buildDir)
+
+tasks.register<Delete>("clean") {
+    delete(rootProject.layout.buildDirectory)
 }
 
