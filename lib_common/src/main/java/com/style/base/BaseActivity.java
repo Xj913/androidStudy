@@ -22,14 +22,6 @@ import com.style.utils.DeviceInfoUtil;
 import com.style.utils.InputMethodUtil;
 import com.style.utils.LogManager;
 
-/**
- * FirstActivity->onPause()
- * SecondActivity->onCreate()
- * SecondActivity->onStart()
- * SecondActivity->onResume()
- * FirstActivity->onStop()
- * 如果SecondActivity的主题是Dialog或Translucent时，FirstActivity会调用onPause()而不调用onStop()
- */
 public abstract class BaseActivity extends AppCompatActivity {
     protected String TAG = getClass().getSimpleName();
     private Context context;
