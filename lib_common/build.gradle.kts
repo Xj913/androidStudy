@@ -28,7 +28,7 @@ android {
     }
     buildFeatures {
         buildConfig = true
-        //viewBinding = true
+        viewBinding = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
@@ -47,7 +47,6 @@ dependencies {
     api(libs.room)
     ksp(libs.room.compiler)
     implementation(libs.appcompat)
-    api(libs.bundles.viewbinding)
     implementation(libs.recyclerview)
     implementation(libs.ktx.coroutines.android)
     api(libs.fastjson)
@@ -60,7 +59,7 @@ dependencies {
     api(libs.okhttp.log.interceptor)
     api(libs.refresh.layout)
     api(libs.live.event.bus)
-    api(project(":lib_custom_view"))
+    api(projects.libCustomView)
 
 }
 

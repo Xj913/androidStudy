@@ -17,8 +17,7 @@ android {
 dependencies {
     implementation(libs.appcompat)
     implementation(libs.recyclerview)
-    implementation(libs.glide)
-    implementation("com.github.bumptech.glide:okhttp3-integration:4.9", {
+    implementation(libs.bundles.glide, {
         exclude(group = "com.squareup.okhttp", module = "okhttp")
     })
 }

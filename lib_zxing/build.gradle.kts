@@ -17,5 +17,5 @@ android {
 dependencies {
     implementation(libs.appcompat)
     api(libs.zxing)
-    implementation(project(":lib_common"))
+    implementation(projects.libCommon)
 }

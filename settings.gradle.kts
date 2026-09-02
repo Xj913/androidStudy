@@ -13,7 +13,7 @@ pluginManagement {
 }
 
 rootProject.name = "my-project"
-//enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app", ":lib_custom_view")
 include(":lib_common")
 include(":lib_media_picker")

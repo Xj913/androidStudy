@@ -7,7 +7,17 @@ plugins {
 }
 
 allprojects {
-
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+        maven {
+            setUrl("https://jitpack.io")
+        }
+        maven {
+            setUrl("https://maven.aliyun.com/nexus/content/repositories/releases")
+        }
+    }
     configurations.configureEach {
         resolutionStrategy {
             /*force 'androidx.annotation:annotation-experimental:1.1.0'
@@ -24,4 +34,3 @@ allprojects {
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
-

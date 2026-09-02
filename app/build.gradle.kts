@@ -133,8 +133,8 @@ android {
     }
     buildFeatures {
         buildConfig = true
-        //dataBinding = true
-        //viewBinding = true
+        dataBinding = true
+        viewBinding = true
         compose = true
         // flavorDimensions = listof("model", "channel")
     }
@@ -176,16 +176,13 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.rxpermissions)
     implementation(libs.javax.annotation)
-    implementation(libs.glide)
+    implementation(libs.bundles.glide)
     ksp(libs.glide.compiler)
     implementation(libs.photoview)
-    implementation(project(":lib_common"))
-    implementation(project(":lib_custom_view"))
-    implementation(project(":lib_media_picker"))
-    implementation(project(":lib_video_record"))
-    implementation(project(":lib_wheel_picker"))
-    implementation(project(":lib_zxing"))
-}
-repositories {
-    google()
+    implementation(projects.libCommon)
+    implementation(projects.libCustomView)
+    implementation(projects.libMediaPicker)
+    implementation(projects.libVideoRecord)
+    implementation(projects.libWheelPicker)
+    implementation(projects.libZxing)
 }
