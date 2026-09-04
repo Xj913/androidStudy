@@ -20,17 +20,16 @@ allprojects {
     }
     configurations.configureEach {
         resolutionStrategy {
-            /*force 'androidx.annotation:annotation-experimental:1.1.0'
-            force 'androidx.lifecycle:lifecycle-livedata:2.5.1'
-            force 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
-            force 'androidx.arch.core:core-runtime:2.2.0'
-            force 'androidx.lifecycle:lifecycle-service:2.8.7'
-            force 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.7'
-            */
+            force(libs.ktx.coroutines.android)
+            force(libs.coordinatorlayout)
+            force(libs.constraintlayout)
+            force(libs.okio)
+            force(libs.org.annotations)
         }
     }
 }
 
 tasks.register<Delete>("clean") {
+    description = ""
     delete(rootProject.layout.buildDirectory)
 }

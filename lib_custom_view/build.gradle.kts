@@ -7,10 +7,10 @@ plugins {
 
 android {
     namespace = "com.style.lib_custom_view"
-    compileSdk = (findProperty("compileSdk") as String).toInt()
-    ndkVersion = findProperty("ndk") as String
+    compileSdk = libs.versions.compileSdk.get().toInt()
+    ndkVersion = libs.versions.ndk.get()
     defaultConfig {
-        minSdk = (findProperty("minSdk") as String).toInt()
+        minSdk = libs.versions.minSdk.get().toInt()
     }
     buildTypes {
         register("preview") {

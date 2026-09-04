@@ -8,9 +8,9 @@ plugins {
 
 android {
     namespace = "com.style.lib.common"
-    compileSdk = (findProperty("compileSdk") as String).toInt()
+    compileSdk = libs.versions.compileSdk.get().toInt()
     defaultConfig {
-        minSdk = (findProperty("minSdk") as String).toInt()
+        minSdk = libs.versions.minSdk.get().toInt()
         ndk {
             //moduleName "helloNDK"
             abiFilters += listOf("armeabi-v7a", "arm64-v8a")

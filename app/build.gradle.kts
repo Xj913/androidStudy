@@ -19,12 +19,12 @@ properties.load(FileInputStream(project.rootProject.file("local.properties")))
 
 android {
     namespace = "com.style.app.MyApp"
-    compileSdk = (project.property("compileSdk") as String).toInt()
-    ndkVersion = findProperty("ndk") as String
+    compileSdk = libs.versions.compileSdk.get().toInt()
+    ndkVersion = libs.versions.ndk.get()
     defaultConfig {
         applicationId = "com.style.framework"
-        minSdk = (findProperty("minSdk") as String).toInt()
-        targetSdk = (project.property("targetSdk") as String).toInt()
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 9
         versionName = "2.9.0"
         multiDexEnabled = true
@@ -154,7 +154,8 @@ android {
 
 dependencies {
     testImplementation(libs.junit)
-    implementation(libs.kotlin)
+    implementation(platform(libs.kotlin.bom))
+    //implementation(libs.kotlin)
     //androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
       //  exclude group: 'com.android.support', module: 'support-annotations'
     //})
@@ -165,7 +166,9 @@ dependencies {
     implementation(libs.viewmodel.ktx)
     implementation(libs.livedata.ktx)
     implementation(libs.ktx.serialization.json)
-    implementation(libs.ktx.coroutines.android)
+    constraints {
+        implementation(libs.ktx.coroutines.android)
+    }
     implementation(libs.recyclerview)
     implementation(libs.cardview)
     implementation(libs.palette.ktx)

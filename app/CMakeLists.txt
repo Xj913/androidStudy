@@ -1,6 +1,5 @@
-
 cmake_minimum_required(VERSION 3.4.1)
-
+project(MyProject)
 add_library( jni_test
              SHARED
              ${CMAKE_SOURCE_DIR}/src/main/cpp/src/test/test.cpp

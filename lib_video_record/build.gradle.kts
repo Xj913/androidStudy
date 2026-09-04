@@ -4,9 +4,9 @@ plugins {
 }
 android {
     namespace = "com.style.lib.media.video"
-    compileSdk = (findProperty("compileSdk") as String).toInt()
+    compileSdk = libs.versions.compileSdk.get().toInt()
     defaultConfig {
-        minSdk = (findProperty("minSdk") as String).toInt()
+        minSdk = libs.versions.minSdk.get().toInt()
     }
     buildTypes {
         register("preview") {
