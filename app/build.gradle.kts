@@ -8,10 +8,10 @@ import java.io.FileInputStream
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin)
+    //alias(libs.plugins.kotlin)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.compose.compiler)
 }
 val releaseTime: String = SimpleDateFormat("yyyy-MM-dd_HH_mm_ss", Locale.getDefault()).format(Date())
 val properties = Properties()
@@ -49,24 +49,23 @@ android {
             dimension = "model"
             applicationIdSuffix = ".dev"
             buildConfigField("boolean", "isDebug", "true")
-            resValue("string", "app_name", "App Dev")
+            //resValue("string", "app_name", "App Dev")
         }
         create("wdj"){
             dimension = "channel"
             manifestPlaceholders["CHANNEL"] = "豌豆荚"
         }
     }
-    applicationVariants.all {
-        val buildType = buildType.name
-        outputs.all {
-            if (this is ApkVariantOutputImpl) {
-                if (buildType == "release") {
-                    outputFileName = "DEMO_v${versionCode}_${flavorName}_${releaseTime}.apk"
+    androidComponents {
+        onVariants { variant ->
+            variant.outputs.forEach { output ->
+                if (output is ApkVariantOutputImpl) {
+                    output.outputFileName = "DEMO_v${output.versionCode}_${variant.flavorName}_${releaseTime}.apk"
                 }
+                //variant.signingConfig?.enableV1Signing?.set(false)
             }
         }
     }
-
 //    applicationVariants.all { variant ->
 //        val buildType = variant.buildType.name
 //        variant.outputs.all { output ->
@@ -138,37 +137,35 @@ android {
         compose = true
         // flavorDimensions = listof("model", "channel")
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.5"
-    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
     }
     kotlin {
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_21)
+            languageVersion = org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_2
         }
     }
 }
 
 dependencies {
     testImplementation(libs.junit)
-    implementation(platform(libs.kotlin.bom))
-    //implementation(libs.kotlin)
+    implementation(libs.kotlin)
+    implementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.compose.bom)
+    debugImplementation("androidx.compose.ui:ui-tooling:1.11.3")
+    //androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.11.3")
+    //debugImplementation("androidx.compose.ui:ui-test-manifest:1.11.3")
     //androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
       //  exclude group: 'com.android.support', module: 'support-annotations'
     //})
-    implementation(libs.multidex.instrumentation)
-    implementation(libs.multidex)
     implementation(libs.appcompat)
-    implementation(libs.viewmodel.android)
-    implementation(libs.viewmodel.ktx)
-    implementation(libs.livedata.ktx)
     implementation(libs.ktx.serialization.json)
     constraints {
         implementation(libs.ktx.coroutines.android)
     }
+    implementation(libs.bundles.compose)
+    ksp(libs.hilt.compiler)
     implementation(libs.recyclerview)
     implementation(libs.cardview)
     implementation(libs.palette.ktx)

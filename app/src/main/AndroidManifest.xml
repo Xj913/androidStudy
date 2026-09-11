@@ -44,6 +44,9 @@
     <uses-feature
         android:name="android.hardware.bluetooth_le"
         android:required="true" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
     <!-- 粗略位置 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- 精确位置 -->
@@ -61,16 +64,14 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup,android:icon,android:label,android:supportsRtl,android:theme">
         <activity
-            android:name="example.home.MainActivity">
+            android:name="example.home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="example.login.LoginActivity"
-            android:launchMode="singleTask" />
+
         <activity
             android:name="example.viewPagerBanner.BannerActivity"
             android:theme="@style/AppTheme.Translucent.ImageScan" />
@@ -201,7 +202,7 @@
         <!-- 友盟统计app渠道来源时需要的字段信息 -->
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="${ENVIRONMENT}" />
+            android:value="${CHANNEL}" />
         <!-- 阿里热修复 -->
         <meta-data
             android:name="com.taobao.android.hotfix.IDSECRET"

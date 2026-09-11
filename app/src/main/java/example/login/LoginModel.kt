@@ -1,23 +1,23 @@
 package example.login
 
-import android.app.Application
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.MutableLiveData
-import com.style.base.BaseViewModel
+import androidx.lifecycle.ViewModel
 import com.style.data.http.function.impl.UserNetSourceImpl
 import com.style.data.prefs.AppPrefsManager
 import com.style.entity.UserInfo
+import dagger.hilt.android.lifecycle.HiltViewModel
 import java.net.URL
 import java.security.MessageDigest
 import java.security.cert.X509Certificate
 import javax.net.ssl.HttpsURLConnection
 import kotlin.experimental.and
 
-/**
- * Created by xiajun on 2018/7/13.
- */
+@HiltViewModel
+class LoginModel : ViewModel() {
 
-class LoginModel(application: Application) : BaseViewModel(application) {
-
+    val phone = mutableStateOf("")
+    val password = mutableStateOf("")
     var user = MutableLiveData<UserInfo>()
     val loginState = MutableLiveData<Boolean>()
 
@@ -43,7 +43,7 @@ class LoginModel(application: Application) : BaseViewModel(application) {
     }
 
     fun getLoginUser() {
-        val a = getPreferences().currentAccount
+        //val a = getPreferences().currentAccount
     }
 
     fun login(userName: String, password: String) {
@@ -55,7 +55,7 @@ class LoginModel(application: Application) : BaseViewModel(application) {
         }) {
             //getActivity().loginFailed();
         }
-        addTask(d)
+       // addTask(d)
 
     }
 

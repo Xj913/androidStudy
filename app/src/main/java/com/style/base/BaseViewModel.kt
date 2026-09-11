@@ -13,10 +13,6 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import java.util.*
 
-/**
- * Created by xiajun on 2018/7/13.
- */
-
 abstract class BaseViewModel(application: Application) : AndroidViewModel(application) {
     protected val TAG = this.javaClass.simpleName
     //请求状态：错误和成功都设为true
