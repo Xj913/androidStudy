@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 
 import com.dmcbig.mediapicker.entity.Media;
 import com.style.base.BaseRecyclerViewAdapter;
-import com.style.framework.R;
-import com.style.framework.databinding.AdapterGlideListBinding;
+import com.style.app.MyApp.R;
+import com.style.app.MyApp.databinding.AdapterGlideListBinding;
 import com.style.data.glide.ImageLoader;
 
 import java.util.ArrayList;

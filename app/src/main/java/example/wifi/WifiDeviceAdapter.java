@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.style.base.BaseRecyclerViewAdapter;
-import com.style.framework.databinding.WifiMainAdapterBinding;
+import com.style.app.MyApp.databinding.WifiMainAdapterBinding;
 
 import java.util.ArrayList;
 

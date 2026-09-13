@@ -1,5 +1,5 @@
 // IRemotePlayService.aidl
-package com.style.framework;
+package com.style.app.MyApp;
 
 // Declare any non-default types here with import statements
 

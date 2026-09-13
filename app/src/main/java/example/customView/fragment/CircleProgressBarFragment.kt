@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.style.base.BaseFragment
-import com.style.framework.databinding.ActivityCircleProgressBinding
+import com.style.app.MyApp.databinding.ActivityCircleProgressBinding
 
 
 class CircleProgressBarFragment : BaseFragment() {

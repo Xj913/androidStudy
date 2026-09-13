@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 import com.style.base.BaseRecyclerViewAdapter
-import com.style.framework.databinding.ScrollStopContentAdapterBinding
+import com.style.app.MyApp.databinding.ScrollStopContentAdapterBinding
 import java.util.*
 
 class ScrollStopContentAdapter : BaseRecyclerViewAdapter<String> {

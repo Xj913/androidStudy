@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.style.app.MyApp.databinding.FragmentTablayoutBinding
 import com.style.base.BaseTitleBarActivity
-import com.style.framework.databinding.FragmentTablayoutBinding
 
 class BottomSheetBehaviorActivity : BaseTitleBarActivity() {
 

@@ -19,7 +19,7 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.style.framework", appContext.getPackageName());
+        assertEquals("com.style.app.MyApp", appContext.getPackageName());
         /*RetrofitImpl.getInstance().getPhoneInfo("17364814713").subscribe(s -> {
 
             Log.e("useAppContext", s);

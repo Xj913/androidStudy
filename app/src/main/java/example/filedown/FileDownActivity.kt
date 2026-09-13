@@ -17,7 +17,7 @@ import com.style.data.fileDown.FileDownloadStateBean
 import com.style.data.fileDown.FileDownloadStateBean.DownStatus
 import com.style.data.fileDown.entity.CustomFileBean
 import com.style.data.fileDown.multiBlock.MultiThreadDownloadManager
-import com.style.framework.databinding.FileDownListActivityBinding
+import com.style.app.MyApp.databinding.FileDownListActivityBinding
 import com.style.service.fileDownload.FileDownloadService
 import com.style.utils.OpenFileUtil
 import com.style.view.diviver.DividerItemDecoration

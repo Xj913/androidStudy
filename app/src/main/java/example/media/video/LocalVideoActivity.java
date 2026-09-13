@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.style.base.BaseRecyclerViewAdapter;
 import com.style.config.FileDirConfig;
-import com.style.framework.R;
+import com.style.app.MyApp.R;
 import com.style.lib.media.video.PlayVideoActivity;
 
 import java.io.File;

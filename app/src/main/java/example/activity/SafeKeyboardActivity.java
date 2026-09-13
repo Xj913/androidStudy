@@ -9,7 +9,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.style.base.BaseTitleBarActivity;
-import com.style.framework.R;
+import com.style.app.MyApp.R;
 import com.style.common_ui.KeyboardPopupWindow;
 
 public class SafeKeyboardActivity extends BaseTitleBarActivity {

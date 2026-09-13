@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.aigestudio.wheelpicker.WheelPicker;
 import com.style.base.BaseDialog;
-import com.style.framework.R;
+import com.style.app.MyApp.R;
 
 import java.util.List;
 

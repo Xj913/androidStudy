@@ -34,6 +34,7 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
         Log.e(TAG, "onCleared")
         removeAllTask()
         removeSingleTask()
+        getDataBase()
     }
 
     protected fun addTask(d: Disposable) {

@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.style.base.BaseFragment
-import com.style.framework.R
+import com.style.app.MyApp.R
 
 class ScanViewFragment : BaseFragment() {
 

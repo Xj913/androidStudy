@@ -6,8 +6,8 @@ import android.widget.TextView;
 
 import com.ndk.JniCommon;
 import com.ndk.JniTest;
-import com.style.framework.R;
-import com.style.framework.databinding.ActivityJniTestBinding;
+import com.style.app.MyApp.R;
+import com.style.app.MyApp.databinding.ActivityJniTestBinding;
 
 public class JniTestActivity extends AppCompatActivity {
 

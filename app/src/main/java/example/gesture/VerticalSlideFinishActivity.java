@@ -11,8 +11,8 @@ import android.view.animation.DecelerateInterpolator;
 
 import com.style.data.app.AppActivityManager;
 import com.style.base.BaseActivity;
-import com.style.framework.R;
-import com.style.framework.databinding.ActivityTestGestureBinding;
+import com.style.app.MyApp.R;
+import com.style.app.MyApp.databinding.ActivityTestGestureBinding;
 
 import org.jetbrains.annotations.Nullable;
 

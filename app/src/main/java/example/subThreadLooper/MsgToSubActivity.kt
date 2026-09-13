@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import com.style.base.BaseTitleBarActivity
-import com.style.framework.databinding.ActivityMsgToSubBinding
+import com.style.app.MyApp.databinding.ActivityMsgToSubBinding
 
 public class MsgToSubActivity : BaseTitleBarActivity() {
 

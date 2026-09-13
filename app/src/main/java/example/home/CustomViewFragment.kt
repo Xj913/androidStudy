@@ -4,16 +4,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.style.app.MyApp.databinding.FragmentHome1Binding
 import com.style.base.BaseNoPagerLazyRefreshFragment
-import com.style.framework.databinding.FragmentHome1Binding
 import example.address.AddressActivity
 import example.album.SelectLocalPictureActivity
-import example.customView.*
+import example.customView.BpActivity
+import example.customView.CustomViewMainActivity
+import example.customView.DrawViewActivity
+import example.customView.EcgActivity
+import example.customView.HeartLineActivity
+import example.customView.RecordAudioViewActivity
+import example.customView.SleepWeekActivity
+import example.customView.SportWeekActivity
+import example.customView.SuspendWindowActivity
+import example.customView.TempActivity
+import example.customView.WriteWordActivity
 import example.dialog.DialogActivity
 import example.dialog.WheelActivity
 import example.gesture.XXRefreshActivity
 import example.viewPagerBanner.BannerActivity
-import missing.namespace.databinding.FragmentHome1Binding
 
 class CustomViewFragment : BaseNoPagerLazyRefreshFragment() {
 

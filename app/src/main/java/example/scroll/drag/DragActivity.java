@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 
 import com.style.base.BaseTitleBarActivity;
-import com.style.framework.databinding.DragActivityBinding;
+import com.style.app.MyApp.databinding.DragActivityBinding;
 import com.style.view.diviver.DividerItemDecoration;
 
 import org.jetbrains.annotations.Nullable;

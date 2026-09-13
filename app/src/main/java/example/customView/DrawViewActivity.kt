@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 
-import com.style.framework.R
+import com.style.app.MyApp.R
 
 
 class DrawViewActivity : Activity() {

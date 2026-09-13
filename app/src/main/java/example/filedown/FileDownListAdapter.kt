@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import com.style.base.BaseRecyclerViewAdapter
 import com.style.data.fileDown.FileDownloadStateBean
 import com.style.data.fileDown.entity.CustomFileBean
-import com.style.framework.R
-import com.style.framework.databinding.FileDownListAdapterBinding
+import com.style.app.MyApp.R
+import com.style.app.MyApp.databinding.FileDownListAdapterBinding
 import java.util.*
 
 class FileDownListAdapter : BaseRecyclerViewAdapter<CustomFileBean> {

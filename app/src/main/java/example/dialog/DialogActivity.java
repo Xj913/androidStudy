@@ -14,8 +14,8 @@ import com.style.base.BaseTitleBarActivity;
 import com.style.dialog.GeneralListPopup;
 import com.style.dialog.LoadingDialog;
 import com.style.dialog.SelAvatarDialog;
-import com.style.framework.R;
-import com.style.framework.databinding.DialogActivityDialogBinding;
+import com.style.app.MyApp.R;
+import com.style.app.MyApp.databinding.DialogActivityDialogBinding;
 import com.style.dialog.MaterialProgressDialog;
 
 import org.jetbrains.annotations.Nullable;

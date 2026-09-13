@@ -10,8 +10,8 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
 import com.style.base.BaseTitleBarActivity;
-import com.style.framework.R;
-import com.style.framework.databinding.ActivityWebViewBinding;
+import com.style.app.MyApp.R;
+import com.style.app.MyApp.databinding.ActivityWebViewBinding;
 
 import org.jetbrains.annotations.Nullable;
 

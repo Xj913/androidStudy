@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.style.base.BaseNoPagerLazyRefreshFragment
-import com.style.framework.databinding.FragmentHomeGestureBinding
+import com.style.app.MyApp.databinding.FragmentHomeGestureBinding
 import example.activity.BottomSheetBehaviorActivity
 import example.scroll.drag.DragActivity
 import example.scroll.ScrollingActivity

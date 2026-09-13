@@ -15,8 +15,8 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import android.view.View;
 import com.style.base.BaseTitleBarActivity;
-import com.style.framework.R;
-import com.style.framework.databinding.LocationActivityBinding;
+import com.style.app.MyApp.R;
+import com.style.app.MyApp.databinding.LocationActivityBinding;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import org.jetbrains.annotations.Nullable;

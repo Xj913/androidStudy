@@ -6,7 +6,7 @@ import android.view.View;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.style.base.BaseTitleBarActivity;
-import com.style.framework.databinding.ActivityCoroutineBinding;
+import com.style.app.MyApp.databinding.ActivityCoroutineBinding;
 
 import org.jetbrains.annotations.Nullable;
 

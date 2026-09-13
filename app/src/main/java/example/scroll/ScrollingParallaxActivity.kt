@@ -3,7 +3,7 @@ package example.scroll
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
-import com.style.framework.databinding.ActivityScrollingParallaxBinding
+import com.style.app.MyApp.databinding.ActivityScrollingParallaxBinding
 
 class ScrollingParallaxActivity : AppCompatActivity() {
 

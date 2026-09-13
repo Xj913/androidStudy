@@ -15,8 +15,8 @@ import android.telephony.TelephonyManager;
 import android.view.View;
 
 import com.style.base.BaseTitleBarActivity;
-import com.style.framework.R;
-import com.style.framework.databinding.ActivityAddressBinding;
+import com.style.app.MyApp.R;
+import com.style.app.MyApp.databinding.ActivityAddressBinding;
 import com.style.view.diviver.DividerItemDecoration;
 import com.style.view.sort.FloatingBarItemDecoration;
 import com.style.view.sort.IndexBar;

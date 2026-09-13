@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import com.dmcbig.mediapicker.utils.ScreenUtils;
 import com.style.base.BaseRecyclerViewAdapter;
-import com.style.framework.databinding.SwipeMenuAdapterBinding;
+import com.style.app.MyApp.databinding.SwipeMenuAdapterBinding;
 
 import java.util.ArrayList;
 

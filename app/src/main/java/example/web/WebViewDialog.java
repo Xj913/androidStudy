@@ -14,8 +14,8 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.style.base.BaseDialog;
-import com.style.framework.R;
-import com.style.framework.databinding.DialogWebViewBinding;
+import com.style.app.MyApp.R;
+import com.style.app.MyApp.databinding.DialogWebViewBinding;
 
 public class WebViewDialog extends BaseDialog {
 

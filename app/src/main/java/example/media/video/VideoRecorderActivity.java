@@ -16,7 +16,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import com.style.config.FileDirConfig;
-import com.style.framework.R;
+import com.style.app.MyApp.R;
 
 import java.util.Collections;
 import java.util.Comparator;

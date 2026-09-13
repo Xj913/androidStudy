@@ -6,19 +6,16 @@ import android.os.Bundle
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentPagerAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.github.chrisbanes.photoview.PhotoView
+import com.style.app.MyApp.R
+import com.style.app.MyApp.databinding.AdapterIndicatorBinding
 import com.style.app.MyApp.databinding.BannerActivityBinding
 import com.style.base.BaseActivity
 import com.style.base.BaseRecyclerViewAdapter
-import com.style.framework.R
-import com.style.framework.databinding.AdapterIndicatorBinding
-import com.style.framework.databinding.BannerActivityBinding
 
 class BannerActivity : BaseActivity() {
 

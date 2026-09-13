@@ -11,8 +11,8 @@ import android.os.Process;
 import android.os.RemoteException;
 
 import com.style.base.BaseTitleBarActivity;
-import com.style.framework.R;
-import com.style.framework.databinding.ActivityAidlBinding;
+import com.style.app.MyApp.R;
+import com.style.app.MyApp.databinding.ActivityAidlBinding;
 
 import org.jetbrains.annotations.Nullable;
 

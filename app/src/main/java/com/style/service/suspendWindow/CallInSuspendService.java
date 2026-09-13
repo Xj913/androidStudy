@@ -16,7 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.style.framework.R;
+import com.style.app.MyApp.R;
 
 public class CallInSuspendService extends Service {
 

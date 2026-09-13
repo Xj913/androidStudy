@@ -5,8 +5,8 @@ import android.os.Bundle;
 import androidx.viewpager.widget.ViewPager;
 
 import com.style.base.BaseTitleBarActivity;
-import com.style.framework.R;
-import com.style.framework.databinding.ViewPagerCardsViewsActivityBinding;
+import com.style.app.MyApp.R;
+import com.style.app.MyApp.databinding.ViewPagerCardsViewsActivityBinding;
 
 import org.jetbrains.annotations.Nullable;
 

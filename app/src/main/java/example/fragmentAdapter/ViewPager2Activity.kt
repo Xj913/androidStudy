@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.style.base.BaseRecyclerViewAdapter
 import com.style.base.BaseTitleBarActivity
-import com.style.framework.databinding.Viewpager2WithViewActivityBinding
-import com.style.framework.databinding.Viewpager2WithViewAdapterBinding
+import com.style.app.MyApp.databinding.Viewpager2WithViewActivityBinding
+import com.style.app.MyApp.databinding.Viewpager2WithViewAdapterBinding
 
 class ViewPager2Activity : BaseTitleBarActivity() {
 

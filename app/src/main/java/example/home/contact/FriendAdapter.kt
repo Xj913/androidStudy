@@ -5,8 +5,8 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 
 import com.style.base.BaseRecyclerViewAdapter
-import com.style.framework.R
-import com.style.framework.databinding.AdapterFriendBinding
+import com.style.app.MyApp.R
+import com.style.app.MyApp.databinding.AdapterFriendBinding
 
 import java.util.ArrayList
 

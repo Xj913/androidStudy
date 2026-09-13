@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.*
 import com.style.base.BaseRecyclerViewAdapter
 import com.style.base.BaseActivity
-import com.style.framework.databinding.ActivityScrollingStopTopBinding
+import com.style.app.MyApp.databinding.ActivityScrollingStopTopBinding
 import com.style.view.diviver.DividerItemDecoration
 import java.util.*
 

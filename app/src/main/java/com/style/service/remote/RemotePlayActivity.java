@@ -12,9 +12,9 @@ import android.util.Log;
 import android.view.View;
 
 import com.style.base.BaseTitleBarActivity;
-import com.style.framework.IRemotePlayService;
-import com.style.framework.R;
-import com.style.framework.databinding.ActivityRemoteServiceBinding;
+import com.style.app.MyApp.IRemotePlayService;
+import com.style.app.MyApp.R;
+import com.style.app.MyApp.databinding.ActivityRemoteServiceBinding;
 import com.style.utils.AppInfoUtil;
 
 import org.jetbrains.annotations.Nullable;
@@ -57,7 +57,7 @@ public class RemotePlayActivity extends BaseTitleBarActivity {
     private void conn() {
         Log.e(getTAG(), "begin bindService");
         Intent intent = new Intent("action.remote.play");
-        intent.setPackage("com.style.framework");
+        intent.setPackage("com.style.app.MyApp");
         this.bindService(intent, conn, Context.BIND_AUTO_CREATE);
     }
 

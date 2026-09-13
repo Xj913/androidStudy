@@ -10,17 +10,21 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import java.net.URL
 import java.security.MessageDigest
 import java.security.cert.X509Certificate
+import javax.inject.Inject
 import javax.net.ssl.HttpsURLConnection
 import kotlin.experimental.and
 
 @HiltViewModel
-class LoginModel : ViewModel() {
+class LoginModel @Inject constructor() : ViewModel() {
 
     val phone = mutableStateOf("")
     val password = mutableStateOf("")
     var user = MutableLiveData<UserInfo>()
     val loginState = MutableLiveData<Boolean>()
 
+    init {
+
+    }
     fun login() {
 
         /*   new Thread(new Runnable() {

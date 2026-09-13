@@ -18,7 +18,7 @@ import android.view.WindowManager.LayoutParams;
 import android.view.animation.TranslateAnimation;
 import android.widget.RelativeLayout;
 
-import com.style.framework.R;
+import com.style.app.MyApp.R;
 
 public class VideoSuspendService extends Service {
     //定义浮动窗口布局

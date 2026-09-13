@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.style.base.BasePagerLazyRefreshFragment
-import com.style.framework.databinding.TabSimpleFragmentBinding
+import com.style.app.MyApp.databinding.TabSimpleFragmentBinding
 
 class TabFragment : BasePagerLazyRefreshFragment() {
 

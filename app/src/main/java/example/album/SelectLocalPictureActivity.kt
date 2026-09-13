@@ -19,8 +19,8 @@ import com.style.base.BaseRecyclerViewAdapter
 import com.style.base.BaseTitleBarActivity
 import com.style.config.FileDirConfig
 import com.style.dialog.SelAvatarDialog
-import com.style.framework.R
-import com.style.framework.databinding.ActivitySelectLocalPictureBinding
+import com.style.app.MyApp.R
+import com.style.app.MyApp.databinding.ActivitySelectLocalPictureBinding
 import com.style.utils.BitmapUtil
 import com.style.utils.DeviceInfoUtil
 import com.style.utils.FileUtil

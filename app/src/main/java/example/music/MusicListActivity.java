@@ -21,8 +21,8 @@ import android.view.View;
 import com.dmcbig.mediapicker.PickerConfig;
 import com.style.base.BaseTitleBarActivity;
 import com.style.base.BaseRecyclerViewAdapter;
-import com.style.framework.R;
-import com.style.framework.databinding.ActivityMusicListBinding;
+import com.style.app.MyApp.R;
+import com.style.app.MyApp.databinding.ActivityMusicListBinding;
 import com.style.view.diviver.DividerItemDecoration;
 
 import org.jetbrains.annotations.Nullable;

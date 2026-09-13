@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.style.base.BaseNoPagerLazyRefreshFragment
 import com.style.entity.KuaiDi
-import com.style.framework.databinding.FragmentHome3Binding
+import com.style.app.MyApp.databinding.FragmentHome3Binding
 import com.style.service.remote.RemotePlayActivity
 import example.activity.AnimatorActivity
 import example.activity.JniTestActivity

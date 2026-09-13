@@ -4,8 +4,8 @@ import android.graphics.Color
 import android.os.Bundle
 import android.widget.TextView
 import com.style.base.BaseTitleBarActivity
-import com.style.framework.R
-import com.style.framework.databinding.ActivityRecordAudioViewBinding
+import com.style.app.MyApp.R
+import com.style.app.MyApp.databinding.ActivityRecordAudioViewBinding
 import java.util.*
 
 class RecordAudioViewActivity : BaseTitleBarActivity() {

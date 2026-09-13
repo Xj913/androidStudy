@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.dmcbig.mediapicker.entity.Media;
 import com.style.base.BaseRecyclerViewAdapter;
 import com.style.base.BaseTitleBarActivity;
-import com.style.framework.R;
-import com.style.framework.databinding.GlideListTestBinding;
+import com.style.app.MyApp.R;
+import com.style.app.MyApp.databinding.GlideListTestBinding;
 import com.style.view.diviver.DividerItemDecoration;
 
 import java.util.ArrayList;

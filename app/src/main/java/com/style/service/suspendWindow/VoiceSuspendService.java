@@ -17,7 +17,7 @@ import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
-import com.style.framework.R;
+import com.style.app.MyApp.R;
 
 
 public class VoiceSuspendService extends Service {

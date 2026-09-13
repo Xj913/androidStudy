@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.style.data.singlePriorityTask.PrioritizedTask
 import com.style.data.singlePriorityTask.SinglePriorityTaskManager
-import com.style.framework.databinding.ActivityQueueTestBinding
+import com.style.app.MyApp.databinding.ActivityQueueTestBinding
 import java.util.*
 
 class QueueTestActivity : AppCompatActivity(), EventReceiver {

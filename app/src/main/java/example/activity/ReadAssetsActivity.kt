@@ -2,8 +2,8 @@ package example.activity;
 
 import android.os.Bundle
 import com.style.base.BaseTitleBarActivity
-import com.style.framework.R
-import com.style.framework.databinding.ActivityUserAgreeBinding
+import com.style.app.MyApp.R
+import com.style.app.MyApp.databinding.ActivityUserAgreeBinding
 import com.style.utils.AssetsUtil
 import java.io.IOException
 

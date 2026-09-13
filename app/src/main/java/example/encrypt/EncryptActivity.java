@@ -6,7 +6,7 @@ import android.text.Html;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.style.base.BaseTitleBarActivity;
-import com.style.framework.databinding.ActivityEncryptBinding;
+import com.style.app.MyApp.databinding.ActivityEncryptBinding;
 import com.style.utils.BytesHexStrTranslate;
 
 import org.jetbrains.annotations.Nullable;

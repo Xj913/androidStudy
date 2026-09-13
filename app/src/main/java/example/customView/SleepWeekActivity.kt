@@ -2,7 +2,7 @@ package example.customView
 
 import android.os.Bundle
 import com.style.base.BaseTitleBarActivity
-import com.style.framework.databinding.ActivityWeekSleepBinding
+import com.style.app.MyApp.databinding.ActivityWeekSleepBinding
 import java.text.SimpleDateFormat
 import java.util.*
 

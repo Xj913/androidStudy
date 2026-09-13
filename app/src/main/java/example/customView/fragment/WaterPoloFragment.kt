@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 
 import com.style.base.BaseFragment
-import com.style.framework.R
+import com.style.app.MyApp.R
 
 class WaterPoloFragment : BaseFragment() {
 

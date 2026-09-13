@@ -6,8 +6,8 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.style.base.BaseTitleBarActivity;
-import com.style.framework.R;
-import com.style.framework.databinding.EditLayoutMainActivityBinding;
+import com.style.app.MyApp.R;
+import com.style.app.MyApp.databinding.EditLayoutMainActivityBinding;
 import com.style.utils.DeviceInfoUtil;
 
 import org.jetbrains.annotations.Nullable;

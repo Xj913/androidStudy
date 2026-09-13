@@ -18,8 +18,8 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import com.style.base.BaseActivity
 import com.style.data.app.AppActivityManager
-import com.style.framework.R
-import com.style.framework.databinding.ActivityMainBinding
+import com.style.app.MyApp.R
+import com.style.app.MyApp.databinding.ActivityMainBinding
 import com.style.toast.ToastManager
 import com.style.utils.DeviceInfoUtil
 import com.style.utils.NetWorkUtil

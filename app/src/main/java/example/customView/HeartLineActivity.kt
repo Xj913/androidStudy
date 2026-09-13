@@ -1,9 +1,8 @@
 package example.customView
 
 import android.os.Bundle
+import com.style.app.MyApp.databinding.ActivityHeartLineBinding
 import com.style.base.BaseTitleBarActivity
-import com.style.framework.R
-import com.style.framework.databinding.ActivityHeartLineBinding
 import com.style.view.healthy.HeartLineChart
 import java.util.*
 
@@ -21,7 +20,6 @@ class HeartLineActivity : BaseTitleBarActivity() {
 
     fun refresh() {
         val d = getData()
-        bd.heartLineBg.setData(d)
         bd.heartLine.setData(d)
     }
 

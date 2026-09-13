@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
-import com.style.framework.R;
+import com.style.app.MyApp.R;
 
 public class ScaleTestWindow extends PopupWindow {
     private Context context;

@@ -2,8 +2,8 @@ package example.customView
 
 import android.os.Bundle
 import com.style.base.BaseTitleBarActivity
-import com.style.framework.R
-import com.style.framework.databinding.ActivityBpBinding
+import com.style.app.MyApp.R
+import com.style.app.MyApp.databinding.ActivityBpBinding
 import com.style.view.healthy.BloodPressureLine.BloodItem
 import java.util.*
 

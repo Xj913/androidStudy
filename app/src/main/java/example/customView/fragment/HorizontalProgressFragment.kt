@@ -9,7 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.style.base.BaseFragment
-import com.style.framework.databinding.ActivityHorizontalProgressBinding
+import com.style.app.MyApp.databinding.ActivityHorizontalProgressBinding
 
 
 class HorizontalProgressFragment : BaseFragment() {

@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.style.base.BaseFragment
-import com.style.framework.R
-import com.style.framework.databinding.ActivityPieChartBinding
+import com.style.app.MyApp.R
+import com.style.app.MyApp.databinding.ActivityPieChartBinding
 import com.style.view.other.PieChartView
 import java.util.*
 

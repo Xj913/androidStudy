@@ -4,7 +4,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import com.style.base.BaseTitleBarActivity;
-import com.style.framework.databinding.ActivityReportTrendBinding;
+import com.style.app.MyApp.databinding.ActivityReportTrendBinding;
 
 import java.util.ArrayList;
 import java.util.Random;

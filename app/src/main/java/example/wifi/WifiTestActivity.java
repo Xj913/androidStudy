@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.style.base.BaseTitleBarActivity;
 import com.style.base.BaseRecyclerViewAdapter;
-import com.style.framework.R;
-import com.style.framework.databinding.WifiActivityMainBinding;
+import com.style.app.MyApp.R;
+import com.style.app.MyApp.databinding.WifiActivityMainBinding;
 import com.style.view.diviver.DividerItemDecoration;
 
 import org.jetbrains.annotations.Nullable;

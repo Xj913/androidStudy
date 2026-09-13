@@ -15,8 +15,8 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.dmcbig.mediapicker.entity.Media;
 import com.style.base.BaseRecyclerViewAdapter;
 import com.style.data.glide.ImageLoader;
-import com.style.framework.databinding.ActivityImageScanBinding;
-import com.style.framework.databinding.FragmentImageScanBinding;
+import com.style.app.MyApp.databinding.ActivityImageScanBinding;
+import com.style.app.MyApp.databinding.FragmentImageScanBinding;
 
 import java.util.ArrayList;
 

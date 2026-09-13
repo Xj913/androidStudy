@@ -5,8 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.style.base.BaseRecyclerViewAdapter;
 import com.style.base.BaseTitleBarActivity;
-import com.style.framework.R;
-import com.style.framework.databinding.EditLayoutMoveBottomOfFullScreenBinding;
+import com.style.app.MyApp.R;
+import com.style.app.MyApp.databinding.EditLayoutMoveBottomOfFullScreenBinding;
 import com.style.helper.InputMethodStateListener;
 import com.style.view.diviver.DividerItemDecoration;
 

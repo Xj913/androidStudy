@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.style.framework.R;
+import com.style.app.MyApp.R;
 
 import java.util.ArrayList;
 import java.util.List;

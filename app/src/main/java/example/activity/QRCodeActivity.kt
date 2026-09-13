@@ -11,8 +11,8 @@ import androidx.core.content.ContextCompat
 import com.google.zxing.activity.CaptureActivity
 import com.google.zxing.encoding.EncodingHandler
 import com.style.base.BaseTitleBarActivity
-import com.style.framework.R
-import com.style.framework.databinding.ActivityQrCodeScanBinding
+import com.style.app.MyApp.R
+import com.style.app.MyApp.databinding.ActivityQrCodeScanBinding
 
 class QRCodeActivity : BaseTitleBarActivity() {
     private lateinit var bd: ActivityQrCodeScanBinding
@@ -29,7 +29,7 @@ class QRCodeActivity : BaseTitleBarActivity() {
         }
     }
 
-    override fun onNewIntent(intent: Intent?) {
+    override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         logE(TAG, "onNewIntent")
     }

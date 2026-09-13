@@ -3,8 +3,8 @@ package example.gesture
 import android.os.Bundle
 import com.style.base.BaseTitleBarActivity
 
-import com.style.framework.R
-import com.style.framework.databinding.XxrefreshActivityBinding
+import com.style.app.MyApp.R
+import com.style.app.MyApp.databinding.XxrefreshActivityBinding
 
 class XXRefreshActivity : BaseTitleBarActivity() {
 

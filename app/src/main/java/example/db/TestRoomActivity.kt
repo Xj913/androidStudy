@@ -3,7 +3,7 @@ package example.db;
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.style.base.BaseTitleBarActivity
-import com.style.framework.databinding.ActivityTestRoomBinding
+import com.style.app.MyApp.databinding.ActivityTestRoomBinding
 
 class TestRoomActivity : BaseTitleBarActivity() {
 

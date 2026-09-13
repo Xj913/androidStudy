@@ -12,7 +12,7 @@ import android.view.Window;
 import android.widget.Button;
 
 import com.style.base.BaseDialog;
-import com.style.framework.R;
+import com.style.app.MyApp.R;
 import com.style.utils.DeviceInfoUtil;
 
 public class SelAvatarDialog extends BaseDialog {

@@ -9,8 +9,8 @@ import com.style.dialog.BaseDoubleWheelDialog;
 import com.style.dialog.BaseSingleWheelDialog;
 import com.style.dialog.ChangeAddressDialog;
 import com.style.dialog.ChangeBirthdayDialog;
-import com.style.framework.R;
-import com.style.framework.databinding.ActivityWheelBinding;
+import com.style.app.MyApp.R;
+import com.style.app.MyApp.databinding.ActivityWheelBinding;
 
 import org.jetbrains.annotations.Nullable;
 

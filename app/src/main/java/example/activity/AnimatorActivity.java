@@ -11,8 +11,8 @@ import android.util.Log;
 import android.view.animation.BounceInterpolator;
 
 import com.style.base.BaseTitleBarActivity;
-import com.style.framework.R;
-import com.style.framework.databinding.ActivitySecondBinding;
+import com.style.app.MyApp.R;
+import com.style.app.MyApp.databinding.ActivitySecondBinding;
 
 import org.jetbrains.annotations.Nullable;
 

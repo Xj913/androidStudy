@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.style.base.BaseRecyclerViewAdapter;
-import com.style.framework.databinding.DragAdapterBinding;
+import com.style.app.MyApp.databinding.DragAdapterBinding;
 
 import java.util.ArrayList;
 

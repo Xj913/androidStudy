@@ -3,7 +3,7 @@ package example.customView
 import android.os.Bundle
 import com.google.android.material.tabs.TabLayout
 import com.style.base.BaseTitleBarActivity
-import com.style.framework.databinding.CustomViewMainBinding
+import com.style.app.MyApp.databinding.CustomViewMainBinding
 import example.customView.fragment.*
 
 class CustomViewMainActivity : BaseTitleBarActivity() {

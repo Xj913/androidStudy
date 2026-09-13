@@ -7,7 +7,7 @@ import android.os.IBinder;
 import androidx.annotation.Nullable;
 import android.util.Log;
 
-import com.style.framework.IRemotePlayService;
+import com.style.app.MyApp.IRemotePlayService;
 
 /**
  * Created by xiajun on 2018/1/8.

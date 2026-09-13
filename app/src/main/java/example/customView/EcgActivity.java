@@ -10,8 +10,8 @@ import android.view.View;
 import androidx.databinding.ViewDataBinding;
 
 import com.style.base.BaseTitleBarActivity;
-import com.style.framework.R;
-import com.style.framework.databinding.ActivityEcgBinding;
+import com.style.app.MyApp.R;
+import com.style.app.MyApp.databinding.ActivityEcgBinding;
 import com.style.view.healthy.EcgView;
 
 import java.io.BufferedReader;

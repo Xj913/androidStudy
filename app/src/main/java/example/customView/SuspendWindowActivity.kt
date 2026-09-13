@@ -8,7 +8,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
 import com.style.base.BaseTitleBarActivity
-import com.style.framework.databinding.ActivitySuspendWindowBinding
+import com.style.app.MyApp.databinding.ActivitySuspendWindowBinding
 import com.style.service.suspendWindow.CallInSuspendService
 import com.style.service.suspendWindow.VideoSuspendService
 import com.style.service.suspendWindow.VoiceSuspendService

@@ -14,9 +14,9 @@ import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
 import com.style.base.BaseRecyclerViewAdapter;
-import com.style.framework.R;
-import com.style.framework.databinding.GeneralListPopupBinding;
-import com.style.framework.databinding.GeneralPopupWindowAdapterItemBinding;
+import com.style.app.MyApp.R;
+import com.style.app.MyApp.databinding.GeneralListPopupBinding;
+import com.style.app.MyApp.databinding.GeneralPopupWindowAdapterItemBinding;
 
 import java.util.ArrayList;
 

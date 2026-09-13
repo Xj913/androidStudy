@@ -12,6 +12,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.hilt)
 }
 val releaseTime: String = SimpleDateFormat("yyyy-MM-dd_HH_mm_ss", Locale.getDefault()).format(Date())
 val properties = Properties()
@@ -22,7 +23,7 @@ android {
     compileSdk = libs.versions.compileSdk.get().toInt()
     ndkVersion = libs.versions.ndk.get()
     defaultConfig {
-        applicationId = "com.style.framework"
+        applicationId = "com.style.app.MyApp"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 9
@@ -149,35 +150,22 @@ android {
 }
 
 dependencies {
-    testImplementation(libs.junit)
+    //testImplementation(libs.junit)
     implementation(libs.kotlin)
     implementation(platform(libs.compose.bom))
-    androidTestImplementation(libs.compose.bom)
-    debugImplementation("androidx.compose.ui:ui-tooling:1.11.3")
+    //androidTestImplementation(libs.compose.bom)
+    //debugImplementation("androidx.compose.ui:ui-tooling:1.11.3")
     //androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.11.3")
     //debugImplementation("androidx.compose.ui:ui-test-manifest:1.11.3")
     //androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
       //  exclude group: 'com.android.support', module: 'support-annotations'
     //})
-    implementation(libs.appcompat)
-    implementation(libs.ktx.serialization.json)
-    constraints {
-        implementation(libs.ktx.coroutines.android)
-    }
+    implementation(libs.bundles.base)
     implementation(libs.bundles.compose)
     ksp(libs.hilt.compiler)
-    implementation(libs.recyclerview)
-    implementation(libs.cardview)
-    implementation(libs.palette.ktx)
-    implementation(libs.legacy)
-    implementation(libs.vectordrawable)
-    implementation(libs.constraintlayout)
-    implementation(libs.material)
-    implementation(libs.gson)
-    implementation(libs.rxpermissions)
-    implementation(libs.javax.annotation)
     implementation(libs.bundles.glide)
     ksp(libs.glide.compiler)
+    implementation(libs.rxpermission)
     implementation(libs.photoview)
     implementation(projects.libCommon)
     implementation(projects.libCustomView)

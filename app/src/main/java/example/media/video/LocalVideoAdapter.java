@@ -9,8 +9,8 @@ import android.widget.ImageView;
 
 import com.style.base.BaseRecyclerViewAdapter;
 import com.style.config.FileDirConfig;
-import com.style.framework.R;
-import com.style.framework.databinding.AdapterLocalVideoBinding;
+import com.style.app.MyApp.R;
+import com.style.app.MyApp.databinding.AdapterLocalVideoBinding;
 import com.style.utils.BitmapUtil;
 
 import java.io.File;

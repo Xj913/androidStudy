@@ -4,8 +4,8 @@ import android.os.Build;
 import android.os.Bundle;
 
 import com.style.base.BaseTitleBarActivity;
-import com.style.framework.R;
-import com.style.framework.databinding.GestureDivideScrollBinding;
+import com.style.app.MyApp.R;
+import com.style.app.MyApp.databinding.GestureDivideScrollBinding;
 
 import org.jetbrains.annotations.Nullable;
 

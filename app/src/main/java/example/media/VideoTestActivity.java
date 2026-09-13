@@ -12,7 +12,7 @@ import android.widget.ImageView;
 
 
 import com.style.config.FileDirConfig;
-import com.style.framework.R;
+import com.style.app.MyApp.R;
 import com.style.lib.media.camera2video.Camera2Activity;
 import com.style.lib.media.video.PlayVideoActivity;
 import com.style.utils.BitmapUtil;

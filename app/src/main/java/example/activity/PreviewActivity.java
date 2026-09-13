@@ -38,7 +38,7 @@ import com.camera2.utils.ColorConvertUtil;
 import com.camera2.view.AutoFitTextureView;
 import com.camera2.view.TestView;
 import com.style.config.FileDirConfig;
-import com.style.framework.R;
+import com.style.app.MyApp.R;
 import com.style.utils.BitmapUtil;
 import com.style.utils.FileUtil;
 import com.style.utils.PictureUtil;

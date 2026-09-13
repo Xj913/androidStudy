@@ -5,8 +5,8 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 
 import com.style.base.BaseTitleBarActivity;
-import com.style.framework.R;
-import com.style.framework.databinding.GestureSimpleTestBinding;
+import com.style.app.MyApp.R;
+import com.style.app.MyApp.databinding.GestureSimpleTestBinding;
 
 import org.jetbrains.annotations.Nullable;
 

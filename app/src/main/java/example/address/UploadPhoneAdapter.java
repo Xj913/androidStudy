@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.style.base.BaseRecyclerViewAdapter;
-import com.style.framework.databinding.AdapterAddressBinding;
+import com.style.app.MyApp.databinding.AdapterAddressBinding;
 
 import java.util.ArrayList;
 

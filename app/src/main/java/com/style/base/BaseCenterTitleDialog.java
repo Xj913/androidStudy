@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
 
-import com.style.framework.R;
+import com.style.app.MyApp.R;
 
 /**
  * Created by xiajun on 2018/6/8.
