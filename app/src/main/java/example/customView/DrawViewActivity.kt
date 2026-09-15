@@ -3,6 +3,7 @@ package example.customView
 import android.app.Activity
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.os.Message
 
 import com.style.app.MyApp.R
@@ -13,7 +14,7 @@ class DrawViewActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_draw_view)
-        val handler = object : Handler() {
+        val handler = object : Handler(Looper.myLooper()!!) {
             override fun handleMessage(msg: Message) {
                 super.handleMessage(msg)
                 this@DrawViewActivity.runOnUiThread { }

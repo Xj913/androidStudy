@@ -2,6 +2,8 @@ package example.viewPager;
 
 import android.app.Activity;
 import android.content.Context;
+
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.ViewGroup;
@@ -37,7 +39,7 @@ public class GlideListAdapter extends BaseRecyclerViewAdapter<Media> {
         //jvm剩余空闲内存
         Log.e("freeMemory", Runtime.getRuntime().freeMemory() / 1024 / 1024 + "M");
         //Glide.get(getContext()).clearMemory();
-        ImageLoader.load((Activity) getContext(), f.path, holder.bd.iv);
+        ImageLoader.load((FragmentActivity) getContext(), f.path, holder.bd.iv);
         super.setOnItemClickListener(holder.itemView, position);
     }
 

@@ -18,8 +18,7 @@ import java.security.MessageDigest;
 
 /**
  * 顶部以圆角矩形
- * 注意：这个只是裁剪的bitmap，最终效果会受imageview的scaleType影响.
- * 此模式目前只兼容centerCrop
+ * 只兼容centerCrop
  * Created by xiajun on 2017/12/23.
  */
 

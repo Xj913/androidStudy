@@ -15,23 +15,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dmcbig.mediapicker.PickerActivity
 import com.dmcbig.mediapicker.PickerConfig
 import com.dmcbig.mediapicker.entity.Media
+import com.style.app.MyApp.R
+import com.style.app.MyApp.databinding.ActivitySelectLocalPictureBinding
 import com.style.base.BaseRecyclerViewAdapter
 import com.style.base.BaseTitleBarActivity
 import com.style.config.FileDirConfig
 import com.style.dialog.SelAvatarDialog
-import com.style.app.MyApp.R
-import com.style.app.MyApp.databinding.ActivitySelectLocalPictureBinding
 import com.style.utils.BitmapUtil
 import com.style.utils.DeviceInfoUtil
 import com.style.utils.FileUtil
 import com.style.utils.SystemShareUtil
-import com.tbruyelle.rxpermissions2.RxPermissions
+import com.tbruyelle.rxpermissions3.RxPermissions
 import example.viewPager.ImageScanActivity
-import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.io.File
-import java.util.*
 
 /**
  * Created by xiajun on 2016/10/8.

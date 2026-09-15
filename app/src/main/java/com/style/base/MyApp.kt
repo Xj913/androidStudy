@@ -1,4 +1,4 @@
-package com.style.app
+package com.style.base
 
 import android.app.Application
 import android.content.BroadcastReceiver
@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.style.common_ui.refresh.MyAppRefreshLayout
 import com.style.data.app.AppActivityManager
 import com.style.data.db.AppDatabase
@@ -49,15 +50,15 @@ class MyApp : Application() {
 
     //在application中使用//不让其他应用接收到广播
     fun sendLocalBroadcast(intent: Intent) {
-        androidx.localbroadcastmanager.content.LocalBroadcastManager.getInstance(this).sendBroadcastSync(intent)
+        LocalBroadcastManager.getInstance(this).sendBroadcastSync(intent)
     }
 
     fun registerLocalReceiver(receiver: BroadcastReceiver, filter: IntentFilter) {
         //只能接收到LocalBroadcastManager.getInstance(LoginActivity.this).sendBroadcast(bIntent);发送的广播。接收不到系统广播或其他app的广播
-        androidx.localbroadcastmanager.content.LocalBroadcastManager.getInstance(this).registerReceiver(receiver, filter)
+        LocalBroadcastManager.getInstance(this).registerReceiver(receiver, filter)
     }
 
     fun unregisterLocalReceiver(receiver: BroadcastReceiver) {
-        androidx.localbroadcastmanager.content.LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver)
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver)
     }
 }

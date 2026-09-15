@@ -9,6 +9,7 @@ import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -77,7 +78,7 @@ public class ImageScanActivity extends AppCompatActivity {
             //jvm剩余空闲内存
             Log.e("freeMemory", Runtime.getRuntime().freeMemory() / 1024 / 1024 + "M");
             //Glide.get(getContext()).clearMemory();
-            ImageLoader.load((Activity) this.getContext(), m.path, h.bd.iv);
+            ImageLoader.load((FragmentActivity) this.getContext(), m.path, h.bd.iv);
             //skipMemoryCache(true) ，跳过内存缓存。
             //diskCacheStrategy(DiskCacheStrategy.NONE) ，不要在disk硬盘中缓存。
 

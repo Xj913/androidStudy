@@ -33,8 +33,8 @@ class RecordAudioViewActivity : BaseTitleBarActivity() {
         var tagView: TextView
         val tags = arrayListOf<TextView>()
         list.forEachIndexed { index, s ->
-            tagView = TextView(getContext())
-            tagView.background = getContext().resources.getDrawable(R.drawable.bg_custom_tag)
+            tagView = TextView(context)
+            tagView.background = context.resources.getDrawable(R.drawable.bg_custom_tag)
             tagView.text = s
             tagView.setTextColor(Color.GRAY)
             tagView.textSize = 16f

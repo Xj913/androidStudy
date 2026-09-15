@@ -29,7 +29,6 @@ dependencyResolutionManagement {
             setUrl("https://maven.aliyun.com/nexus/content/repositories/releases")
         }
     }
-
 }
 
 rootProject.name = "my-project"
@@ -40,6 +39,7 @@ include("lib_media_picker")
 include("lib_video_record")
 include("lib_wheel_picker")
 include("lib_zxing")
+include("lib_rxpermission")
 
 
 

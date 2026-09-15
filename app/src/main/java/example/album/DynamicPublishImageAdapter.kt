@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.fragment.app.FragmentActivity
 
 import com.dmcbig.mediapicker.entity.Media;
 import com.style.base.BaseRecyclerViewAdapter;
@@ -31,7 +32,7 @@ public class DynamicPublishImageAdapter : BaseRecyclerViewAdapter<Media> {
         var media = list[position];
         if (position != getItemCount() - 1) {
             holder.bd.ivDelete.setVisibility(View.VISIBLE);
-            ImageLoader.loadPicture(getContext() as Activity, holder.bd.ivActiveImages, media.path);
+            ImageLoader.loadPicture(getContext() as FragmentActivity?, holder.bd.ivActiveImages, media.path);
         } else {
             holder.bd.ivDelete.setVisibility(View.GONE);
             holder.bd.ivActiveImages.setImageResource(R.mipmap.ic_add_photo);

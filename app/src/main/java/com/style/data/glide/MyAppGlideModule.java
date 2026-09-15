@@ -15,28 +15,6 @@ import com.bumptech.glide.module.AppGlideModule;
  */
 @GlideModule
 public class MyAppGlideModule extends AppGlideModule {
-    @Override
-    public boolean isManifestParsingEnabled() {
-        return false;
-    }
-   /* @Override
-    public void registerComponents(Context context, Registry registry) {
-        registry.append(Photo.class, InputStream.class, new FlickrModelLoader.Factory());
-    }*/
-    /**
-     * MemorySizeCalculator类通过考虑设备给定的可用内存和屏幕大小想出合理的默认大小.
-     * 通过LruResourceCache进行缓存。
-     *
-     * @param context
-     * @param builder
-     */
-    /*@Override
-    public void applyOptions(Context context, GlideBuilder builder) {
-        MemorySizeCalculator calculator = new MemorySizeCalculator.Builder(context)
-                .setMemoryCacheScreens(2)
-                .build();
-        builder.setMemoryCache(new LruResourceCache(calculator.getMemoryCacheSize()));
-    }*/
 
     /**
      * 自定义缓存大小.
@@ -59,6 +37,14 @@ public class MyAppGlideModule extends AppGlideModule {
 
         builder.setMemoryCache(new LruResourceCache(memoryCacheSizeBytes));
         builder.setBitmapPool(new LruBitmapPool(defaultBitmapPoolSize));
+        // Enable ImageDecoder for Bitmaps (Android Q+)
+        builder.setImageDecoderEnabledForBitmaps(true);
+        // Enable ImageDecoder for Uris (Android Q+)
+        builder.setUriImageDecoderEnabled(true);
+        // Enable optimized buffer pooling for ImageDecoder
+        builder.setUseArrayPoolForImageDecoderByteBufferAllocation(true);
+        // Use heap buffers for ImageDecoder with InputStreams to avoid native memory overhead
+        builder.setUseHeapBufferForImageDecoderWithInputStream(true);
 /*          //定义图片的本地磁盘缓存
         File cacheDir = context.getExternalCacheDir();//指定的是数据的缓存地址
         int diskCacheSize = 1024 * 1024 * 30;//最多可以缓存多少字节的数据

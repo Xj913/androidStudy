@@ -22,7 +22,7 @@ public abstract class BaseCenterTitleDialog extends BaseDialog {
 
 
     public BaseCenterTitleDialog(Context context) {
-        super(context, R.style.Dialog_General);
+        super(context, com.style.lib.common.R.style.Dialog_General);
     }
 
     public BaseCenterTitleDialog(Context context, int themeResId) {

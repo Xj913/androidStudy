@@ -53,7 +53,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:name="com.style.app.MyApp"
+        android:name="com.style.base.MyApp"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -64,7 +64,8 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup,android:icon,android:label,android:supportsRtl,android:theme">
         <activity
-            android:name="example.home.HomeActivity">
+            android:name="example.home.HomeActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -160,14 +161,16 @@
         <!-- APP新版本下载服务 -->
         <service
             android:name="com.style.service.appNewVersion.DownNewAppService"
-            android:enabled="true">
+            android:enabled="true"
+            android:exported="true">
             <intent-filter android:priority="888">
                 <action android:name="com.style.download.new.version" />
             </intent-filter>
         </service>
         <service
             android:name="com.style.service.fileDownload.FileDownloadService"
-            android:enabled="true">
+            android:enabled="true"
+            android:exported="true">
             <intent-filter android:priority="1000">
                 <action android:name="com.style.file.download" />
             </intent-filter>
@@ -190,6 +193,7 @@
         <!--单独进行播放音乐服务-->
         <service
             android:name="com.style.service.remote.RemotePlayService"
+            android:exported="true"
             android:process="com.offline.message">
             <intent-filter android:priority="999">
                 <action android:name="action.remote.play" />

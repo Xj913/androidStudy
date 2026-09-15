@@ -2,6 +2,7 @@ package example.customView
 
 import android.os.Bundle
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.style.base.BaseTitleBarActivity
 import com.style.app.MyApp.databinding.CustomViewMainBinding
 import example.customView.fragment.*
@@ -31,9 +32,11 @@ class CustomViewMainActivity : BaseTitleBarActivity() {
         fragments.add(HorizontalProgressFragment())
         titles.add("扫描")
         fragments.add(ScanViewFragment())
-        fAdapter = CustomViewFragmentAdapter(this.supportFragmentManager, fragments, titles)
+        fAdapter = CustomViewFragmentAdapter(this, fragments)
         bd.viewPager.adapter = fAdapter
-        bd.tabLayout.setupWithViewPager(bd.viewPager)
+        TabLayoutMediator(bd.tabLayout, bd.viewPager) { tab, position ->
+            tab.text = "标题 ${position + 1}"
+        }.attach()
         bd.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
 

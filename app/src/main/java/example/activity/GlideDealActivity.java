@@ -37,7 +37,7 @@ import com.style.utils.BitmapUtil;
 import com.style.utils.DeviceInfoUtil;
 import com.style.utils.FileUtil;
 import com.style.utils.PictureUtil;
-import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.tbruyelle.rxpermissions3.RxPermissions;
 
 import org.jetbrains.annotations.Nullable;
 

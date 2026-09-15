@@ -1,14 +1,12 @@
 import com.android.build.gradle.internal.api.ApkVariantOutputImpl
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import java.util.Date
+import java.io.FileInputStream
 import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 import java.util.Properties
-import java.io.FileInputStream
 
 plugins {
     alias(libs.plugins.android.application)
-    //alias(libs.plugins.kotlin)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.compose.compiler)
@@ -23,7 +21,7 @@ android {
     compileSdk = libs.versions.compileSdk.get().toInt()
     ndkVersion = libs.versions.ndk.get()
     defaultConfig {
-        applicationId = "com.style.app.MyApp"
+        applicationId = "com.xj.app"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 9
@@ -136,11 +134,12 @@ android {
         dataBinding = true
         viewBinding = true
         compose = true
+        aidl = true
         // flavorDimensions = listof("model", "channel")
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlin {
         compilerOptions {
@@ -154,7 +153,8 @@ dependencies {
     implementation(libs.kotlin)
     implementation(platform(libs.compose.bom))
     //androidTestImplementation(libs.compose.bom)
-    //debugImplementation("androidx.compose.ui:ui-tooling:1.11.3")
+    debugImplementation(libs.ui.tool)
+    debugImplementation(libs.ui.preview)
     //androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.11.3")
     //debugImplementation("androidx.compose.ui:ui-test-manifest:1.11.3")
     //androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
@@ -164,8 +164,7 @@ dependencies {
     implementation(libs.bundles.compose)
     ksp(libs.hilt.compiler)
     implementation(libs.bundles.glide)
-    ksp(libs.glide.compiler)
-    implementation(libs.rxpermission)
+    annotationProcessor(libs.glide.compiler)
     implementation(libs.photoview)
     implementation(projects.libCommon)
     implementation(projects.libCustomView)
@@ -173,4 +172,5 @@ dependencies {
     implementation(projects.libVideoRecord)
     implementation(projects.libWheelPicker)
     implementation(projects.libZxing)
+    implementation(projects.libRxpermission)
 }

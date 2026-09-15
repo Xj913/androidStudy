@@ -12,9 +12,6 @@ import com.bumptech.glide.module.LibraryGlideModule;
 
 import java.io.InputStream;
 
-/**
- * Created by xiajun on 2018/9/21.
- */
 @GlideModule
 public class OkHttpLibraryGlideModule extends LibraryGlideModule {
     @Override

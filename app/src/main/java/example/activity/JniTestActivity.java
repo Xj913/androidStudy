@@ -2,11 +2,9 @@ package example.activity;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import android.widget.TextView;
 
 import com.ndk.JniCommon;
 import com.ndk.JniTest;
-import com.style.app.MyApp.R;
 import com.style.app.MyApp.databinding.ActivityJniTestBinding;
 
 public class JniTestActivity extends AppCompatActivity {

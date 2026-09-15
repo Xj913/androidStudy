@@ -76,17 +76,16 @@ public class DialogActivity extends BaseTitleBarActivity {
         popup.showAsDropDown(v);
     }
 
+    private static final int edit = R.id.edit;
+    private static final int report = R.id.report;
     private void showPopupMenu(View v) {
         //不能设置相对位置偏移量
         PopupMenu pop = new PopupMenu(getContext(), v);
         pop.getMenuInflater().inflate(R.menu.user_info, pop.getMenu());
         pop.show();
         pop.setOnMenuItemClickListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.edit:
-                    break;
-                case R.id.report:
-                    break;
+            if (item.getItemId() == edit) {
+            } else if (item.getItemId() == report) {
             }
             return true;
         });

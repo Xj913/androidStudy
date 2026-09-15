@@ -38,13 +38,8 @@ class HomeListFragment : BaseNoPagerLazyRefreshFragment() {
         bd.recyclerView.addItemDecoration(DividerItemDecoration(context))
         bd.recyclerView.adapter = adapter
         //bd.refreshLayout.setRefreshHeader( SimpleRefreshHeader(context))
-        adapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<Int> {
-            override fun onItemClick(position: Int, data: Int) {
-                showToast(position.toString() + "")
-            }
-        })
-        bd.refreshLayout.isEnableLoadMore = false
-        bd.refreshLayout.isEnableAutoLoadMore = true//开启自动加载功能（非必须）
+        adapter.setOnItemClickListener { position, data -> showToast(position.toString() + "") }
+        bd.refreshLayout.setHasMoreData()
         bd.refreshLayout.setOnRefreshListener { refreshLayout ->
             refreshLayout.layout.postDelayed({
                 refresh()
@@ -55,8 +50,6 @@ class HomeListFragment : BaseNoPagerLazyRefreshFragment() {
                 loadMore()
             }, 1000)
         }
-        //触发自动刷新
-        //bd.refreshLayout.autoRefresh()
         refresh()
     }
 

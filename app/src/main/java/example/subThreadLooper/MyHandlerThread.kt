@@ -7,7 +7,7 @@ import androidx.annotation.NonNull
 import androidx.annotation.Nullable
 
 class MyHandlerThread : Thread() {
-    private val lock = java.lang.Object()
+    private val lock = Object()
 
     internal var mPriority: Int = 0
     internal var mTid = -1

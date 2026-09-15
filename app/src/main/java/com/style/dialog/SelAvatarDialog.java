@@ -23,7 +23,7 @@ public class SelAvatarDialog extends BaseDialog {
     private Button bt_selCancel;
 
     public SelAvatarDialog(Context context) {
-        super(context, R.style.Dialog_General);
+        super(context, com.style.lib.common.R.style.Dialog_General);
     }
 
     @Override

@@ -16,11 +16,6 @@ import com.style.app.MyApp.R;
 
 import java.util.List;
 
-/**
- * 单条列表选择对话框
- *
- * @author ywl
- */
 public abstract class BaseSingleWheelDialog extends BaseDialog {
     private TextView btnSure;
     private WheelPicker wheelCenter;
@@ -29,7 +24,7 @@ public abstract class BaseSingleWheelDialog extends BaseDialog {
     private String currentItem;
 
     public BaseSingleWheelDialog(Context context, List<String> list) {
-        super(context, R.style.Dialog_General);
+        super(context, com.style.lib.common.R.style.Dialog_General);
         dataList = list;
     }
 

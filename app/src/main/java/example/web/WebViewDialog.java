@@ -28,7 +28,7 @@ public class WebViewDialog extends BaseDialog {
     private DialogWebViewBinding bd;
 
     public WebViewDialog(Context context) {
-        super(context, R.style.Dialog_General);
+        super(context, com.style.lib.common.R.style.Dialog_General);
         setOwnerActivity((Activity) context);
     }
 

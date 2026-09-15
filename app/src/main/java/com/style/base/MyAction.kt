@@ -1,7 +1,4 @@
-package com.style.app
-
-
-import android.os.Environment
+package com.style.base
 
 /**
  * 避免广播action重复混乱，广播action最好统一放在这里

@@ -1,4 +1,4 @@
-package com.style.app;
+package com.style.base;
 
 import android.os.Process;
 import android.util.Log;

@@ -16,7 +16,7 @@ import com.style.app.MyApp.databinding.ActivityAidlBinding;
 
 import org.jetbrains.annotations.Nullable;
 
-import aidl.IRemoteService;
+import com.style.app.MyApp.IRemoteService;
 
 public class AidlActivity extends BaseTitleBarActivity {
 

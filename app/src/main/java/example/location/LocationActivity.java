@@ -17,7 +17,7 @@ import android.view.View;
 import com.style.base.BaseTitleBarActivity;
 import com.style.app.MyApp.R;
 import com.style.app.MyApp.databinding.LocationActivityBinding;
-import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.tbruyelle.rxpermissions3.RxPermissions;
 
 import org.jetbrains.annotations.Nullable;
 

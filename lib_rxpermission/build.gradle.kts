@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
 }
 android {
-    namespace = "com.dmcbig.mediapicker"
+    namespace = "com.lib.permission"
     compileSdk = libs.versions.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
@@ -14,10 +14,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.appcompat)
-    implementation(libs.recyclerview)
-    implementation(libs.bundles.glide, {
-        exclude(group = "com.squareup.okhttp", module = "okhttp")
-    })
-    annotationProcessor(libs.glide.compiler)
+    implementation(libs.fragment)
+    implementation(libs.rxjava)
+    implementation(libs.and.annotation)
 }
