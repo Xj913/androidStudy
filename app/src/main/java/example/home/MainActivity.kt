@@ -17,7 +17,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import com.style.base.BaseActivity
-import com.style.data.app.AppActivityManager
+import com.style.data.app.MyAppManager
 import com.style.app.MyApp.R
 import com.style.app.MyApp.databinding.ActivityMainBinding
 import com.style.toast.ToastManager
@@ -63,7 +63,7 @@ class MainActivity : BaseActivity() {
     private var isRegisterBroadcastReceiver: Boolean = false
 
     private fun initData() {
-        AppActivityManager.getInstance().setMainTaskId(taskId)
+        MyAppManager.getInstance().setMainTaskId(taskId)
         mViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         appStateReceiver = DeviceStateBroadcastReceiver()
         val filter = IntentFilter(NET_CHANGE)
@@ -228,7 +228,7 @@ class MainActivity : BaseActivity() {
             appStateReceiver = null
         }
         super.onDestroy()
-        AppActivityManager.getInstance().setMainTaskId(-1)
+        MyAppManager.getInstance().setMainTaskId(-1)
     }
 
     inner class DeviceStateBroadcastReceiver : BroadcastReceiver() {

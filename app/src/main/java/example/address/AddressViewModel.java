@@ -26,10 +26,6 @@ public class AddressViewModel extends BaseViewModel {
     MutableLiveData<List<UploadPhone>> contacts = new MutableLiveData<>();
     private MediaPlayer player;
 
-    public AddressViewModel(@NonNull Application application) {
-        super(application);
-    }
-
     public void getData() {
 
         Disposable d = Observable.just("").map(param -> {

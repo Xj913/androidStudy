@@ -16,7 +16,6 @@ import com.style.entity.UserBean;
 public abstract class AppDatabase extends RoomDatabase {
     private static final String TAG = "TestRoomDataBase";
     private static final String DB_NAME = "room_database.db";
-
     private static AppDatabase instance = null;
     private static final Object mLock = new Object();
 

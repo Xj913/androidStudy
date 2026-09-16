@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.*
 
-class CoroutineViewModel(application: Application) : BaseViewModel(application) {
+class CoroutineViewModel : BaseViewModel() {
 
     var content = MutableLiveData<String>()
 

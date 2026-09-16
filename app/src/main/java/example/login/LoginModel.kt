@@ -3,6 +3,7 @@ package example.login
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.style.base.BaseViewModel
 import com.style.data.http.function.impl.UserNetSourceImpl
 import com.style.data.prefs.AppPrefsManager
 import com.style.entity.UserInfo
@@ -15,7 +16,7 @@ import javax.net.ssl.HttpsURLConnection
 import kotlin.experimental.and
 
 @HiltViewModel
-class LoginModel @Inject constructor() : ViewModel() {
+class LoginModel @Inject constructor() : BaseViewModel() {
 
     val phone = mutableStateOf("")
     val password = mutableStateOf("")
@@ -52,7 +53,7 @@ class LoginModel @Inject constructor() : ViewModel() {
 
     fun login(userName: String, password: String) {
         val user = UserInfo(userName, password)
-        AppPrefsManager.getInstance().setCurrentUser(user)
+        AppPrefsManager.getInstance().currentUser = user
         synData()
         val d = UserNetSourceImpl.login(userName, password).subscribe({
             //getActivity().loginSuccess();

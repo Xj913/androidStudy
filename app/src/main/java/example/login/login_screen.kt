@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
-fun LoginScreen(vml: LoginModel) {
+fun LoginScreen(vml: LoginModel = hiltViewModel()) {
     Column(modifier = Modifier.padding(all = 16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         OutlinedTextField(
             value = vml.phone.value,
@@ -37,10 +37,14 @@ fun LoginScreen(vml: LoginModel) {
             onClick = {
                 vml.login()
             }) { Text("登陆") }
+
+        var showDialog by remember { mutableStateOf(false) }
+
         LaunchedEffect(0) {
             while (vml.loginState.value == true) {
 
-            } }
+            }
+        }
     }
 
 }

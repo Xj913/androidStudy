@@ -12,6 +12,7 @@ import com.style.base.BaseViewModel;
 import com.style.data.http.exception.HttpExceptionConsumer;
 import com.style.data.http.function.impl.UserNetSourceImpl;
 import com.style.data.http.function.impl.WebNetSourceImpl;
+import com.style.data.prefs.AppPrefsManager;
 import com.style.http.exception.HttpResultException;
 
 import org.jetbrains.annotations.NotNull;
@@ -24,10 +25,6 @@ import okhttp3.ResponseBody;
 public class WebServiceViewModel extends BaseViewModel {
 
     MutableLiveData<String> content = new MutableLiveData<>();
-
-    public WebServiceViewModel(@NonNull Application application) {
-        super(application);
-    }
 
     @SuppressLint("CheckResult")
     public void getPhoneInfo(String phone) {
@@ -75,7 +72,7 @@ public class WebServiceViewModel extends BaseViewModel {
             if (TextUtils.isEmpty(r.data.access_token))
                 throw HttpResultException.serverError();
             Log.e(getTAG(), r.data.access_token);
-            getPreferences().setSignKey(r.data.access_token);
+            AppPrefsManager.getInstance().setSignKey(r.data.access_token);
             return UserNetSourceImpl.login2(userName, pass);
         }).subscribe(userInfo ->
                         Log.e(getTAG(), userInfo.toString())

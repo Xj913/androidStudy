@@ -26,12 +26,12 @@ public class MultiThreadDownloadFileTask extends Thread {
     private FileCallback fileDownCallback;
     private boolean canCallback = true;//是否需要执行回调,默认true
 
-    private String downloadUrl;// 下载链接地址
-    private int threadNum;// 开启的线程数
-    private String filePath;// 保存文件路径地址
+    private final String downloadUrl;// 下载链接地址
+    private final int threadNum;// 开启的线程数
+    private final String filePath;// 保存文件路径地址
     private int fileSize;//文件总大小
 
-    private Handler mHandler = new Handler(Looper.getMainLooper()) {
+    private final Handler mHandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {

@@ -6,13 +6,11 @@ import android.os.Process
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
 
-class MyHandlerThread : Thread() {
-    private val lock = Object()
-
+open class MyHandlerThread : Thread() {
+    private val Mylock = java.lang.Object()
     internal var mPriority: Int = 0
     internal var mTid = -1
     internal var mLooper: Looper? = null
-    @Nullable
     private var mHandler: Handler? = null
 
     fun HandlerThread(name: String){
@@ -38,9 +36,9 @@ class MyHandlerThread : Thread() {
     override fun run() {
         mTid = Process.myTid()
         Looper.prepare()
-        synchronized(lock) {
+        synchronized(Mylock) {
             mLooper = Looper.myLooper()
-            this.lock.notifyAll()
+            Mylock.notifyAll()
         }
         Process.setThreadPriority(mPriority)
         onLooperPrepared()
@@ -60,10 +58,10 @@ class MyHandlerThread : Thread() {
         }
 
         // If the thread has been started, wait until the looper has been created.
-        synchronized(lock) {
+        synchronized(Mylock) {
             while (isAlive && mLooper == null) {
                 try {
-                    this.lock.wait()
+                    this.Mylock.wait()
                 } catch (e: InterruptedException) {
                 }
 
@@ -76,7 +74,6 @@ class MyHandlerThread : Thread() {
      * @return a shared [Handler] associated with this thread
      * @hide
      */
-    @NonNull
     fun getThreadHandler(): Handler {
         if (mHandler == null) {
             mHandler = Handler(getLooper()!!)

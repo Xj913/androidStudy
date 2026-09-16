@@ -4,6 +4,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 
 import com.style.base.BaseViewModel;
+import com.style.data.prefs.AppPrefsManager;
 import com.style.entity.UserInfo;
 
 /**
@@ -13,8 +14,8 @@ import com.style.entity.UserInfo;
 public class EncryptViewModel extends BaseViewModel {
 
 
-    public EncryptViewModel(@NonNull Application application) {
-        super(application);
+    public EncryptViewModel() {
+        super();
     }
 
     public void saveUser() {
@@ -23,10 +24,10 @@ public class EncryptViewModel extends BaseViewModel {
         user.setTelPhone("17364814713");
         user.setUserName("夏军");
         user.setSignKey("osfsnffnuj ekrfasfhaweoirwefnejfwefaslfheoifhefhnewfwfwfpenpnmsnmfnejfic");
-        getPreferences().saveUserEncrypt(user);
+        AppPrefsManager.getInstance().saveUserEncrypt(user);
     }
 
     public void getUser() {
-        getPreferences().getUserDecrypt();
+        AppPrefsManager.getInstance().getUserDecrypt();
     }
 }

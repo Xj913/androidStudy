@@ -5,7 +5,7 @@ import android.util.Log;
 
 /**
  * Created by xiajun on 2017/12/22.
- * 由于 ActivityManager 时刻监听着进程，一旦发现进程被非正常Kill(不拦截崩溃时)，它将会试图去重启这个进程。
+ * 由于 ActivityManager 时刻监听进程，一旦发现进程被非正常Kill(不拦截崩溃时)，它将会试图去重启这个进程。
  * 注意：自定义异常崩溃拦截会导致应用卡死，需要手动杀掉进程
  */
 

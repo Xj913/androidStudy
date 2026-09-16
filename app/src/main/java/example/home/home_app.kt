@@ -30,7 +30,7 @@ fun HomeApp() {
 
 fun EntryProviderScope<NavKey>.entryBuilder() {
     entry(key = LoginNav) {
-        LoginScreen(vml = hiltViewModel())
+        LoginScreen()
     }
 }
 

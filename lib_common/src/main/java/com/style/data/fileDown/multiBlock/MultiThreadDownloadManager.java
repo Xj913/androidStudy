@@ -9,7 +9,7 @@ import java.util.Map;
 public class MultiThreadDownloadManager {
     protected String TAG = getClass().getSimpleName();
 
-    private Map<Object, MultiThreadDownloadFileTask> taskMap = new HashMap<>();
+    private final Map<Object, MultiThreadDownloadFileTask> taskMap = new HashMap<>();
     private static MultiThreadDownloadManager instance;
 
     public synchronized static MultiThreadDownloadManager getInstance() {

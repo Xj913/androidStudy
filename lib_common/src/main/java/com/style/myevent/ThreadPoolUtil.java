@@ -1,4 +1,4 @@
-package example.queue;
+package com.style.myevent;
 
 import android.util.Log;
 
@@ -25,9 +25,9 @@ public class ThreadPoolUtil {
     private static final int KEEP_ALIVE_TIME = 2;
     private static final TimeUnit KEEP_ALIVE_TIME_UNIT = TimeUnit.SECONDS;
     // 阻塞队列。当核心线程都被占用，且阻塞队列已满的情况下，才会开启额外线程。
-    private static BlockingQueue<Runnable> workQueue = new ArrayBlockingQueue<>(7);
+    private static final BlockingQueue<Runnable> workQueue = new ArrayBlockingQueue<>(7);
 
-    private static ThreadFactory threadFactory = new ThreadFactory() {
+    private static final ThreadFactory threadFactory = new ThreadFactory() {
         private final AtomicInteger atomicInteger = new AtomicInteger();
         @Override
         public Thread newThread(Runnable r) {
@@ -35,14 +35,14 @@ public class ThreadPoolUtil {
         }
     };
 
-    private static RejectedExecutionHandler rejectedExecutionHandler = new RejectedExecutionHandler() {
+    private static final RejectedExecutionHandler rejectedExecutionHandler = new RejectedExecutionHandler() {
         @Override
         public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
             Log.e(TAG, "rejectedExecution");
         }
     };
 
-    private static ThreadPoolExecutor sExecutor;
+    private static final ThreadPoolExecutor sExecutor;
     static {
         sExecutor = new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE,
                 KEEP_ALIVE_TIME, KEEP_ALIVE_TIME_UNIT, workQueue, threadFactory, rejectedExecutionHandler);

@@ -1,11 +1,8 @@
 package example.fragmentAdapter
 
-import android.app.Application
 import com.style.base.BaseViewModel
 
-class ViewPager2ActivityViewModel : BaseViewModel {
-
-    constructor(application: Application) : super(application)
+class ViewPager2ActivityViewModel : BaseViewModel() {
 
     fun getData(): ArrayList<String> {
         var datas = arrayListOf<String>()

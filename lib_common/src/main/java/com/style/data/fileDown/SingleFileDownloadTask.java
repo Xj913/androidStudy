@@ -2,12 +2,12 @@ package com.style.data.fileDown;
 
 import android.util.Log;
 
-import com.jeremyliao.liveeventbus.LiveEventBus;
-import com.style.data.app.AppActivityManager;
+import com.style.data.app.MyAppManager;
 import com.style.data.db.AppDatabase;
 import com.style.data.db.FileDownloadStateDao;
 import com.style.data.event.EventBusEvent;
 import com.style.data.fileDown.FileDownloadStateBean.DownStatus;
+import com.style.myevent.MyEventManager;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -108,7 +108,7 @@ public class SingleFileDownloadTask implements Runnable {
     }
 
     private FileDownloadStateDao getFileDownloadDao() {
-        return AppDatabase.getInstance(AppActivityManager.getInstance().getApp()).getFileDownloadDao();
+        return AppDatabase.getInstance(MyAppManager.getInstance().getApp()).getFileDownloadDao();
     }
 
     /**
@@ -125,7 +125,7 @@ public class SingleFileDownloadTask implements Runnable {
         } else {//更新数据
             getFileDownloadDao().update(b.getStatus(), b.getDownloadSize(), b.getUrl());
         }
-        LiveEventBus.get(EventBusEvent.FILE_DOWNLOAD_STATE_CHANGED).post(b);
+        MyEventManager.getInstance().post(EventBusEvent.FILE_DOWNLOAD_STATE_CHANGED, b);
     }
 
     /**
@@ -139,7 +139,7 @@ public class SingleFileDownloadTask implements Runnable {
         b.setTotalSize(this.fileLength);
         b.setDownloadSize(this.downloadLength);
         getFileDownloadDao().update(b);
-        LiveEventBus.get(EventBusEvent.FILE_DOWNLOAD_STATE_CHANGED).post(b);
+        MyEventManager.getInstance().post(EventBusEvent.FILE_DOWNLOAD_STATE_CHANGED, b);
     }
 
     /**
@@ -151,7 +151,7 @@ public class SingleFileDownloadTask implements Runnable {
         b.setTotalSize(this.fileLength);
         b.setDownloadSize(this.fileLength);
         getFileDownloadDao().update(b);
-        LiveEventBus.get(EventBusEvent.FILE_DOWNLOAD_STATE_CHANGED).post(b);
+        MyEventManager.getInstance().post(EventBusEvent.FILE_DOWNLOAD_STATE_CHANGED, b);
     }
 
 }

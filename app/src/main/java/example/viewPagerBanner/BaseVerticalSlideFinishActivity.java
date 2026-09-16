@@ -11,7 +11,7 @@ import android.view.ViewConfiguration;
 import android.view.animation.DecelerateInterpolator;
 
 import com.style.base.BaseActivity;
-import com.style.data.app.AppActivityManager;
+import com.style.data.app.MyAppManager;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -38,7 +38,7 @@ public abstract class BaseVerticalSlideFinishActivity extends BaseActivity {
         super.onCreate(arg0);
 
         viewConfiguration = ViewConfiguration.get(getContext());
-        AppActivityManager.getInstance().setTestTaskId(getTaskId());
+        MyAppManager.getInstance().setTestTaskId(getTaskId());
     }
 
     @Override
@@ -56,7 +56,7 @@ public abstract class BaseVerticalSlideFinishActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        AppActivityManager.getInstance().setTestTaskId(-1);
+        MyAppManager.getInstance().setTestTaskId(-1);
     }
 
     public View getRootView() {

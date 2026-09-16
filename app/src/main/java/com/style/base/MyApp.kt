@@ -9,7 +9,7 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.style.common_ui.refresh.MyAppRefreshLayout
-import com.style.data.app.AppActivityManager
+import com.style.data.app.MyAppManager
 import com.style.data.db.AppDatabase
 import com.style.data.prefs.AppPrefsManager
 import dagger.hilt.android.HiltAndroidApp
@@ -21,17 +21,16 @@ class MyApp : Application() {
 
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
-        //initHotfix()
     }
 
     override fun onCreate() {
         super.onCreate()
-        //Thread.setDefaultUncaughtExceptionHandler(AppCrashHandler())
-        AppActivityManager.getInstance().init(this)
+        MyAppManager.getInstance().init(this)
         AppPrefsManager.getInstance().init(this)
         //room不会自动检查数据库版本升级，需要手动操作一次
         AppDatabase.getInstance(this).testRoomDao.getCount()
         initRefreshView()
+        //Thread.setDefaultUncaughtExceptionHandler(AppCrashHandler())
     }
 
     private fun initRefreshView() {
@@ -39,22 +38,13 @@ class MyApp : Application() {
         MyAppRefreshLayout.init()
     }
 
-    private fun initHotfix() {
-        var appVersion: String? = "1.0.0"
-        try {
-            appVersion = this.packageManager.getPackageInfo(this.packageName, 0).versionName
-        } catch (e: PackageManager.NameNotFoundException) {
-            e.printStackTrace()
-        }
-    }
-
-    //在application中使用//不让其他应用接收到广播
+    //应用内接收广播
     fun sendLocalBroadcast(intent: Intent) {
         LocalBroadcastManager.getInstance(this).sendBroadcastSync(intent)
     }
 
     fun registerLocalReceiver(receiver: BroadcastReceiver, filter: IntentFilter) {
-        //只能接收到LocalBroadcastManager.getInstance(LoginActivity.this).sendBroadcast(bIntent);发送的广播。接收不到系统广播或其他app的广播
+        //只接收LocalBroadcastManager广播
         LocalBroadcastManager.getInstance(this).registerReceiver(receiver, filter)
     }
 

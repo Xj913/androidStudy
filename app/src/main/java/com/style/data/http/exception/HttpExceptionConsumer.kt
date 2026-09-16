@@ -1,6 +1,6 @@
 package com.style.data.http.exception
 
-import com.style.data.app.AppActivityManager
+import com.style.data.app.MyAppManager
 import com.style.toast.ToastManager
 import com.style.http.exception.HttpResultException
 import com.style.http.exception.HttpThrowableUtil
@@ -17,14 +17,14 @@ open class HttpExceptionConsumer : Consumer<Throwable> {
     }
 
     open fun onOtherError(t: HttpResultException) {
-        ToastManager.showToast(AppActivityManager.getInstance().getApp(), t.msg)
+        ToastManager.showToast(MyAppManager.getInstance().getApp(), t.msg)
     }
 
     open fun onNetworkError(t: HttpResultException) {
-        ToastManager.showToast(AppActivityManager.getInstance().getApp(), t.msg)
+        ToastManager.showToast(MyAppManager.getInstance().getApp(), t.msg)
     }
 
     open fun onTokenError(t: HttpResultException) {
-        ToastManager.showToast(AppActivityManager.getInstance().getApp(), t.msg)
+        ToastManager.showToast(MyAppManager.getInstance().getApp(), t.msg)
     }
 }

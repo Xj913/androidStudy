@@ -1,4 +1,4 @@
-package example.queue;
+package com.style.myevent;
 
 /**
  * Created by xiajun on 2017/7/19.

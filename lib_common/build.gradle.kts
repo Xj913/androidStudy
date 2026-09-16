@@ -50,7 +50,6 @@ dependencies {
     api(libs.gson)
     api(libs.bundles.retrofit)
     api(libs.refresh.layout)
-    api(libs.live.event.bus)
     api(projects.libCustomView)
 }
 

@@ -2,12 +2,11 @@ package example.filedown
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SimpleItemAnimator
-import com.jeremyliao.liveeventbus.LiveEventBus
+import com.style.app.MyApp.databinding.FileDownListActivityBinding
 import com.style.base.BaseRecyclerViewAdapter
 import com.style.base.BaseTitleBarActivity
 import com.style.config.FileDirConfig
@@ -16,15 +15,14 @@ import com.style.data.fileDown.CustomFileDownloadManager
 import com.style.data.fileDown.FileDownloadStateBean
 import com.style.data.fileDown.FileDownloadStateBean.DownStatus
 import com.style.data.fileDown.entity.CustomFileBean
-import com.style.data.fileDown.multiBlock.MultiThreadDownloadManager
-import com.style.app.MyApp.databinding.FileDownListActivityBinding
+import com.style.myevent.EventReceiver
+import com.style.myevent.MyEventManager
 import com.style.service.fileDownload.FileDownloadService
 import com.style.utils.OpenFileUtil
 import com.style.view.diviver.DividerItemDecoration
 import java.io.File
 
-
-class FileDownActivity : BaseTitleBarActivity() {
+class FileDownActivity : BaseTitleBarActivity(), EventReceiver {
 
     private lateinit var bd: FileDownListActivityBinding
     private val targetPath = FileDirConfig.DIR_APP_FILE + "/apache-tomcat-8.0.24_multi_thread.exe"
@@ -38,6 +36,7 @@ class FileDownActivity : BaseTitleBarActivity() {
         bd = FileDownListActivityBinding.inflate(layoutInflater)
         setContentView(bd.root)
         setTitleBarTitle("文件下载")
+        MyEventManager.getInstance().register(this, EventBusEvent.FILE_DOWNLOAD_STATE_CHANGED)
         dataList = ArrayList()
         adapter = FileDownListAdapter(getContext(), dataList)
         val layoutManager = LinearLayoutManager(getContext())
@@ -46,16 +45,14 @@ class FileDownActivity : BaseTitleBarActivity() {
         //解决默认动画造成的itemView闪烁
         (bd.recyclerView.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
         bd.recyclerView.adapter = adapter
-        adapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<CustomFileBean> {
-            override fun onItemClick(position: Int, data: CustomFileBean) {
-                logE("onItemClick", position.toString())
-            }
-        })
-        adapter.setOnItemLongClickListener(object : BaseRecyclerViewAdapter.OnItemLongClickListener<CustomFileBean> {
-            override fun onItemLongClick(itemView: View, position: Int, data: CustomFileBean) {
-                logE("onItemLongClick", position.toString())
-            }
-        })
+        adapter.onItemClickListener =
+            BaseRecyclerViewAdapter.OnItemClickListener { position, _ -> logE("onItemClick", position.toString()) }
+        adapter.setOnItemLongClickListener { _, position, _ ->
+            logE(
+                "onItemLongClick",
+                position.toString()
+            )
+        }
         adapter.setOnClickOptionListener(object : FileDownListAdapter.OnClickOptionListener<CustomFileBean> {
             override fun onClickOption(position: Int, data: CustomFileBean) {
                 logE("onClickOption", position.toString())
@@ -72,10 +69,9 @@ class FileDownActivity : BaseTitleBarActivity() {
                     DownStatus.DOWNLOADING -> pauseDownloadFile(data)
                     DownStatus.DOWNLOAD_COMPLETED -> {
                         val file = File(FileDirConfig.DIR_APP_FILE, data.fileName)
-                        //文件存在
-                        if (file.parentFile.exists() && file.exists()) {
+                        if (file.parentFile!!.exists() && file.exists()) {
                             try {
-                                OpenFileUtil.openFile(getContext(), FileDirConfig.FILE_PROVIDER_AUTHORITY, file)
+                                OpenFileUtil.openFile(context, FileDirConfig.FILE_PROVIDER_AUTHORITY, file)
                             } catch (e: Exception) {
                                 showToast(e.message!!)
                             }
@@ -90,12 +86,7 @@ class FileDownActivity : BaseTitleBarActivity() {
             }
         })
         bd.viewBatchDownload.setOnClickListener { batchDownload() }
-        LiveEventBus.get(EventBusEvent.FILE_DOWNLOAD_STATE_CHANGED, FileDownloadStateBean::class.java)
-            .observe(this) {
-                it ->
-                onFileDownloadStateChanged(it)
-            }
-        mViewModel = ViewModelProvider(this).get(FileDownListViewModel::class.java)
+        mViewModel = ViewModelProvider(this)[FileDownListViewModel::class.java]
         mViewModel.files.observe(this, Observer<ArrayList<CustomFileBean>> { t ->
             refreshData(t)
         })
@@ -163,24 +154,14 @@ class FileDownActivity : BaseTitleBarActivity() {
         }
     }
 
-    private fun multiThreadDownload() {
-        /* MultiThreadDownloadManager.getInstance().down(TAG, url, targetPath, object : FileCallback() {
-             override fun start(fileSize: Int) {
-                 logE(TAG, "下载开始，文件大小==$fileSize")
-             }
-
-             override fun inProgress(currentDownSize: Int, fileSize: Int, progress: Float) {
-                 bd.progressBar4.setProgress((100 * progress).toInt())
-             }
-
-             override fun complete(filePath: String) {
-                 logE(TAG, "下载完成，文件路径==$filePath")
-             }
-         })*/
-    }
-
     override fun onDestroy() {
         super.onDestroy()
-        MultiThreadDownloadManager.getInstance().cancelCallback(TAG)
+        MyEventManager.getInstance().unRegister(this)
+    }
+
+    override fun onMainThreadEvent(code: String, data: Any?) {
+        if (EventBusEvent.FILE_DOWNLOAD_STATE_CHANGED == code) {
+            onFileDownloadStateChanged(data as FileDownloadStateBean)
+        }
     }
 }

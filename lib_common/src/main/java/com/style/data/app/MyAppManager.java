@@ -5,16 +5,14 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.style.utils.LogManager;
 
-/**
- * Created by xiajun on 2018/8/7.
- */
-
-public class AppActivityManager {
+public class MyAppManager {
 
     private static String TAG = "AppActivityManager";
     private int activityCount = 0;
@@ -22,22 +20,20 @@ public class AppActivityManager {
     private Application app;
     private int taskId = -1;
     private int mainTaskId = -1;
+    private static final Object mLock = new Object();
+    private static MyAppManager mInstance;
 
-    private static Object mLock = new Object();
-    private static AppActivityManager mInstance;
-
-    public static AppActivityManager getInstance() {
+    public static MyAppManager getInstance() {
         synchronized (mLock) {
             if (mInstance == null) {
-                mInstance = new AppActivityManager();
+                mInstance = new MyAppManager();
             }
             return mInstance;
         }
     }
 
     /* 私有构造方法，防止被JAVA默认的构造函数实例化 */
-
-    public AppActivityManager() {
+    public MyAppManager() {
     }
 
     public void init(Application app) {
@@ -144,4 +140,27 @@ public class AppActivityManager {
         this.mainTaskId = taskId;
     }
 
+    public String getVersionName() {
+        String appVersion = "1.0.0";
+        try {
+            appVersion = this.app.getPackageManager().getPackageInfo(this.app.getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return appVersion;
+    }
+
+    public long getVersionCode() {
+        long code = 1;
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                code = this.app.getPackageManager().getPackageInfo(this.app.getPackageName(), 0).getLongVersionCode();
+            } else {
+                code = this.app.getPackageManager().getPackageInfo(this.app.getPackageName(), 0).versionCode;
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return code;
+    }
 }

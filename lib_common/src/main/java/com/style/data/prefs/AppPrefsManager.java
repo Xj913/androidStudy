@@ -10,9 +10,7 @@ import com.style.entity.UserInfo;
 import com.style.utils.AESCipher;
 
 public class AppPrefsManager {
-
     private final String TAG = getClass().getSimpleName();
-
     private static final String IS_FIRST_LOGIN = "isFirstLogin";
     private static final String LOGIN_INFO = "loginInfo";
     private static final String CURRENT_ACCOUNT = "currentAccount";
@@ -21,7 +19,7 @@ public class AppPrefsManager {
     private static final String PASSWORD = "password";
     private static final String SIGN_KEY = "signKey";
 
-    private static Object mLock = new Object();
+    private static final Object mLock = new Object();
     private static AppPrefsManager mInstance;
 
     public static  AppPrefsManager getInstance() {
@@ -33,7 +31,6 @@ public class AppPrefsManager {
         }
     }
 
-    /* 私有构造方法，防止被JAVA默认的构造函数实例化 */
     private AppPrefsManager() {
     }
 
@@ -48,9 +45,6 @@ public class AppPrefsManager {
         return loginSharedPreferences.getBoolean(IS_FIRST_LOGIN, true);
     }
 
-    // 异步真正提交到硬件磁盘,
-    // 而commit是同步的提交到硬件磁盘
-    //addAccount(account);
     private String currentAccount;
 
     public String getCurrentAccount() {

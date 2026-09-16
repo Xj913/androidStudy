@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +18,7 @@ class HorizontalProgressFragment : BaseFragment() {
     private lateinit var bd: ActivityHorizontalProgressBinding
 
     internal var handler: Handler = @SuppressLint("HandlerLeak")
-    object : Handler() {
+    object : Handler(Looper.myLooper()!!) {
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
             val p = msg.data.getInt("progress")

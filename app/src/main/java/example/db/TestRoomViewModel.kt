@@ -4,11 +4,12 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.util.Log
 import com.style.base.BaseViewModel
+import com.style.data.db.AppDatabase
 import com.style.entity.UserBean
 import java.util.*
 import kotlin.collections.ArrayList
 
-class TestRoomViewModel(application: Application) : BaseViewModel(application) {
+class TestRoomViewModel : BaseViewModel() {
 
     @SuppressLint("CheckResult")
     fun saveOne() {
@@ -48,4 +49,7 @@ class TestRoomViewModel(application: Application) : BaseViewModel(application) {
         Log.e(TAG, b.toString())
     }
 
+    private fun getDataBase(): AppDatabase {
+        return AppDatabase.getInstance(getApplication())
+    }
 }

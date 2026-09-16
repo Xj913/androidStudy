@@ -10,13 +10,12 @@ import java.util.HashSet
  */
 class ReceiveEventTask : Runnable {
 
-    private var code: Int
+    private var code: String
     private var data: Any
-    private var subscriberMap: HashMap<Any, HashSet<Int>>
-
+    private var subscriberMap: HashMap<Any, HashSet<String>>
     private var mUIHandler: Handler
 
-    constructor(code: Int, data: Any, subscriberMap: HashMap<Any, HashSet<Int>>, mUIHandler: Handler) {
+    constructor(code: String, data: Any, subscriberMap: HashMap<Any, HashSet<String>>, mUIHandler: Handler) {
         this.code = code
         this.data = data
         this.subscriberMap = subscriberMap
@@ -38,11 +37,11 @@ class ReceiveEventTask : Runnable {
     /**
      * 分发事件
      */
-    private fun dispatchEvent(subscriber: Any, eventCode: Int, data: Any) {
+    private fun dispatchEvent(subscriber: Any, eventCode: String, data: Any) {
         mUIHandler.post {
             try {
                 val clazz = subscriber.javaClass
-                val method = clazz.getMethod("onMainThreadEvent", Int::class.java, Any::class.java)
+                val method = clazz.getMethod("onMainThreadEvent", String::class.java, Any::class.java)
                 method.invoke(subscriber, eventCode, data)
             } catch (e: NoSuchMethodException) {
                 e.printStackTrace()

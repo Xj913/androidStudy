@@ -1,40 +1,31 @@
 package com.style.base
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.annotation.StringRes
 import android.util.Log
+import androidx.annotation.StringRes
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.style.data.app.MyAppManager
 import com.style.toast.ToastManager
 import com.style.utils.LogManager
-import com.style.data.db.AppDatabase
-import com.style.data.prefs.AppPrefsManager
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
-import java.util.*
 
-abstract class BaseViewModel(application: Application) : AndroidViewModel(application) {
+abstract class BaseViewModel : ViewModel() {
     protected val TAG = this.javaClass.simpleName
-    //请求状态：错误和成功都设为true
-    val requestState = MutableLiveData<Boolean>()
-    val generalFinish = MutableLiveData<Boolean>()
+    val isLoadingShow = MutableLiveData<Boolean>()
+    val refreshState = MutableLiveData<Int>()
     private val tasks = CompositeDisposable()
     private var singleTasks: MutableList<Disposable>? = null
 
-    protected fun getPreferences(): AppPrefsManager {
-        return AppPrefsManager.getInstance()
-    }
-
-    protected fun getDataBase(): AppDatabase {
-        return AppDatabase.getInstance(getApplication())
+    protected fun getApplication(): Application {
+        return MyAppManager.getInstance().app
     }
 
     override fun onCleared() {
-        super.onCleared()
         Log.e(TAG, "onCleared")
         removeAllTask()
         removeSingleTask()
-        getDataBase()
     }
 
     protected fun addTask(d: Disposable) {
@@ -42,7 +33,7 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
     }
 
     protected fun removeAllTask() {
-        tasks?.dispose()
+        tasks.dispose()
     }
 
     /**

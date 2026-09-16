@@ -9,9 +9,8 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.animation.DecelerateInterpolator;
 
-import com.style.data.app.AppActivityManager;
+import com.style.data.app.MyAppManager;
 import com.style.base.BaseActivity;
-import com.style.app.MyApp.R;
 import com.style.app.MyApp.databinding.ActivityTestGestureBinding;
 
 import org.jetbrains.annotations.Nullable;
@@ -47,7 +46,7 @@ public class VerticalSlideFinishActivity extends BaseActivity {
         bd.iv.setOnClickListener(v -> {
             logE(getTAG(), "iv");
         });
-        AppActivityManager.getInstance().setTestTaskId(getTaskId());
+        MyAppManager.getInstance().setTestTaskId(getTaskId());
     }
 
     @Override
@@ -59,7 +58,7 @@ public class VerticalSlideFinishActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        AppActivityManager.getInstance().setTestTaskId(-1);
+        MyAppManager.getInstance().setTestTaskId(-1);
     }
 
     //除非是顶级拖拽事件（不管ziview处于睡眠状态都拦截），否则不予轻易在此方法中拦截事件
