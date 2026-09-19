@@ -1,6 +1,5 @@
 package example.web_service
 
-import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.style.base.BaseViewModel
@@ -21,7 +20,7 @@ class CoroutineViewModel : BaseViewModel() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 try {
-                    val list = ContactHelper.getContacts(getApplication())
+                    val list = ContactHelper.getContacts(getApp())
                     if (null != list) {
                         val size = list.size
                         for (i in 0 until size) {

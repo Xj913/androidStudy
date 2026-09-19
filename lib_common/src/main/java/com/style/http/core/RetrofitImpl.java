@@ -3,6 +3,8 @@ package com.style.http.core;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.style.config.AssembleConfig;
 import com.style.data.prefs.AppPrefsManager;
 import com.style.http.converter.CustomConverterFactory;
@@ -19,15 +21,10 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 
-/**
- * Created by xiajun on 2017/12/21.
- */
-
 public final class RetrofitImpl {
-    protected String TAG = this.getClass().getSimpleName();
+    private String TAG = this.getClass().getSimpleName();
     private static final long HTTP_TIME_OUT = 5;
     private final OkHttpClient mOkHttpClient;
-
     private static final Object mLock = new Object();
     private static RetrofitImpl mInstance;
 
@@ -54,7 +51,6 @@ public final class RetrofitImpl {
         Retrofit mRetrofit = new Retrofit.Builder()
                 .baseUrl(AssembleConfig.URL_BASE)
                 .addConverterFactory(CustomConverterFactory.create())
-                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .client(mOkHttpClient)
                 .build();
         return mRetrofit;
@@ -68,6 +64,7 @@ public final class RetrofitImpl {
 
 
     public static Interceptor headerInterceptor = new Interceptor() {
+        @NonNull
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request original = chain.request();

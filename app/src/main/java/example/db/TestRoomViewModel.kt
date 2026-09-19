@@ -1,7 +1,6 @@
 package example.db
 
 import android.annotation.SuppressLint
-import android.app.Application
 import android.util.Log
 import com.style.base.BaseViewModel
 import com.style.data.db.AppDatabase
@@ -50,6 +49,6 @@ class TestRoomViewModel : BaseViewModel() {
     }
 
     private fun getDataBase(): AppDatabase {
-        return AppDatabase.getInstance(getApplication())
+        return AppDatabase.getInstance(getApp())
     }
 }

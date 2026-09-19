@@ -1,6 +1,5 @@
 package example.filedown
 
-import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.style.config.FileDirConfig
 import com.style.base.BaseViewModel
@@ -64,6 +63,6 @@ class FileDownListViewModel : BaseViewModel() {
     }
 
     private fun getDataBase(): AppDatabase {
-        return AppDatabase.getInstance(getApplication())
+        return AppDatabase.getInstance(getApp())
     }
 }

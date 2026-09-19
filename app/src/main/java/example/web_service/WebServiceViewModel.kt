@@ -7,7 +7,10 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
+import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.viewModelScope
 
+import com.style.base.BaseCompoModel;
 import com.style.base.BaseViewModel;
 import com.style.data.http.exception.HttpExceptionConsumer;
 import com.style.data.http.function.impl.UserNetSourceImpl;
@@ -19,33 +22,45 @@ import org.jetbrains.annotations.NotNull;
 
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.functions.Consumer;
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody;
 
 
-public class WebServiceViewModel extends BaseViewModel {
+class WebServiceViewModel : BaseCompoModel() {
 
-    MutableLiveData<String> content = new MutableLiveData<>();
+    val content = mutableStateOf("")
 
-    @SuppressLint("CheckResult")
-    public void getPhoneInfo(String phone) {
-        UserNetSourceImpl.test().subscribe(new Consumer<ResponseBody>() {
-            @Override
-            public void accept(ResponseBody responseBody) throws Exception {
-                long code = responseBody.contentLength();
+    fun getPhoneInfo(phone: String) {
+        viewModelScope.launch {
+            val s = withContext(Dispatchers.IO) {
+                val r: ResponseBody = UserNetSourceImpl.test()
+                val code = r.contentLength()
             }
-        });
-        /*Disposable d = getHttpApi().getPhoneInfo(phone).subscribe(s -> content.postValue(s));
-        addTask(d);*/
+        }
     }
 
-    public void getWeather(String code) {
-        Disposable d = WebNetSourceImpl.getWeather(code)
-                .subscribe(s -> {
-                            showToast("查询天气成功");
-                            content.postValue(s);
-                        }, new HttpExceptionConsumer()
-                );
-        addTask(d);
+    fun getWeather(code: String) {
+        viewModelScope.launch {
+            runCatching {
+                val s = async {
+                    WebNetSourceImpl.getWeather(code)
+                }
+            }.onSuccess { it ->
+                withContext(Dispatchers.Main) {
+
+                }
+            }
+
+            }.onFailure {
+
+            }
+
+            content.value = s.await()
+            showToast("查询天气成功")
+        }
     }
 
     public void getKuaiDi(String s, String s1) {
@@ -77,7 +92,7 @@ public class WebServiceViewModel extends BaseViewModel {
         }).subscribe(userInfo ->
                         Log.e(getTAG(), userInfo.toString())
                 , new HttpExceptionConsumer()
-                , () -> Log.e(getTAG(), "sfdfsd"));
+                , ()  -> Log.e(getTAG(), "sfdfsd"));
         addTask(d);
     }
 }

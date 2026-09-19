@@ -30,7 +30,7 @@ fun HomeApp() {
 
 fun EntryProviderScope<NavKey>.entryBuilder() {
     entry(key = LoginNav) {
-        LoginScreen()
+        LoginScreen(evt = {})
     }
 }
 
@@ -40,3 +40,4 @@ data object HomeNav : NavKey
 data object LoginNav : NavKey
 @Serializable
 sealed interface MyAppNavKey : NavKey
+

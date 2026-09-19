@@ -19,12 +19,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import example.base.CpgDialog
 
 @Composable
-fun LoginScreen(vml: LoginModel = hiltViewModel()) {
+fun LoginScreen(vml: LoginModel = hiltViewModel(), evt: () -> Unit = {}) {
+    val phone = vml.phone.collectAsStateWithLifecycle()
     Column(modifier = Modifier.padding(all = 16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         OutlinedTextField(
-            value = vml.phone.value,
+            value = phone.value,
             onValueChange = { vml.phone.value = it },
             label = { Text("手机号码") }
         )
@@ -38,7 +41,8 @@ fun LoginScreen(vml: LoginModel = hiltViewModel()) {
                 vml.login()
             }) { Text("登陆") }
 
-        var showDialog by remember { mutableStateOf(false) }
+        if (vml.isLoadingShow.value)
+            CpgDialog {  }
 
         LaunchedEffect(0) {
             while (vml.loginState.value == true) {
@@ -52,6 +56,6 @@ fun LoginScreen(vml: LoginModel = hiltViewModel()) {
 @Preview(showBackground = true)
 @Composable()
 fun LoginScreenPreview(){
-  LoginScreen(hiltViewModel())
+  LoginScreen()
 }
 

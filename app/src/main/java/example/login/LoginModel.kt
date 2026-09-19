@@ -2,12 +2,12 @@ package example.login
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.style.base.BaseViewModel
+import com.style.base.BaseCompoModel
 import com.style.data.http.function.impl.UserNetSourceImpl
 import com.style.data.prefs.AppPrefsManager
 import com.style.entity.UserInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import java.net.URL
 import java.security.MessageDigest
 import java.security.cert.X509Certificate
@@ -16,9 +16,9 @@ import javax.net.ssl.HttpsURLConnection
 import kotlin.experimental.and
 
 @HiltViewModel
-class LoginModel @Inject constructor() : BaseViewModel() {
+class LoginModel @Inject constructor() : BaseCompoModel() {
 
-    val phone = mutableStateOf("")
+    val phone = MutableStateFlow("")
     val password = mutableStateOf("")
     var user = MutableLiveData<UserInfo>()
     val loginState = MutableLiveData<Boolean>()
@@ -27,7 +27,6 @@ class LoginModel @Inject constructor() : BaseViewModel() {
 
     }
     fun login() {
-
         /*   new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -56,9 +55,9 @@ class LoginModel @Inject constructor() : BaseViewModel() {
         AppPrefsManager.getInstance().currentUser = user
         synData()
         val d = UserNetSourceImpl.login(userName, password).subscribe({
-            //getActivity().loginSuccess();
+            loginState.value = true
         }) {
-            //getActivity().loginFailed();
+            loginState.value = false
         }
        // addTask(d)
 
@@ -117,7 +116,7 @@ class LoginModel @Inject constructor() : BaseViewModel() {
 
     private fun bytesToHexString(src: ByteArray?): String? {
         val stringBuilder = StringBuilder("")
-        if (src == null || src.size <= 0) {
+        if (src == null || src.isEmpty()) {
             return null
         }
         for (i in src.indices) {

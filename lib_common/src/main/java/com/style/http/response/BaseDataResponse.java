@@ -5,7 +5,7 @@ public class BaseDataResponse<T> {
 
     public int code;
 
-    public T data;
+    public T? data = null;
 
     public String msg;
 

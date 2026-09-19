@@ -1,7 +1,5 @@
 package com.style.http.exception;
 
-
-
 public class HttpResultException extends RuntimeException {
 
     public static final int NETWORK_ERROR = 9998; //网络异常

@@ -1,33 +1,28 @@
 package com.style.data.http.function;
 
-import io.reactivex.rxjava3.core.Observable;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.POST;
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.POST
 
-/**
- * Created by xiajun on 2017/12/21.
- */
-
-public interface WebNetSource {
+interface WebNetSource {
 
     @POST("http://ws.webxml.com.cn/WebServices/MobileCodeWS.asmx/getMobileCodeInfo")
     @FormUrlEncoded
-    Observable<String> getMobileLocation(@Field("mobileCode") String mobileCode, @Field("userID") String userID);
+    suspend fun getMobileLocation(@Field("mobileCode") mobileCode: String, @Field("userID") userID: String) : String
 
     @POST("http://ws.webxml.com.cn/WebServices/WeatherWS.asmx/getWeather")
     @FormUrlEncoded
-    Observable<String> getWeatherInfo(@Field("theCityCode") String cityCode, @Field("theUserID") String userID);
+    suspend fun getWeatherInfo(@Field("theCityCode") cityCode: String, @Field("theUserID") userID: String) : String
 
     @POST("http://www.kuaidi100.com/query?")
     @FormUrlEncoded
-    Observable<String> getKuaiDi(@Field("type") String type, @Field("postid") String postid);
+    suspend fun getKuaiDi(@Field("type") type: String, @Field("postid") postid: String) : String
 
     @POST("http://ws.webxml.com.cn/WebServices/WeatherWS.asmx/getWeather")
     @FormUrlEncoded
-    String getWeatherInfo2(@Field("theCityCode") String cityCode, @Field("theUserID") String userID);
+    suspend fun getWeatherInfo2(@Field("theCityCode") cityCode: String, @Field("theUserID") userID: String) : String
 
     @POST("http://www.kuaidi100.com/query?")
     @FormUrlEncoded
-    String getKuaiDi2(@Field("type") String type, @Field("postid") String postid);
+    suspend fun getKuaiDi2(@Field("type") type: String, @Field("postid") postid: String) : String
 }

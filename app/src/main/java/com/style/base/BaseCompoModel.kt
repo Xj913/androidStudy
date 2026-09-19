@@ -3,7 +3,8 @@ package com.style.base
 import android.app.Application
 import android.util.Log
 import androidx.annotation.StringRes
-import androidx.lifecycle.MutableLiveData
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.style.data.app.MyAppManager
 import com.style.toast.ToastManager
@@ -11,13 +12,12 @@ import com.style.utils.LogManager
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 
-abstract class BaseViewModel : ViewModel() {
+abstract class BaseCompoModel : ViewModel() {
     protected val TAG = this.javaClass.simpleName
-    val isLoadingShow = MutableLiveData<Boolean>()
-    val refreshState = MutableLiveData<Int>()
+    val isLoadingShow = mutableStateOf(false)
+    val refreshState = mutableIntStateOf(0)
     private val tasks = CompositeDisposable()
     private var singleTasks: MutableList<Disposable>? = null
-
     protected fun getApp(): Application {
         return MyAppManager.getInstance().app
     }

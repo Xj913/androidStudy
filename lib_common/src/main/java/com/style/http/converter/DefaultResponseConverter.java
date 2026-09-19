@@ -26,8 +26,8 @@ public class DefaultResponseConverter<T> implements Converter<ResponseBody, T> {
         bufferedSource.close();
         //T baseRes = JSON.parseObject(tempStr, type);
         T t = new Gson().fromJson(tempStr, type);
-        if (t instanceof BaseDataResponse && !((BaseDataResponse) t).isOk()) {
-            throw new HttpResultException(((BaseDataResponse) t).getCode(), ((BaseDataResponse) t).getMsg());
+        if (t instanceof BaseDataResponse && !((BaseDataResponse<?>) t).isOk()) {
+            throw new HttpResultException(((BaseDataResponse<?>) t).getCode(), ((BaseDataResponse<?>) t).getMsg());
         }
         return t;
     }

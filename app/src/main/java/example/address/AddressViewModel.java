@@ -1,9 +1,7 @@
 package example.address;
 
-import android.app.Application;
 import androidx.lifecycle.MutableLiveData;
 import android.media.MediaPlayer;
-import androidx.annotation.NonNull;
 
 import com.style.base.BaseViewModel;
 import com.style.utils.PinyinUtils;
@@ -29,7 +27,7 @@ public class AddressViewModel extends BaseViewModel {
     public void getData() {
 
         Disposable d = Observable.just("").map(param -> {
-            List<UploadPhone> list = ContactHelper.getContacts(getApplication());
+            List<UploadPhone> list = ContactHelper.getContacts(getApp());
                     int size = list.size();
                     for (int i = 0; i < size; i++) {
                         String sortLetter = PinyinUtils.getAbbreviation(list.get(i).getName()).substring(0, 1);
@@ -46,7 +44,7 @@ public class AddressViewModel extends BaseViewModel {
     }
 
     public void getRingtone() {
-        List<MyRingtone> list = ContactHelper.getRingtone(getApplication());
+        List<MyRingtone> list = ContactHelper.getRingtone(getApp());
         player = new MediaPlayer();
         try {
             player.setDataSource(list.get(0).path);

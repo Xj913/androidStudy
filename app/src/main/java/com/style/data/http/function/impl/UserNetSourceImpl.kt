@@ -1,7 +1,8 @@
 package com.style.data.http.function.impl;
 
 
-import static com.style.http.core.Rx_utilKt.io2uiOtf;
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
 
 import com.style.data.http.function.UserNetSource;
 import com.style.data.http.request.LoginRequest;
@@ -12,48 +13,43 @@ import com.style.entity.UserInfo;
 import com.style.http.core.RetrofitImpl;
 import com.style.http.response.BaseDataResponse;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.JSONException
+import org.json.JSONObject
+import okhttp3.MediaType
+import okhttp3.RequestBody
+import okhttp3.ResponseBody
 
-import java.util.List;
 
-import io.reactivex.rxjava3.core.Observable;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
-
-public final class UserNetSourceImpl {
-    private static UserNetSource mAPI;
-
-    static {
-        mAPI = RetrofitImpl.getInstance().getDefaultRetrofit().create(UserNetSource.class);
+object UserNetSourceImpl {
+    val mAPI: UserNetSource by lazy {
+        RetrofitImpl.getInstance().getDefaultRetrofit().create(UserNetSource::class.java)
     }
 
-    public static Observable<BaseDataResponse<LoginBean>> login(String userName, String password) {
-        Observable<BaseDataResponse<LoginBean>> mObservable = mAPI.login(userName, password);
-        return mObservable.compose(io2uiOtf());
+    suspend fun login(userName: String, password: String) : BaseDataResponse<LoginBean> {
+        return mAPI.login(userName, password)
     }
 
-    public static Observable<List<KuaiDi>> getkuaidi(String id) {
-        JSONObject o = new JSONObject();
+    suspend fun getkuaidi(id: String) : List<KuaiDi> {
+        val o = JSONObject()
         try {
-            o.put("Id", id);
-        } catch (JSONException e) {
-            e.printStackTrace();
+            o.put("Id", id)
+        } catch (e: JSONException) {
+            e.printStackTrace()
         }
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), o.toString());
-        return mAPI.getkuaidi(requestBody);
+        val requestBody =
+            o.toString().toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
+        return mAPI.getkuaidi(requestBody)
     }
 
-    public static Observable<BaseDataResponse<TokenResponse>> getToken() {
-        return mAPI.getToken("client_credentials").compose(io2uiOtf());
+    suspend fun getToke() : BaseDataResponse<TokenResponse> {
+        return mAPI.getToken("client_credentials")
     }
 
-    public static Observable<BaseDataResponse<UserInfo>> login2(String userName, String passWord) {
-        return mAPI.login2(new LoginRequest(userName, passWord)).compose(io2uiOtf());
+    suspend fun login2(userName: String, passWord: String) : BaseDataResponse<UserInfo>{
+        return mAPI.login2(LoginRequest(userName, passWord))
     }
 
-    public static Observable<ResponseBody> test() {
-        return mAPI.test().compose(io2uiOtf());
+    suspend fun test() : ResponseBody{
+        return mAPI.test()
     }
 }
