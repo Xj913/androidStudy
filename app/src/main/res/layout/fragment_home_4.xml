@@ -64,10 +64,5 @@
             style="@style/View.normal_item_horizontal"
             android:text="http请求webservice" />
 
-        <TextView
-            android:id="@+id/view_coroutine"
-            style="@style/View.normal_item_horizontal"
-            android:text="Coroutine" />
-
     </LinearLayout>
 </ScrollView>

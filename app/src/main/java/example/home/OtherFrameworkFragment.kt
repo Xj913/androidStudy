@@ -13,8 +13,6 @@ import example.media.AudioRecordActivity
 import example.media.VideoTestActivity
 import example.media.socket.chat.SocketTestActivity
 import example.queue.QueueTestActivity
-import example.web_service.CoroutineActivity
-import example.web_service.WebServiceActivity
 import example.wifi.WifiTestActivity
 
 
@@ -42,7 +40,5 @@ class OtherFrameworkFragment : BaseNoPagerLazyRefreshFragment() {
         bd.viewEventManager.setOnClickListener { skip(QueueTestActivity::class.java) }
         bd.viewWifi.setOnClickListener { skip(WifiTestActivity::class.java) }
         bd.viewWebservice.setOnClickListener { skip(WebServiceActivity::class.java) }
-        bd.viewCoroutine.setOnClickListener { skip(CoroutineActivity::class.java) }
-
     }
 }

@@ -9,7 +9,7 @@ import com.style.data.fileDown.CustomFileDownloadManager
 import com.style.data.fileDown.entity.CustomFileBean
 import java.io.File
 
-class FileDownloadServiceModel(application: Application) : BaseServiceModel() {
+class FileDownloadServiceModel : BaseServiceModel() {
 
 
     //暂停下载

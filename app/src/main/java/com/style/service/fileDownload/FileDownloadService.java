@@ -22,7 +22,7 @@ public class FileDownloadService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        mServiceModel = new FileDownloadServiceModel(getApplication());
+        mServiceModel = new FileDownloadServiceModel();
     }
 
     @Nullable

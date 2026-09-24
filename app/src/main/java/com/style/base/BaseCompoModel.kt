@@ -16,46 +16,15 @@ abstract class BaseCompoModel : ViewModel() {
     protected val TAG = this.javaClass.simpleName
     val isLoadingShow = mutableStateOf(false)
     val refreshState = mutableIntStateOf(0)
-    private val tasks = CompositeDisposable()
-    private var singleTasks: MutableList<Disposable>? = null
+
     protected fun getApp(): Application {
         return MyAppManager.getInstance().app
     }
 
     override fun onCleared() {
         Log.e(TAG, "onCleared")
-        removeAllTask()
-        removeSingleTask()
     }
 
-    protected fun addTask(d: Disposable) {
-        tasks.add(d)
-    }
-
-    protected fun removeAllTask() {
-        tasks.dispose()
-    }
-
-    /**
-     * 频繁重复请求时
-     *
-     * @param d
-     * @return
-     */
-    protected fun addSingleTask(d: Disposable): Boolean {
-        removeSingleTask()
-        if (singleTasks == null)
-            singleTasks = ArrayList()
-        return singleTasks!!.add(d)
-    }
-
-    protected fun removeSingleTask() {
-        if (singleTasks != null) {
-            for (d in singleTasks!!) {
-                d.dispose()
-            }
-        }
-    }
 
     protected fun showToast(str: CharSequence) {
         ToastManager.showToast(getApp(), str)

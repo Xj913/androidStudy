@@ -11,7 +11,7 @@ import com.style.data.http.response.TokenResponse;
 import com.style.entity.KuaiDi;
 import com.style.entity.UserInfo;
 import com.style.http.core.RetrofitImpl;
-import com.style.http.response.BaseDataResponse;
+import com.style.http.response.BaseResp;
 
 import org.json.JSONException
 import org.json.JSONObject
@@ -25,31 +25,19 @@ object UserNetSourceImpl {
         RetrofitImpl.getInstance().getDefaultRetrofit().create(UserNetSource::class.java)
     }
 
-    suspend fun login(userName: String, password: String) : BaseDataResponse<LoginBean> {
+    suspend fun login(userName: String, password: String) : BaseResp<LoginBean> {
         return mAPI.login(userName, password)
     }
 
-    suspend fun getkuaidi(id: String) : List<KuaiDi> {
-        val o = JSONObject()
-        try {
-            o.put("Id", id)
-        } catch (e: JSONException) {
-            e.printStackTrace()
-        }
-        val requestBody =
-            o.toString().toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
-        return mAPI.getkuaidi(requestBody)
-    }
-
-    suspend fun getToke() : BaseDataResponse<TokenResponse> {
+    suspend fun getToken() : BaseResp<TokenResponse> {
         return mAPI.getToken("client_credentials")
     }
 
-    suspend fun login2(userName: String, passWord: String) : BaseDataResponse<UserInfo>{
-        return mAPI.login2(LoginRequest(userName, passWord))
+    suspend fun login2(userName: String, passWord: String) : BaseResp<UserInfo>{
+        return mAPI.login(LoginRequest(userName, passWord))
     }
 
-    suspend fun test() : ResponseBody{
+    suspend fun test() : BaseResp<ResponseBody>{
         return mAPI.test()
     }
 }

@@ -149,6 +149,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.ui.graphics)
     //testImplementation(libs.junit)
     implementation(libs.kotlin)
     implementation(platform(libs.compose.bom))

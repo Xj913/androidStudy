@@ -1,5 +1,7 @@
 package com.style.http.converter;
 
+import androidx.annotation.NonNull;
+
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 
@@ -10,7 +12,7 @@ import retrofit2.Converter;
 public class ResponseBodyConverter implements Converter<ResponseBody, ResponseBody> {
 
     @Override
-    public ResponseBody convert(ResponseBody value) {
+    public ResponseBody convert(@NonNull ResponseBody value) {
         return value;
     }
 }

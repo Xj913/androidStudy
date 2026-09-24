@@ -32,7 +32,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "my-project"
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include("app", "lib_custom_view")
 include("lib_common")
 include("lib_media_picker")
@@ -40,6 +39,8 @@ include("lib_video_record")
 include("lib_wheel_picker")
 include("lib_zxing")
 include("lib_rxpermission")
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
 
 
 

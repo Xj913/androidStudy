@@ -10,6 +10,8 @@ room = "2.5.1"
 lifecycle = "2.11.0"
 nav3Core = "1.1.7"
 ktxSerCore = "1.11.0"
+material3 = "1.4.0"
+uiGraphics = "1.12.1"
 
 [libraries]
 junit = "junit:junit:4.13.2"
@@ -67,9 +69,9 @@ zxing = "com.google.zxing:core:3.3.0"
 material = "com.google.android.material:material:1.10.0"
 retrofit = "com.squareup.retrofit2:retrofit:3.0.0"
 retrofit-apt-rxjava = "com.squareup.retrofit2:adapter-rxjava3:3.0.0"
-okhttp = "com.squareup.okhttp3:okhttp:5.5.0"
-okio = "com.squareup.okio:okio:3.10.0"
-okhttp-log-ipt = "com.squareup.okhttp3:logging-interceptor:5.5.0"
+okio = "com.squareup.okio:okio:3.16.4"
+okhttp = "com.squareup.okhttp3:okhttp:5.3.2"
+okhttp-log-ipt = "com.squareup.okhttp3:logging-interceptor:5.3.2"
 fastjson ="com.alibaba:fastjson:1.2.58"
 rxjava = "io.reactivex.rxjava3:rxjava:3.1.12"
 rxjava-rxandroid = "io.reactivex.rxjava3:rxandroid:3.0.2"
@@ -78,6 +80,8 @@ glide-integration = "com.github.bumptech.glide:okhttp3-integration:5.0.9"
 glide-compiler = "com.github.bumptech.glide:compiler:5.0.9"
 refresh-layout = "io.github.scwang90:refresh-layout-kernel:2.1.1"
 photoview = "com.github.chrisbanes:PhotoView:2.1.4"
+androidx-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics", version.ref = "uiGraphics" }
 
 [bundles]
 base = ["org-annotation", "and-annotation", "javax-annotation", "ktx-serialization-core", "ktx-serialization-json", "ktx-coroutines-android", "ax-core", "prefrence-ktx", "splite", "activity",

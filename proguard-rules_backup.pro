@@ -98,33 +98,15 @@
 }
 -keepattributes *JavascriptInterface*
 
-### greenDAO 3
--keepclassmembers class * extends org.greenrobot.greendao.AbstractDao {
-public static java.lang.String TABLENAME;
-}
--keep class **$Properties
+-keep class okhttp3.internal.publicsuffix.** { *; }
 
-# If you do not use SQLCipher:
--dontwarn org.greenrobot.greendao.database.**
-# If you do not use RxJava:
--dontwarn rx.**
+-keep class **$Properties
 
 #Glide的混淆规则
 -keep public class * implements com.bumptech.glide.module.GlideModule
 -keep public class * extends com.bumptech.glide.module.AppGlideModule
 -keep class com.bumptech.glide.GeneratedAppGlideModuleImpl
 
-#保持eventbus
--keepclassmembers class ** {
-    @org.greenrobot.eventbus.Subscribe <methods>;
-}
--keep enum org.greenrobot.eventbus.ThreadMode { *; }
-#androidEventBud
--keep class org.simple.** { *; }
--keep interface org.simple.** { *; }
--keepclassmembers class * {
-    @org.simple.eventbus.Subscriber <methods>;
-}
 -keepattributes *Annotation*
 #混淆第三方jar包，其中xxx为jar包名
 #-libraryjars libs/pinyin4j-2.5.0.jar #这个会与build.gradle里面重复

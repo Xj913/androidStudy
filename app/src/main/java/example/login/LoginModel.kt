@@ -1,13 +1,23 @@
 package example.login
 
+import android.text.TextUtils
+import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.style.base.BaseCompoModel
 import com.style.data.http.function.impl.UserNetSourceImpl
+import com.style.data.http.function.impl.WebNetSourceImpl
 import com.style.data.prefs.AppPrefsManager
 import com.style.entity.UserInfo
+import com.style.http.response.safeApiCall
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.rxjava3.disposables.Disposable
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.net.URL
 import java.security.MessageDigest
 import java.security.cert.X509Certificate
@@ -50,20 +60,38 @@ class LoginModel @Inject constructor() : BaseCompoModel() {
         //val a = getPreferences().currentAccount
     }
 
+    fun login2(userName: String, pass: String) {
+        viewModelScope.launch(context = Dispatchers.IO) {
+            val s = async { safeApiCall { UserNetSourceImpl.getToken() } }.await()
+            if (s.isSucceed()) {
+                AppPrefsManager.getInstance().setSignKey(s.data?.access_token)
+                val s1 = async {
+                    safeApiCall { UserNetSourceImpl.login2(userName, pass) }
+                }.await()
+                if (s1.isSucceed()) {
+                    logI("login", s1.data.toString())
+                }
+            }
+        }
+    }
+
     fun login(userName: String, password: String) {
         val user = UserInfo(userName, password)
         AppPrefsManager.getInstance().currentUser = user
-        synData()
-        val d = UserNetSourceImpl.login(userName, password).subscribe({
-            loginState.value = true
-        }) {
-            loginState.value = false
+        viewModelScope.launch(Dispatchers.IO) {
+            val s = async {
+                synData()
+                UserNetSourceImpl.login(userName, password)
+            }.await()
+            if (s.isSucceed()) {
+                withContext(Dispatchers.Main) {
+                    loginState.value = true
+                }
+            }
         }
-       // addTask(d)
-
     }
 
-    fun synData() {
+    suspend fun synData() {
         /*curUser = AccountManager.getInstance().getCurrentUser();
         List<User> friends = UserDBManager.getInstance().getAllMyFriend(curUser.getUserId());
         if (friends != null && friends.size() > 0) {

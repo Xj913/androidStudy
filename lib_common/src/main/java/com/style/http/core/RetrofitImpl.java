@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import com.style.config.AssembleConfig;
 import com.style.data.prefs.AppPrefsManager;
 import com.style.http.converter.CustomConverterFactory;
+import com.style.http.response.MyHttpException;
 import com.style.lib.common.BuildConfig;
 
 import java.io.IOException;
@@ -48,12 +49,12 @@ public final class RetrofitImpl {
     }
 
     public Retrofit getDefaultRetrofit() {
-        Retrofit mRetrofit = new Retrofit.Builder()
+        Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(AssembleConfig.URL_BASE)
                 .addConverterFactory(CustomConverterFactory.create())
                 .client(mOkHttpClient)
                 .build();
-        return mRetrofit;
+        return retrofit;
     }
 
     //日志拦截器
@@ -73,7 +74,10 @@ public final class RetrofitImpl {
                 newBuilder.addHeader("Authorization", AppPrefsManager.getInstance().getSignKey());
             //String language = Locale.getDefault().getLanguage();//服务器根据不同语言返回不同描述
             Request newRequest = newBuilder.build();
-            return chain.proceed(newRequest);
+            Response s = chain.proceed(newRequest);
+            if (s.code() != 200)
+                throw new MyHttpException(s.code());
+            return s;
         }
     };
 }

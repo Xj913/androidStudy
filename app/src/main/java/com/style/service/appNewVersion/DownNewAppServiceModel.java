@@ -15,10 +15,6 @@ public class DownNewAppServiceModel extends BaseServiceModel {
 
     private File mAppFile;
 
-    public DownNewAppServiceModel(@NonNull Application application) {
-        super();
-    }
-
     /**
      * 开始下载新版App
      * @param versionInfo

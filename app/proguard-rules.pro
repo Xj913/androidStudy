@@ -48,33 +48,12 @@
     public static **[] values();
     public static ** valueOf(java.lang.String);
 }
-### greenDAO 3
--keepclassmembers class * extends org.greenrobot.greendao.AbstractDao {
-public static java.lang.String TABLENAME;
-}
--keep class **$Properties
-
-# If you do not use SQLCipher:
--dontwarn org.greenrobot.greendao.database.**
-# If you do not use RxJava:
--dontwarn rx.**
 
 #Glide的混淆规则
 -keep public class * implements com.bumptech.glide.module.GlideModule
 -keep public class * extends com.bumptech.glide.module.AppGlideModule
 -keep class com.bumptech.glide.GeneratedAppGlideModuleImpl
 
-#保持eventbus
--keepclassmembers class ** {
-    @org.greenrobot.eventbus.Subscribe <methods>;
-}
--keep enum org.greenrobot.eventbus.ThreadMode { *; }
-#androidEventBud
--keep class org.simple.** { *; }
--keep interface org.simple.** { *; }
--keepclassmembers class * {
-    @org.simple.eventbus.Subscriber <methods>;
-}
 #混淆第三方jar包，其中xxx为jar包名,注意保持依赖库中的不混淆
 #-libraryjars libs/pinyin4j-2.5.0.jar #这个会与build.gradle里面重复
 -keep class com.style.bean.**{*;}       #不混淆某个包内的所有文件
