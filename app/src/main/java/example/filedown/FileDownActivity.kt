@@ -6,20 +6,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SimpleItemAnimator
-import com.style.app.MyApp.databinding.FileDownListActivityBinding
-import com.style.base.BaseRecyclerViewAdapter
-import com.style.base.BaseTitleBarActivity
-import com.style.config.FileDirConfig
-import com.style.data.event.EventBusEvent
-import com.style.data.fileDown.CustomFileDownloadManager
-import com.style.data.fileDown.FileDownloadStateBean
-import com.style.data.fileDown.FileDownloadStateBean.DownStatus
-import com.style.data.fileDown.entity.CustomFileBean
-import com.style.myevent.EventReceiver
-import com.style.myevent.MyEventManager
-import com.style.service.fileDownload.FileDownloadService
-import com.style.utils.OpenFileUtil
-import com.style.view.diviver.DividerItemDecoration
+import com.xiajun.app.MyApp.databinding.FileDownListActivityBinding
+import com.xiajun.base.BaseRecyclerViewAdapter
+import com.xiajun.base.BaseTitleBarActivity
+import com.xiajun.config.FileDirConfig
+import com.xiajun.data.event.EventBusEvent
+import com.xiajun.data.fileDown.CustomFileDownloadManager
+import com.xiajun.data.fileDown.FileDownloadStateBean
+import com.xiajun.data.fileDown.FileDownloadStateBean.DownStatus
+import com.xiajun.data.fileDown.entity.CustomFileBean
+import com.xiajun.myevent.EventReceiver
+import com.xiajun.myevent.MyEventManager
+import com.xiajun.service.fileDownload.FileDownloadService
+import com.xiajun.utils.OpenFileUtil
+import com.xiajun.view.diviver.DividerItemDecoration
 import java.io.File
 
 class FileDownActivity : BaseTitleBarActivity(), EventReceiver {

@@ -6,7 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.os.Message
 
-import com.style.app.MyApp.R
+import com.xiajun.app.MyApp.R
 
 
 class DrawViewActivity : Activity() {

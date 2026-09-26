@@ -1,10 +1,9 @@
 package example.activity;
 
 import android.os.Bundle
-import com.style.base.BaseTitleBarActivity
-import com.style.app.MyApp.R
-import com.style.app.MyApp.databinding.ActivityUserAgreeBinding
-import com.style.utils.AssetsUtil
+import com.xiajun.base.BaseTitleBarActivity
+import com.xiajun.app.MyApp.databinding.ActivityUserAgreeBinding
+import com.xiajun.utils.AssetsUtil
 import java.io.IOException
 
 class ReadAssetsActivity : BaseTitleBarActivity() {

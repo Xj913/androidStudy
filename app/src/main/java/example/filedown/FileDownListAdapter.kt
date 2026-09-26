@@ -4,11 +4,10 @@ import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import com.style.base.BaseRecyclerViewAdapter
-import com.style.data.fileDown.FileDownloadStateBean
-import com.style.data.fileDown.entity.CustomFileBean
-import com.style.app.MyApp.R
-import com.style.app.MyApp.databinding.FileDownListAdapterBinding
+import com.xiajun.base.BaseRecyclerViewAdapter
+import com.xiajun.data.fileDown.FileDownloadStateBean
+import com.xiajun.data.fileDown.entity.CustomFileBean
+import com.xiajun.app.MyApp.databinding.FileDownListAdapterBinding
 import java.util.*
 
 class FileDownListAdapter : BaseRecyclerViewAdapter<CustomFileBean> {

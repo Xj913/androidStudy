@@ -5,10 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import com.style.base.BaseTitleBarActivity;
-import com.style.app.MyApp.R;
-import com.style.app.MyApp.databinding.EditLayoutMainActivityBinding;
-import com.style.utils.DeviceInfoUtil;
+import com.xiajun.base.BaseTitleBarActivity;
+import com.xiajun.app.MyApp.R;
+import com.xiajun.app.MyApp.databinding.EditLayoutMainActivityBinding;
 
 import org.jetbrains.annotations.Nullable;
 

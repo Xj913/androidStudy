@@ -12,9 +12,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-import com.style.base.BaseTitleBarActivity;
-import com.style.app.MyApp.R;
-import com.style.app.MyApp.databinding.ActivityH5RemoteBinding;
+import com.xiajun.base.BaseTitleBarActivity;
+import com.xiajun.app.MyApp.R;
+import com.xiajun.app.MyApp.databinding.ActivityH5RemoteBinding;
 
 import org.jetbrains.annotations.Nullable;
 

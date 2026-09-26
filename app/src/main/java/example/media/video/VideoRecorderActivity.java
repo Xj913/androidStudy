@@ -15,8 +15,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import com.style.config.FileDirConfig;
-import com.style.app.MyApp.R;
+import com.xiajun.config.FileDirConfig;
+import com.xiajun.app.MyApp.R;
 
 import java.util.Collections;
 import java.util.Comparator;

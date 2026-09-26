@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="本地网页" />
 
-    <com.style.view.progressbar.HorizontalProgressBar
+    <com.xiajun.view.progressbar.HorizontalProgressBar
         android:id="@+id/progress"
         android:layout_width="match_parent"
         android:layout_height="3dp"

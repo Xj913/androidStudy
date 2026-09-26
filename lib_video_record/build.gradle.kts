@@ -3,7 +3,7 @@ plugins {
     //alias(libs.plugins.kotlin)
 }
 android {
-    namespace = "com.style.lib.media.video"
+    namespace = "com.xiajun.lib.media.video"
     compileSdk = libs.versions.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()

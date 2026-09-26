@@ -9,9 +9,9 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.animation.DecelerateInterpolator;
 
-import com.style.data.app.MyAppManager;
-import com.style.base.BaseActivity;
-import com.style.app.MyApp.databinding.ActivityTestGestureBinding;
+import com.xiajun.data.app.MyAppManager;
+import com.xiajun.base.BaseActivity;
+import com.xiajun.app.MyApp.databinding.ActivityTestGestureBinding;
 
 import org.jetbrains.annotations.Nullable;
 

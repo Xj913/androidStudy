@@ -53,7 +53,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:name="com.style.base.MyApp"
+        android:name="com.xiajun.base.MyApp"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -140,7 +140,7 @@
             android:theme="@style/AppTheme.Translucent" />
         <activity android:name="example.viewPager.GlideListActivity" />
         <activity android:name="example.music.MusicListActivity" />
-        <activity android:name="com.style.service.remote.RemotePlayActivity" />
+        <activity android:name="com.xiajun.service.remote.RemotePlayActivity" />
         <activity
             android:name="example.scroll.ScrollingActivity"
             android:label="@string/title_activity_scrolling" />
@@ -158,7 +158,7 @@
 
         <!-- APP新版本下载服务 -->
         <service
-            android:name="com.style.service.appNewVersion.DownNewAppService"
+            android:name="com.xiajun.service.appNewVersion.DownNewAppService"
             android:enabled="true"
             android:exported="true">
             <intent-filter android:priority="888">
@@ -166,7 +166,7 @@
             </intent-filter>
         </service>
         <service
-            android:name="com.style.service.fileDownload.FileDownloadService"
+            android:name="com.xiajun.service.fileDownload.FileDownloadService"
             android:enabled="true"
             android:exported="true">
             <intent-filter android:priority="1000">
@@ -176,21 +176,21 @@
         <!-- exported：是否允许外部应用程序访问，版本为16或者更低时他的默认值是true。如果是17和以上的版本默认值是false。 -->
         <!--google大坑，不注册竟然不报错-->
         <service
-            android:name="com.style.service.music.PlayMusicService"
+            android:name="com.xiajun.service.music.PlayMusicService"
             android:exported="false">
             <intent-filter android:priority="998">
                 <action android:name="music.play.service" />
             </intent-filter>
         </service>
         <!-- 语音悬浮服务 -->
-        <service android:name="com.style.service.suspendWindow.VoiceSuspendService" />
+        <service android:name="com.xiajun.service.suspendWindow.VoiceSuspendService" />
         <!-- 视频悬浮服务 -->
-        <service android:name="com.style.service.suspendWindow.VideoSuspendService" />
+        <service android:name="com.xiajun.service.suspendWindow.VideoSuspendService" />
         <!-- 来电悬浮服务 -->
-        <service android:name="com.style.service.suspendWindow.CallInSuspendService" />
+        <service android:name="com.xiajun.service.suspendWindow.CallInSuspendService" />
         <!--单独进行播放音乐服务-->
         <service
-            android:name="com.style.service.remote.RemotePlayService"
+            android:name="com.xiajun.service.remote.RemotePlayService"
             android:exported="true"
             android:process="com.offline.message">
             <intent-filter android:priority="999">

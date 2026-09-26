@@ -11,40 +11,40 @@
         android:gravity="bottom"
         android:orientation="horizontal">
 
-        <com.style.view.other.CustomNotifyView
+        <com.xiajun.view.other.CustomNotifyView
             android:layout_width="20dp"
             android:layout_height="20dp"
             app:notifyText="0" />
 
-        <com.style.view.other.CustomNotifyView
+        <com.xiajun.view.other.CustomNotifyView
             android:layout_width="25dp"
             android:layout_height="25dp"
             app:notifyBackgroundColor="#00ff00"
             app:notifyText="1"
             app:notifyTextColor="#ff0000" />
 
-        <com.style.view.other.CustomNotifyView
+        <com.xiajun.view.other.CustomNotifyView
             android:layout_width="30dp"
             android:layout_height="30dp"
             app:notifyBackgroundColor="#ffff00"
             app:notifyText="2"
             app:notifyTextColor="#ff0000" />
 
-        <com.style.view.other.CustomNotifyView
+        <com.xiajun.view.other.CustomNotifyView
             android:layout_width="35dp"
             android:layout_height="35dp"
             app:notifyBackgroundColor="#00ffff"
             app:notifyText="30"
             app:notifyTextSize="15sp" />
 
-        <com.style.view.other.CustomNotifyView
+        <com.xiajun.view.other.CustomNotifyView
             android:id="@+id/customNotifyView"
             android:layout_width="40dp"
             android:layout_height="40dp"
             app:notifyText="4"
             app:notifyTextSize="25sp" />
 
-        <com.style.view.other.CustomNotifyView
+        <com.xiajun.view.other.CustomNotifyView
             android:layout_width="45dp"
             android:layout_height="45dp"
             app:notifyBackgroundColor="#000000"

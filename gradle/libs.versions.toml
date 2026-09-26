@@ -10,11 +10,11 @@ room = "2.5.1"
 lifecycle = "2.11.0"
 nav3Core = "1.1.7"
 ktxSerCore = "1.11.0"
-material3 = "1.4.0"
-uiGraphics = "1.12.1"
 
 [libraries]
 junit = "junit:junit:4.13.2"
+compose-ui-test-junit.module = "androidx.compose.ui:ui-test-junit4"
+compose-ui-test-manifest.module = "androidx.compose.ui:ui-test-manifest"
 kotlin-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlin" }
 kotlin = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 ktx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "ktxSerCore" }
@@ -42,7 +42,7 @@ room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 compose-bom = "androidx.compose:compose-bom:2026.06.00"
 material3.module = "androidx.compose.material3:material3"
 foundation.module = "androidx.compose.foundation:foundation"
-compose-ui.module = "androidx.compose.ui:ui"
+compose-ui.module = "androidx.compose.ui:ui-graphics"
 ui-tool.module = "androidx.compose.ui:ui-tooling"
 ui-preview.module = "androidx.compose.ui:ui-tooling-preview"
 adaptive.module = "androidx.compose.material3.adaptive:adaptive"
@@ -80,13 +80,11 @@ glide-integration = "com.github.bumptech.glide:okhttp3-integration:5.0.9"
 glide-compiler = "com.github.bumptech.glide:compiler:5.0.9"
 refresh-layout = "io.github.scwang90:refresh-layout-kernel:2.1.1"
 photoview = "com.github.chrisbanes:PhotoView:2.1.4"
-androidx-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
-androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics", version.ref = "uiGraphics" }
 
 [bundles]
 base = ["org-annotation", "and-annotation", "javax-annotation", "ktx-serialization-core", "ktx-serialization-json", "ktx-coroutines-android", "ax-core", "prefrence-ktx", "splite", "activity",
     "appcompat", "fragment", "fragment-ktx", "recyclerview", "cardview", "legacy", "vectordrawable", "constraintlayout", "material", "gson", "coordinatorlayout", "palette-ktx"]
-compose = ["material3", "foundation", "compose-ui", "acyivity-compose", "hilt-navigation-compose", "viewmodel-compose", "viewmodel", "viewmodel-common",
+compose = ["material3", "foundation", "acyivity-compose", "hilt-navigation-compose", "viewmodel-compose", "viewmodel", "viewmodel-common",
     "livedata", "livedata-core", "lifecycle-runtime", "lifecycle-rea", "compose-livedata", "lifecycle-runtime-compose", "compose-rxjava3","navigation3-runtime",
     "navigation3-ui", "viewmodel-nav3", "hilt"]
 glide = ["glide", "glide-integration"]

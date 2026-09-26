@@ -2,8 +2,8 @@ package example.db;
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import com.style.base.BaseTitleBarActivity
-import com.style.app.MyApp.databinding.ActivityTestRoomBinding
+import com.xiajun.base.BaseTitleBarActivity
+import com.xiajun.app.MyApp.databinding.ActivityTestRoomBinding
 
 class TestRoomActivity : BaseTitleBarActivity() {
 

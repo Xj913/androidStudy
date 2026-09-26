@@ -3,11 +3,11 @@
 
     <application>
         <activity
-            android:name="com.style.lib.media.video.PlayVideoActivity"
+            android:name="com.xiajun.lib.media.video.PlayVideoActivity"
             android:theme="@style/LibVideoRecordTheme" />
-        <activity android:name="com.style.lib.media.video.VideoRecordOldActivity" />
+        <activity android:name="com.xiajun.lib.media.video.VideoRecordOldActivity" />
         <activity
-            android:name="com.style.lib.media.camera2video.Camera2Activity"
+            android:name="com.xiajun.lib.media.camera2video.Camera2Activity"
             android:theme="@style/LibVideoRecordTheme" />
 
     </application>

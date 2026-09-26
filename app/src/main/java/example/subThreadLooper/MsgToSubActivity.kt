@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
-import com.style.base.BaseTitleBarActivity
-import com.style.app.MyApp.databinding.ActivityMsgToSubBinding
+import com.xiajun.base.BaseTitleBarActivity
+import com.xiajun.app.MyApp.databinding.ActivityMsgToSubBinding
 
 public class MsgToSubActivity : BaseTitleBarActivity() {
 

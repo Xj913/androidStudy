@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 
-import com.style.base.BaseRecyclerViewAdapter
-import com.style.app.MyApp.databinding.ScrollStopTitleAdapterBinding
+import com.xiajun.base.BaseRecyclerViewAdapter
+import com.xiajun.app.MyApp.databinding.ScrollStopTitleAdapterBinding
 
 import java.util.ArrayList
 

@@ -3,9 +3,9 @@ package example.customView;
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.TextView
-import com.style.base.BaseTitleBarActivity
-import com.style.app.MyApp.R
-import com.style.app.MyApp.databinding.ActivityRecordAudioViewBinding
+import com.xiajun.base.BaseTitleBarActivity
+import com.xiajun.app.MyApp.R
+import com.xiajun.app.MyApp.databinding.ActivityRecordAudioViewBinding
 import java.util.*
 
 class RecordAudioViewActivity : BaseTitleBarActivity() {

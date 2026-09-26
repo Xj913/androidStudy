@@ -16,13 +16,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
-import com.style.base.BaseActivity
-import com.style.data.app.MyAppManager
-import com.style.app.MyApp.R
-import com.style.app.MyApp.databinding.ActivityMainBinding
-import com.style.toast.ToastManager
-import com.style.utils.DeviceInfoUtil
-import com.style.utils.NetWorkUtil
+import com.xiajun.base.BaseActivity
+import com.xiajun.data.app.MyAppManager
+import com.xiajun.app.MyApp.R
+import com.xiajun.app.MyApp.databinding.ActivityMainBinding
+import com.xiajun.toast.ToastManager
+import com.xiajun.utils.DeviceInfoUtil
+import com.xiajun.utils.NetWorkUtil
 import example.home.contact.HomeListFragment
 
 class MainActivity : BaseActivity() {

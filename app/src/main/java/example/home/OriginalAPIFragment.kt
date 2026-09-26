@@ -4,10 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.style.base.BaseNoPagerLazyRefreshFragment
-import com.style.entity.KuaiDi
-import com.style.app.MyApp.databinding.FragmentHome3Binding
-import com.style.service.remote.RemotePlayActivity
+import com.xiajun.base.BaseNoPagerLazyRefreshFragment
+import com.xiajun.app.MyApp.databinding.FragmentHome3Binding
+import com.xiajun.service.remote.RemotePlayActivity
 import example.activity.AnimatorActivity
 import example.activity.JniTestActivity
 import example.activity.ReadAssetsActivity
@@ -20,7 +19,6 @@ import example.music.MusicListActivity
 import example.subThreadLooper.MsgToSubActivity
 import example.web.WebViewActivity
 import example.web.WebViewAndJSActivity
-import kotlin.concurrent.thread
 
 
 class OriginalAPIFragment : BaseNoPagerLazyRefreshFragment() {

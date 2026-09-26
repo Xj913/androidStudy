@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
-import com.style.base.BaseTitleBarActivity
-import com.style.app.MyApp.databinding.TablayoutWithViewpager2ActivityBinding
+import com.xiajun.base.BaseTitleBarActivity
+import com.xiajun.app.MyApp.databinding.TablayoutWithViewpager2ActivityBinding
 
 class TabViewPager2Activity : BaseTitleBarActivity() {
 

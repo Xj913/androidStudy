@@ -8,7 +8,7 @@ import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.util.Log;
 
-import com.style.utils.FormatUtil;
+import com.xiajun.utils.FormatUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

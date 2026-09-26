@@ -1,15 +1,13 @@
 package example.dialog;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
-import com.style.app.MyApp.R;
+import com.xiajun.app.MyApp.R;
 
 public class ScaleTestWindow extends PopupWindow {
     private Context context;

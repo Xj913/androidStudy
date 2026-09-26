@@ -4,10 +4,10 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.*
-import com.style.base.BaseRecyclerViewAdapter
-import com.style.base.BaseActivity
-import com.style.app.MyApp.databinding.ActivityScrollingStopTopBinding
-import com.style.view.diviver.DividerItemDecoration
+import com.xiajun.base.BaseRecyclerViewAdapter
+import com.xiajun.base.BaseActivity
+import com.xiajun.app.MyApp.databinding.ActivityScrollingStopTopBinding
+import com.xiajun.view.diviver.DividerItemDecoration
 import java.util.*
 
 

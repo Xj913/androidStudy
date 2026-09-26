@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.style.base.BaseRecyclerViewAdapter;
-import com.style.config.FileDirConfig;
-import com.style.app.MyApp.R;
-import com.style.app.MyApp.databinding.AdapterLocalVideoBinding;
-import com.style.utils.BitmapUtil;
+import com.xiajun.base.BaseRecyclerViewAdapter;
+import com.xiajun.config.FileDirConfig;
+import com.xiajun.app.MyApp.R;
+import com.xiajun.app.MyApp.databinding.AdapterLocalVideoBinding;
+import com.xiajun.utils.BitmapUtil;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,17 +1,15 @@
 package example.viewPagerCards.views;
 
 import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.style.app.MyApp.R;
+import com.xiajun.app.MyApp.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CardPagerAdapter extends PagerAdapter {
 

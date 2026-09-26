@@ -6,8 +6,8 @@ import android.util.TypedValue;
 import android.view.ViewGroup;
 
 import com.dmcbig.mediapicker.utils.ScreenUtils;
-import com.style.base.BaseRecyclerViewAdapter;
-import com.style.app.MyApp.databinding.SwipeMenuAdapterBinding;
+import com.xiajun.base.BaseRecyclerViewAdapter;
+import com.xiajun.app.MyApp.databinding.SwipeMenuAdapterBinding;
 
 import java.util.ArrayList;
 

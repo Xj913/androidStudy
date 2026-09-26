@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.style.base.BasePagerLazyRefreshFragment
-import com.style.app.MyApp.databinding.TabSimpleFragmentBinding
+import com.xiajun.base.BasePagerLazyRefreshFragment
+import com.xiajun.app.MyApp.databinding.TabSimpleFragmentBinding
 
 class TabFragment : BasePagerLazyRefreshFragment() {
 

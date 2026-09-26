@@ -1,6 +1,6 @@
 package example.fragmentAdapter
 
-import com.style.base.BaseViewModel
+import com.xiajun.base.BaseViewModel
 
 class ViewPager2ActivityViewModel : BaseViewModel() {
 

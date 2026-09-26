@@ -5,14 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.style.base.BaseFragment;
-import com.style.app.MyApp.R;
-import com.style.view.other.CustomNotifyView;
+import com.xiajun.base.BaseFragment;
+import com.xiajun.app.MyApp.R;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Random;
 
 
 public class CustomNotifyViewFragment extends BaseFragment {

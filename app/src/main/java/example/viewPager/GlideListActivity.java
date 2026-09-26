@@ -2,15 +2,14 @@ package example.viewPager;
 
 import android.os.Bundle;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dmcbig.mediapicker.entity.Media;
-import com.style.base.BaseRecyclerViewAdapter;
-import com.style.base.BaseTitleBarActivity;
-import com.style.app.MyApp.R;
-import com.style.app.MyApp.databinding.GlideListTestBinding;
-import com.style.view.diviver.DividerItemDecoration;
+import com.xiajun.base.BaseRecyclerViewAdapter;
+import com.xiajun.base.BaseTitleBarActivity;
+import com.xiajun.app.MyApp.R;
+import com.xiajun.app.MyApp.databinding.GlideListTestBinding;
+import com.xiajun.view.diviver.DividerItemDecoration;
 
 import java.util.ArrayList;
 

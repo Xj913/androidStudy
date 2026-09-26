@@ -1,6 +1,5 @@
 package example.album;
 
-import android.app.Activity;
 import android.content.Context;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
@@ -8,10 +7,10 @@ import android.view.ViewGroup;
 import androidx.fragment.app.FragmentActivity
 
 import com.dmcbig.mediapicker.entity.Media;
-import com.style.base.BaseRecyclerViewAdapter;
-import com.style.app.MyApp.R;
-import com.style.app.MyApp.databinding.AdapterPublishDynamicPictureBinding;
-import com.style.data.glide.ImageLoader;
+import com.xiajun.base.BaseRecyclerViewAdapter;
+import com.xiajun.app.MyApp.R;
+import com.xiajun.app.MyApp.databinding.AdapterPublishDynamicPictureBinding;
+import com.xiajun.data.glide.ImageLoader;
 
 import java.util.ArrayList;
 

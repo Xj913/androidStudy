@@ -6,10 +6,10 @@ import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.style.base.BaseRecyclerViewAdapter;
-import com.style.config.FileDirConfig;
-import com.style.app.MyApp.R;
-import com.style.lib.media.video.PlayVideoActivity;
+import com.xiajun.base.BaseRecyclerViewAdapter;
+import com.xiajun.config.FileDirConfig;
+import com.xiajun.app.MyApp.R;
+import com.xiajun.lib.media.video.PlayVideoActivity;
 
 import java.io.File;
 import java.util.ArrayList;

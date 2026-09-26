@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.animation.DecelerateInterpolator;
 
-import com.style.base.BaseActivity;
-import com.style.data.app.MyAppManager;
+import com.xiajun.base.BaseActivity;
+import com.xiajun.data.app.MyAppManager;
 
 import org.jetbrains.annotations.Nullable;
 

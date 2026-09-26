@@ -1,12 +1,12 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- 文本基本风格 -->
+    <!-- 文本 -->
     <style name="text_base">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:singleLine">true</item>
     </style>
-    <!-- 灰色字体风格 -->
+    <!-- 灰色字体 -->
     <style name="text_gray" parent="text_base">
         <item name="android:textColor">@color/text_color_gray</item>
     </style>
@@ -42,7 +42,7 @@
     <style name="text_gray_18sp" parent="text_gray">
         <item name="android:textSize">@dimen/text_size_18sp</item>
     </style>
-    <!-- 浅灰色字体风格 -->
+    <!-- 浅灰色字体 -->
     <style name="text_gray_light" parent="text_base">
         <item name="android:textColor">@color/text_color_gray_light</item>
     </style>
@@ -78,7 +78,7 @@
     <style name="text_gray_light_18sp" parent="text_gray_light">
         <item name="android:textSize">@dimen/text_size_18sp</item>
     </style>
-    <!-- 白色字体风格 -->
+    <!-- 白色字体 -->
     <style name="text_white" parent="text_base">
         <item name="android:textColor">@color/text_color_white</item>
     </style>
@@ -114,7 +114,7 @@
     <style name="text_white_18sp" parent="text_white">
         <item name="android:textSize">@dimen/text_size_18sp</item>
     </style>
-    <!-- 黑色字体风格 -->
+    <!-- 黑色字体 -->
     <style name="text_black" parent="text_base">
         <item name="android:textColor">@color/text_color_black_light</item>
     </style>
@@ -151,21 +151,21 @@
         <item name="android:textSize">@dimen/text_size_18sp</item>
     </style>
 
-    <!-- 标题栏中心文本风格 -->
+    <!-- 标题栏中心文本 -->
     <style name="title_bar_text_center" parent="text_white">
         <item name="android:textSize">@dimen/text_size_18sp</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerInParent">true</item>
     </style>
-    <!-- 标题栏右边文本风格 -->
+    <!-- 标题栏右边文本 -->
     <style name="title_bar_text_right" parent="text_base">
         <item name="android:layout_centerInParent">true</item>
         <item name="android:singleLine">true</item>
         <item name="android:textColor">@color/sel_titlebar_right_text_white</item>
     </style>
 
-    <!-- 标题栏右边文本风格 -->
+    <!-- 标题栏右边文本 -->
     <style name="text_home_item" parent="text_black_16sp">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">48dp</item>

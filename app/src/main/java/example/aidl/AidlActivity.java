@@ -10,13 +10,13 @@ import android.os.IBinder;
 import android.os.Process;
 import android.os.RemoteException;
 
-import com.style.base.BaseTitleBarActivity;
-import com.style.app.MyApp.R;
-import com.style.app.MyApp.databinding.ActivityAidlBinding;
+import com.xiajun.base.BaseTitleBarActivity;
+import com.xiajun.app.MyApp.R;
+import com.xiajun.app.MyApp.databinding.ActivityAidlBinding;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.style.app.MyApp.IRemoteService;
+import com.xiajun.app.MyApp.IRemoteService;
 
 public class AidlActivity extends BaseTitleBarActivity {
 

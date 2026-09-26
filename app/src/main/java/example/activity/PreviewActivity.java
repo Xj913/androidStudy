@@ -37,11 +37,11 @@ import com.camera2.utils.CameraUtils;
 import com.camera2.utils.ColorConvertUtil;
 import com.camera2.view.AutoFitTextureView;
 import com.camera2.view.TestView;
-import com.style.config.FileDirConfig;
-import com.style.app.MyApp.R;
-import com.style.utils.BitmapUtil;
-import com.style.utils.FileUtil;
-import com.style.utils.PictureUtil;
+import com.xiajun.config.FileDirConfig;
+import com.xiajun.app.MyApp.R;
+import com.xiajun.utils.BitmapUtil;
+import com.xiajun.utils.FileUtil;
+import com.xiajun.utils.PictureUtil;
 
 import java.io.FileWriter;
 import java.io.IOException;

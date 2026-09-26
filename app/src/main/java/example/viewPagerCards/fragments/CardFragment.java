@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.style.app.MyApp.R;
+import com.xiajun.app.MyApp.R;
 
 import example.viewPagerCards.CardAdapter;
 

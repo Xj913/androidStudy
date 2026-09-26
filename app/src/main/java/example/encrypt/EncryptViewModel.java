@@ -1,11 +1,8 @@
 package example.encrypt;
 
-import android.app.Application;
-import androidx.annotation.NonNull;
-
-import com.style.base.BaseViewModel;
-import com.style.data.prefs.AppPrefsManager;
-import com.style.entity.UserInfo;
+import com.xiajun.base.BaseViewModel;
+import com.xiajun.data.prefs.AppPrefsManager;
+import com.xiajun.entity.UserInfo;
 
 /**
  * Created by xiajun on 2018/6/21.

@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:paddingBottom="10dp">
 
-    <com.style.common_ui.xxrefreshview.header.RefreshCircleAProgressBar
+    <com.xiajun.common_view.xxrefreshview.header.RefreshCircleAProgressBar
         android:id="@+id/xxrefresh_default_progress_bar"
         android:layout_width="25dp"
         android:layout_height="25dp"

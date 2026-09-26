@@ -4,15 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.style.view.other.DrawView
+    <com.xiajun.view.other.DrawView
         android:layout_width="match_parent"
         android:layout_height="400dp" />
 
-    <com.style.view.other.PathDashPathEffectView
+    <com.xiajun.view.other.PathDashPathEffectView
         android:layout_width="match_parent"
         android:layout_height="200dp" />
 
-    <com.style.view.other.BezierCurve
+    <com.xiajun.view.other.BezierCurve
         android:layout_width="match_parent"
         android:layout_height="120dp" />
 </LinearLayout>

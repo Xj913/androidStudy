@@ -1,10 +1,9 @@
 package example.customView
 
 import android.os.Bundle
-import com.style.base.BaseTitleBarActivity
-import com.style.app.MyApp.R
-import com.style.app.MyApp.databinding.ActivityBpBinding
-import com.style.view.healthy.BloodPressureLine.BloodItem
+import com.xiajun.base.BaseTitleBarActivity
+import com.xiajun.app.MyApp.databinding.ActivityBpBinding
+import com.xiajun.view.healthy.BloodPressureLine.BloodItem
 import java.util.*
 
 class BpActivity : BaseTitleBarActivity() {

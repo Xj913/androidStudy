@@ -9,9 +9,9 @@ import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
-import com.style.base.BaseTitleBarActivity;
-import com.style.app.MyApp.R;
-import com.style.app.MyApp.databinding.ActivityWebViewBinding;
+import com.xiajun.base.BaseTitleBarActivity;
+import com.xiajun.app.MyApp.R;
+import com.xiajun.app.MyApp.databinding.ActivityWebViewBinding;
 
 import org.jetbrains.annotations.Nullable;
 

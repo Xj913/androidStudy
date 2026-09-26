@@ -2,7 +2,7 @@ package example.scroll
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.style.app.MyApp.databinding.ActivityScrollingBinding
+import com.xiajun.app.MyApp.databinding.ActivityScrollingBinding
 
 /**
  * app:layout_scrollFlags，设置为：scroll|enterAlways|snap 便是指定标题栏随屏幕滚动实现的属性。

@@ -1,6 +1,5 @@
 package example.viewPager;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,10 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.dmcbig.mediapicker.entity.Media;
-import com.style.base.BaseRecyclerViewAdapter;
-import com.style.data.glide.ImageLoader;
-import com.style.app.MyApp.databinding.ActivityImageScanBinding;
-import com.style.app.MyApp.databinding.FragmentImageScanBinding;
+import com.xiajun.base.BaseRecyclerViewAdapter;
+import com.xiajun.data.glide.ImageLoader;
+import com.xiajun.app.MyApp.databinding.ActivityImageScanBinding;
+import com.xiajun.app.MyApp.databinding.FragmentImageScanBinding;
 
 import java.util.ArrayList;
 

@@ -1,12 +1,10 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     alias(libs.plugins.android.library)
     //alias(libs.plugins.kotlin)
 }
 
 android {
-    namespace = "com.style.lib_custom_view"
+    namespace = "com.xiajun.lib_custom_view"
     compileSdk = libs.versions.compileSdk.get().toInt()
     ndkVersion = libs.versions.ndk.get()
     defaultConfig {

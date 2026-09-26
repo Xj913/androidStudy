@@ -4,13 +4,12 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.style.base.BaseTitleBarActivity;
-import com.style.dialog.BaseDoubleWheelDialog;
-import com.style.dialog.BaseSingleWheelDialog;
-import com.style.dialog.ChangeAddressDialog;
-import com.style.dialog.ChangeBirthdayDialog;
-import com.style.app.MyApp.R;
-import com.style.app.MyApp.databinding.ActivityWheelBinding;
+import com.xiajun.base.BaseTitleBarActivity;
+import com.xiajun.dialog.BaseSingleWheelDialog;
+import com.xiajun.dialog.ChangeAddressDialog;
+import com.xiajun.dialog.ChangeBirthdayDialog;
+import com.xiajun.app.MyApp.R;
+import com.xiajun.app.MyApp.databinding.ActivityWheelBinding;
 
 import org.jetbrains.annotations.Nullable;
 

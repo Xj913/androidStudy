@@ -3,12 +3,12 @@ package example.editLayout;
 import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.style.base.BaseRecyclerViewAdapter;
-import com.style.base.BaseTitleBarActivity;
-import com.style.app.MyApp.R;
-import com.style.app.MyApp.databinding.EditLayoutMoveBottomOfFullScreenBinding;
-import com.style.helper.InputMethodStateListener;
-import com.style.view.diviver.DividerItemDecoration;
+import com.xiajun.base.BaseRecyclerViewAdapter;
+import com.xiajun.base.BaseTitleBarActivity;
+import com.xiajun.app.MyApp.R;
+import com.xiajun.app.MyApp.databinding.EditLayoutMoveBottomOfFullScreenBinding;
+import com.xiajun.helper.InputMethodStateListener;
+import com.xiajun.view.diviver.DividerItemDecoration;
 
 import org.jetbrains.annotations.Nullable;
 

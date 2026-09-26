@@ -9,7 +9,7 @@
 
     <include layout="@layout/title_bar_default" />
 
-    <com.style.common_ui.xxrefreshview.XXRefreshView
+    <com.xiajun.common_view.xxrefreshview.XXRefreshView
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,5 +33,5 @@
                     android:text="content" />
             </LinearLayout>
         </ScrollView>
-    </com.style.common_ui.xxrefreshview.XXRefreshView>
+    </com.xiajun.common_view.xxrefreshview.XXRefreshView>
 </LinearLayout>

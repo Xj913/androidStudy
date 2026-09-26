@@ -4,14 +4,13 @@ import android.os.Bundle;
 
 import androidx.viewpager.widget.ViewPager;
 
-import com.style.base.BaseTitleBarActivity;
-import com.style.app.MyApp.R;
-import com.style.app.MyApp.databinding.ViewPagerCardsViewsActivityBinding;
+import com.xiajun.base.BaseTitleBarActivity;
+import com.xiajun.app.MyApp.R;
+import com.xiajun.app.MyApp.databinding.ViewPagerCardsViewsActivityBinding;
 
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 无限轮播图的做法就是把Adapter中重写getCount返回一个很大的数字，欺骗viewpager有很多，在对position和数据size取模，

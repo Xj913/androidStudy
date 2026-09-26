@@ -7,12 +7,10 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 
-import androidx.databinding.ViewDataBinding;
-
-import com.style.base.BaseTitleBarActivity;
-import com.style.app.MyApp.R;
-import com.style.app.MyApp.databinding.ActivityEcgBinding;
-import com.style.view.healthy.EcgView;
+import com.xiajun.base.BaseTitleBarActivity;
+import com.xiajun.app.MyApp.R;
+import com.xiajun.app.MyApp.databinding.ActivityEcgBinding;
+import com.xiajun.view.healthy.EcgView;
 
 import java.io.BufferedReader;
 import java.io.IOException;

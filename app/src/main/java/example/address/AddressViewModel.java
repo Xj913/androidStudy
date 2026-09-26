@@ -3,8 +3,8 @@ package example.address;
 import androidx.lifecycle.MutableLiveData;
 import android.media.MediaPlayer;
 
-import com.style.base.BaseViewModel;
-import com.style.utils.PinyinUtils;
+import com.xiajun.base.BaseViewModel;
+import com.xiajun.utils.PinyinUtils;
 
 import java.io.IOException;
 import java.util.Collections;

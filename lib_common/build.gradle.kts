@@ -1,10 +1,12 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
-    namespace = "com.style.lib.common"
+    namespace = "com.xiajun.lib.common"
     compileSdk = libs.versions.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
@@ -40,14 +42,19 @@ android {
 }
 
 dependencies {
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.compose.ui.test.junit)
+    debugImplementation(libs.compose.ui.test.manifest)
     implementation(libs.kotlin)
+    implementation(platform(libs.compose.bom))
+    //androidTestImplementation(libs.compose.bom)
+    debugImplementation(libs.ui.tool)
+    debugImplementation(libs.ui.preview)
+    implementation(libs.bundles.base)
+    implementation(libs.bundles.compose)
     api(libs.room)
     ksp(libs.room.compiler)
-    implementation(libs.appcompat)
-    implementation(libs.recyclerview)
-    implementation(libs.ktx.coroutines.android)
     api(libs.fastjson)
-    api(libs.gson)
     api(libs.bundles.retrofit)
     api(libs.refresh.layout)
     api(projects.libCustomView)

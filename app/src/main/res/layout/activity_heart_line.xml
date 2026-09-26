@@ -16,7 +16,7 @@
         android:text="刷新"
         android:textStyle="bold" />
 
-        <com.style.view.healthy.HeartLineChart
+        <com.xiajun.view.healthy.HeartLineChart
             android:id="@+id/heart_line"
             android:layout_width="match_parent"
             android:layout_height="300dp"/>

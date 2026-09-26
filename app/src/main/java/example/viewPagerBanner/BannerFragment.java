@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.github.chrisbanes.photoview.OnPhotoTapListener;
-import com.style.data.glide.ImageLoader;
-import com.style.app.MyApp.R;
-import com.style.app.MyApp.databinding.BannerFragmentBinding;
+import com.xiajun.data.glide.ImageLoader;
+import com.xiajun.app.MyApp.R;
+import com.xiajun.app.MyApp.databinding.BannerFragmentBinding;
 
 
 public class BannerFragment extends Fragment {

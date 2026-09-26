@@ -15,7 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.style.lib.common.R;
+import com.xiajun.lib.common.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;

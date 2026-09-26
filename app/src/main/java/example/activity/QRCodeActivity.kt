@@ -10,9 +10,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.zxing.activity.CaptureActivity
 import com.google.zxing.encoding.EncodingHandler
-import com.style.base.BaseTitleBarActivity
-import com.style.app.MyApp.R
-import com.style.app.MyApp.databinding.ActivityQrCodeScanBinding
+import com.xiajun.base.BaseTitleBarActivity
+import com.xiajun.app.MyApp.R
+import com.xiajun.app.MyApp.databinding.ActivityQrCodeScanBinding
 
 class QRCodeActivity : BaseTitleBarActivity() {
     private lateinit var bd: ActivityQrCodeScanBinding

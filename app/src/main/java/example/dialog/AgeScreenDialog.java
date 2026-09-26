@@ -3,7 +3,7 @@ package example.dialog;
 import android.content.Context;
 import android.os.Bundle;
 
-import com.style.dialog.BaseDoubleWheelDialog;
+import com.xiajun.dialog.BaseDoubleWheelDialog;
 import example.helper.DataHelper;
 
 /**

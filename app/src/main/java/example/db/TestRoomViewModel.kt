@@ -2,9 +2,9 @@ package example.db
 
 import android.annotation.SuppressLint
 import android.util.Log
-import com.style.base.BaseViewModel
-import com.style.data.db.AppDatabase
-import com.style.entity.UserBean
+import com.xiajun.base.BaseViewModel
+import com.xiajun.data.db.AppDatabase
+import com.xiajun.entity.UserBean
 import java.util.*
 import kotlin.collections.ArrayList
 

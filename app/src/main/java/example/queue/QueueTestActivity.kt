@@ -3,11 +3,11 @@ package example.queue
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.style.data.singlePriorityTask.PrioritizedTask
-import com.style.data.singlePriorityTask.SinglePriorityTaskManager
-import com.style.app.MyApp.databinding.ActivityQueueTestBinding
-import com.style.myevent.EventReceiver
-import com.style.myevent.MyEventManager
+import com.xiajun.data.singlePriorityTask.PrioritizedTask
+import com.xiajun.data.singlePriorityTask.SinglePriorityTaskManager
+import com.xiajun.app.MyApp.databinding.ActivityQueueTestBinding
+import com.xiajun.myevent.EventReceiver
+import com.xiajun.myevent.MyEventManager
 import java.util.*
 
 class QueueTestActivity : AppCompatActivity(), EventReceiver {

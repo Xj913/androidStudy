@@ -1,12 +1,12 @@
 package example.filedown
 
 import androidx.lifecycle.MutableLiveData
-import com.style.config.FileDirConfig
-import com.style.base.BaseViewModel
-import com.style.data.db.AppDatabase
-import com.style.data.fileDown.SingleFileDownloadTask
-import com.style.data.fileDown.CustomFileDownloadManager
-import com.style.data.fileDown.entity.CustomFileBean
+import com.xiajun.config.FileDirConfig
+import com.xiajun.base.BaseViewModel
+import com.xiajun.data.db.AppDatabase
+import com.xiajun.data.fileDown.SingleFileDownloadTask
+import com.xiajun.data.fileDown.CustomFileDownloadManager
+import com.xiajun.data.fileDown.entity.CustomFileBean
 
 class FileDownListViewModel : BaseViewModel() {
     private val urls = arrayListOf("http://archive.apache.org/dist/tomcat/tomcat-8/v8.0.24/bin/apache-tomcat-8.0.24.exe"

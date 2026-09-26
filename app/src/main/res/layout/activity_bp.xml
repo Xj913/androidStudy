@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp">
 
-        <com.style.view.healthy.BloodPressureLineBg
+        <com.xiajun.view.healthy.BloodPressureLineBg
             android:id="@+id/bp_line_bg"
             android:layout_width="match_parent"
             android:layout_height="300dp"
@@ -36,7 +36,7 @@
             android:layout_marginEnd="20dp"
             android:layerType="software">
 
-            <com.style.view.healthy.BloodPressureLine
+            <com.xiajun.view.healthy.BloodPressureLine
                 android:id="@+id/bp_line"
                 android:layout_width="wrap_content"
                 android:layout_height="300dp"

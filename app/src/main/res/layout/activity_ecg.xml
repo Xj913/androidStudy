@@ -9,7 +9,7 @@
 
     <include layout="@layout/title_bar_default" />
 
-    <com.style.view.healthy.EcgView
+    <com.xiajun.view.healthy.EcgView
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="0dp"

@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.style.app.MyApp.databinding.FragmentHome1Binding
-import com.style.base.BaseNoPagerLazyRefreshFragment
+import com.xiajun.app.MyApp.databinding.FragmentHome1Binding
+import com.xiajun.base.BaseNoPagerLazyRefreshFragment
 import example.address.AddressActivity
 import example.album.SelectLocalPictureActivity
 import example.customView.BpActivity

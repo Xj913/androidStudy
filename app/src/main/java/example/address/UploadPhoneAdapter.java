@@ -5,8 +5,8 @@ import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.style.base.BaseRecyclerViewAdapter;
-import com.style.app.MyApp.databinding.AdapterAddressBinding;
+import com.xiajun.base.BaseRecyclerViewAdapter;
+import com.xiajun.app.MyApp.databinding.AdapterAddressBinding;
 
 import java.util.ArrayList;
 

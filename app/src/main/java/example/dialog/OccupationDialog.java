@@ -1,9 +1,8 @@
 package example.dialog;
 
 import android.content.Context;
-import android.os.Bundle;
 
-import com.style.dialog.BaseSingleWheelDialog;
+import com.xiajun.dialog.BaseSingleWheelDialog;
 
 import example.helper.DataHelper;
 

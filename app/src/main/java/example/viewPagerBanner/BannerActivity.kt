@@ -11,11 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.github.chrisbanes.photoview.PhotoView
-import com.style.app.MyApp.R
-import com.style.app.MyApp.databinding.AdapterIndicatorBinding
-import com.style.app.MyApp.databinding.BannerActivityBinding
-import com.style.base.BaseActivity
-import com.style.base.BaseRecyclerViewAdapter
+import com.xiajun.app.MyApp.R
+import com.xiajun.app.MyApp.databinding.AdapterIndicatorBinding
+import com.xiajun.app.MyApp.databinding.BannerActivityBinding
+import com.xiajun.base.BaseActivity
+import com.xiajun.base.BaseRecyclerViewAdapter
 
 class BannerActivity : BaseActivity() {
 

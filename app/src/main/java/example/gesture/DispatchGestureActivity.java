@@ -3,9 +3,9 @@ package example.gesture;
 import android.os.Build;
 import android.os.Bundle;
 
-import com.style.base.BaseTitleBarActivity;
-import com.style.app.MyApp.R;
-import com.style.app.MyApp.databinding.GestureDivideScrollBinding;
+import com.xiajun.base.BaseTitleBarActivity;
+import com.xiajun.app.MyApp.R;
+import com.xiajun.app.MyApp.databinding.GestureDivideScrollBinding;
 
 import org.jetbrains.annotations.Nullable;
 

@@ -13,9 +13,9 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-import com.style.base.BaseDialog;
-import com.style.app.MyApp.R;
-import com.style.app.MyApp.databinding.DialogWebViewBinding;
+import com.xiajun.base.BaseDialog;
+import com.xiajun.app.MyApp.R;
+import com.xiajun.app.MyApp.databinding.DialogWebViewBinding;
 
 public class WebViewDialog extends BaseDialog {
 
@@ -28,7 +28,7 @@ public class WebViewDialog extends BaseDialog {
     private DialogWebViewBinding bd;
 
     public WebViewDialog(Context context) {
-        super(context, com.style.lib.common.R.style.Dialog_General);
+        super(context, com.xiajun.lib.common.R.style.Dialog_General);
         setOwnerActivity((Activity) context);
     }
 

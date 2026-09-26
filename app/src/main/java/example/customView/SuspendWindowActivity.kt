@@ -7,11 +7,11 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
-import com.style.base.BaseTitleBarActivity
-import com.style.app.MyApp.databinding.ActivitySuspendWindowBinding
-import com.style.service.suspendWindow.CallInSuspendService
-import com.style.service.suspendWindow.VideoSuspendService
-import com.style.service.suspendWindow.VoiceSuspendService
+import com.xiajun.base.BaseTitleBarActivity
+import com.xiajun.app.MyApp.databinding.ActivitySuspendWindowBinding
+import com.xiajun.service.suspendWindow.CallInSuspendService
+import com.xiajun.service.suspendWindow.VideoSuspendService
+import com.xiajun.service.suspendWindow.VoiceSuspendService
 
 /**
  * Created by xiajun on 2017/8/1.

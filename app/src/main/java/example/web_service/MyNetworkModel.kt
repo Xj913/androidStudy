@@ -3,10 +3,9 @@ package example.web_service;
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.viewModelScope
-import com.style.base.BaseCompoModel
-import com.style.data.http.function.impl.UserNetSourceImpl
-import com.style.data.http.function.impl.WebNetSourceImpl
-import com.style.http.response.safeApiCall
+import com.xiajun.base.BaseCompoModel
+import com.xiajun.data.http.function.impl.WebNetSourceImpl
+import com.xiajun.http.core.safeApiCall
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch

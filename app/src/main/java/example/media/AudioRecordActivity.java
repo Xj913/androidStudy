@@ -9,7 +9,7 @@ import example.media.audio.VoicePlayManager;
 import example.media.audio.VoiceRecordManager;
 import example.media.audio.VoiceRecorder;
 
-import com.style.app.MyApp.R;
+import com.xiajun.app.MyApp.R;
 
 public class AudioRecordActivity extends AppCompatActivity {
 

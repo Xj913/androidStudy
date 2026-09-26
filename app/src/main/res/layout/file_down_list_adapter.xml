@@ -37,7 +37,7 @@
             android:textColor="@color/white" />
     </RelativeLayout>
 
-    <com.style.view.progressbar.HorizontalProgressBar
+    <com.xiajun.view.progressbar.HorizontalProgressBar
         android:id="@+id/progress_bar_down_size"
         android:layout_width="match_parent"
         android:layout_height="5dp"

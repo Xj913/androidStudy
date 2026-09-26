@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.style.base.BaseNoPagerLazyRefreshFragment
-import com.style.app.MyApp.databinding.FragmentHome4Binding
+import com.xiajun.base.BaseNoPagerLazyRefreshFragment
+import com.xiajun.app.MyApp.databinding.FragmentHome4Binding
 import example.activity.GlideDealActivity
 import example.activity.PreviewActivity
 import example.activity.QRCodeActivity

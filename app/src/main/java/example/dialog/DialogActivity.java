@@ -10,13 +10,13 @@ import androidx.appcompat.widget.PopupMenu;
 import android.util.Log;
 import android.view.View;
 
-import com.style.base.BaseTitleBarActivity;
-import com.style.dialog.GeneralListPopup;
-import com.style.dialog.LoadingDialog;
-import com.style.dialog.SelAvatarDialog;
-import com.style.app.MyApp.R;
-import com.style.app.MyApp.databinding.DialogActivityDialogBinding;
-import com.style.dialog.MaterialProgressDialog;
+import com.xiajun.base.BaseTitleBarActivity;
+import com.xiajun.dialog.GeneralListPopup;
+import com.xiajun.dialog.LoadingDialog;
+import com.xiajun.dialog.SelAvatarDialog;
+import com.xiajun.app.MyApp.R;
+import com.xiajun.app.MyApp.databinding.DialogActivityDialogBinding;
+import com.xiajun.dialog.MaterialProgressDialog;
 
 import org.jetbrains.annotations.Nullable;
 

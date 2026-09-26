@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:text="刷新" />
 
-    <com.style.view.healthy.ReportGradeView
+    <com.xiajun.view.healthy.ReportGradeView
         android:id="@+id/view_trend"
         android:layout_width="match_parent"
         android:layout_height="280dp"

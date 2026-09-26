@@ -18,12 +18,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 
-import com.dmcbig.mediapicker.PickerConfig;
-import com.style.base.BaseTitleBarActivity;
-import com.style.base.BaseRecyclerViewAdapter;
-import com.style.app.MyApp.R;
-import com.style.app.MyApp.databinding.ActivityMusicListBinding;
-import com.style.view.diviver.DividerItemDecoration;
+import com.xiajun.base.BaseTitleBarActivity;
+import com.xiajun.base.BaseRecyclerViewAdapter;
+import com.xiajun.app.MyApp.R;
+import com.xiajun.app.MyApp.databinding.ActivityMusicListBinding;
+import com.xiajun.view.diviver.DividerItemDecoration;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -34,7 +33,7 @@ import example.music.data.MediaDataCallback;
 import example.music.entity.MediaBean;
 import example.music.entity.MediaFolder;
 
-import com.style.service.music.PlayMusicService;
+import com.xiajun.service.music.PlayMusicService;
 
 
 public class MusicListActivity extends BaseTitleBarActivity implements MediaDataCallback {

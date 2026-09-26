@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 
-import com.style.base.BaseFragment
-import com.style.app.MyApp.R
+import com.xiajun.base.BaseFragment
+import com.xiajun.app.MyApp.R
 
 class WaterPoloFragment : BaseFragment() {
 
@@ -20,7 +20,7 @@ class WaterPoloFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val sineCurve = view!!.findViewById<View>(R.id.custom_view) as com.style.view.progressbar.WaterPoloProgress
+        val sineCurve = view!!.findViewById<View>(R.id.custom_view) as com.xiajun.view.progressbar.WaterPoloProgress
 
         mButton = view!!.findViewById<View>(R.id.button) as Button
         mButton!!.setOnClickListener {

@@ -1,7 +1,6 @@
 package example.home.contact
 
-import android.app.Application
-import com.style.base.BaseViewModel
+import com.xiajun.base.BaseViewModel
 
 class ContactViewModel : BaseViewModel() {
 }

@@ -9,8 +9,8 @@ import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.style.base.BaseFragment
-import com.style.app.MyApp.databinding.ActivityHorizontalProgressBinding
+import com.xiajun.base.BaseFragment
+import com.xiajun.app.MyApp.databinding.ActivityHorizontalProgressBinding
 
 
 class HorizontalProgressFragment : BaseFragment() {

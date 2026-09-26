@@ -17,7 +17,7 @@ val properties = Properties()
 properties.load(FileInputStream(project.rootProject.file("local.properties")))
 
 android {
-    namespace = "com.style.app.MyApp"
+    namespace = "com.xiajun.app.MyApp"
     compileSdk = libs.versions.compileSdk.get().toInt()
     ndkVersion = libs.versions.ndk.get()
     defaultConfig {
@@ -149,19 +149,14 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.material3)
-    implementation(libs.androidx.ui.graphics)
-    //testImplementation(libs.junit)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.compose.ui.test.junit)
+    debugImplementation(libs.compose.ui.test.manifest)
     implementation(libs.kotlin)
     implementation(platform(libs.compose.bom))
     //androidTestImplementation(libs.compose.bom)
     debugImplementation(libs.ui.tool)
     debugImplementation(libs.ui.preview)
-    //androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.11.3")
-    //debugImplementation("androidx.compose.ui:ui-test-manifest:1.11.3")
-    //androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
-      //  exclude group: 'com.android.support', module: 'support-annotations'
-    //})
     implementation(libs.bundles.base)
     implementation(libs.bundles.compose)
     ksp(libs.hilt.compiler)

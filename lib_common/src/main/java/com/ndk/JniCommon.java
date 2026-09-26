@@ -1,10 +1,5 @@
 package com.ndk;
 
-
-/**
- * Created by xiajun on 2017/6/7.
- */
-
 public class JniCommon {
     // Used to load the 'native-lib' library on application startup.
     static {

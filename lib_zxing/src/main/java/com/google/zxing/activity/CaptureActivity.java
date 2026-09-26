@@ -26,8 +26,6 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -45,7 +43,7 @@ import com.google.zxing.R;
 import com.google.zxing.Result;
 import com.google.zxing.ResultPoint;
 import com.google.zxing.camera.CameraManager;
-import com.style.base.BaseTitleBarActivity;
+import com.xiajun.base.BaseTitleBarActivity;
 
 import java.io.IOException;
 import java.util.Collection;

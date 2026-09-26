@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 
-import com.style.app.MyApp.R
+import com.xiajun.app.MyApp.R
 
 class WriteWordActivity : AppCompatActivity() {
 

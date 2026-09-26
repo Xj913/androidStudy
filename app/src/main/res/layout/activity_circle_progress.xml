@@ -22,7 +22,7 @@
         android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
-        <com.style.view.progressbar.CircleArcProgressBar
+        <com.xiajun.view.progressbar.CircleArcProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -34,14 +34,14 @@
             app:arc_unfinished_color="#ffe5e5e5" />
 
 
-        <com.style.view.progressbar.CircleProgress
+        <com.xiajun.view.progressbar.CircleProgress
             android:id="@+id/circle_progress"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginLeft="20dp"
             app:circle_progress="10" />
 
-        <com.style.view.progressbar.CircleArcProgressBar
+        <com.xiajun.view.progressbar.CircleArcProgressBar
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="20dp"
@@ -52,7 +52,7 @@
 
     </LinearLayout>
 
-    <com.style.view.progressbar.ArcEnergyBar
+    <com.xiajun.view.progressbar.ArcEnergyBar
         android:id="@+id/arc_energy"
         android:layout_width="150dp"
         android:layout_height="150dp"

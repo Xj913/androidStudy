@@ -1,10 +1,9 @@
 package example.gesture
 
 import android.os.Bundle
-import com.style.base.BaseTitleBarActivity
+import com.xiajun.base.BaseTitleBarActivity
 
-import com.style.app.MyApp.R
-import com.style.app.MyApp.databinding.XxrefreshActivityBinding
+import com.xiajun.app.MyApp.databinding.XxrefreshActivityBinding
 
 class XXRefreshActivity : BaseTitleBarActivity() {
 

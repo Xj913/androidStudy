@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.style.view.other.SoundWaveView
+    <com.xiajun.view.other.SoundWaveView
         android:id="@+id/custom_view2"
         android:layout_width="320dp"
         android:layout_height="320dp"

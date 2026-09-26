@@ -3,8 +3,8 @@ package example.customView
 import android.os.Bundle
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.style.base.BaseTitleBarActivity
-import com.style.app.MyApp.databinding.CustomViewMainBinding
+import com.xiajun.base.BaseTitleBarActivity
+import com.xiajun.app.MyApp.databinding.CustomViewMainBinding
 import example.customView.fragment.*
 
 class CustomViewMainActivity : BaseTitleBarActivity() {

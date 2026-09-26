@@ -4,8 +4,8 @@ import android.content.Context;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.ViewGroup;
 
-import com.style.base.BaseRecyclerViewAdapter;
-import com.style.app.MyApp.databinding.DragAdapterBinding;
+import com.xiajun.base.BaseRecyclerViewAdapter;
+import com.xiajun.app.MyApp.databinding.DragAdapterBinding;
 
 import java.util.ArrayList;
 

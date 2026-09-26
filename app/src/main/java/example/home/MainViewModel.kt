@@ -1,7 +1,6 @@
 package example.home
 
-import android.app.Application
-import com.style.base.BaseViewModel
+import com.xiajun.base.BaseViewModel
 
 class MainViewModel : BaseViewModel() {
 

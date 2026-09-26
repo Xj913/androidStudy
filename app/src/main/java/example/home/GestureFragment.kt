@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.style.base.BaseNoPagerLazyRefreshFragment
-import com.style.app.MyApp.databinding.FragmentHomeGestureBinding
+import com.xiajun.base.BaseNoPagerLazyRefreshFragment
+import com.xiajun.app.MyApp.databinding.FragmentHomeGestureBinding
 import example.activity.BottomSheetBehaviorActivity
 import example.scroll.drag.DragActivity
 import example.scroll.ScrollingActivity

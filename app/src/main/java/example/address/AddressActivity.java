@@ -14,12 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.telephony.TelephonyManager;
 import android.view.View;
 
-import com.style.base.BaseTitleBarActivity;
-import com.style.app.MyApp.R;
-import com.style.app.MyApp.databinding.ActivityAddressBinding;
-import com.style.view.diviver.DividerItemDecoration;
-import com.style.view.sort.FloatingBarItemDecoration;
-import com.style.view.sort.IndexBar;
+import com.xiajun.base.BaseTitleBarActivity;
+import com.xiajun.app.MyApp.R;
+import com.xiajun.app.MyApp.databinding.ActivityAddressBinding;
+import com.xiajun.view.diviver.DividerItemDecoration;
+import com.xiajun.view.sort.FloatingBarItemDecoration;
+import com.xiajun.view.sort.IndexBar;
 import com.tbruyelle.rxpermissions3.RxPermissions;
 
 import org.jetbrains.annotations.Nullable;
@@ -92,8 +92,8 @@ public class AddressActivity extends BaseTitleBarActivity {
             }
         });
         requestReadContactsPermissions();
-        View v2 = bd.commonLoadingLayout.setEmptyView(com.style.lib.common.R.layout.common_loading_layout_empty_2);
-        v2.findViewById(com.style.lib.common.R.id.common_loading_layout_tv_empty_2).setOnClickListener(v -> bd.commonLoadingLayout.showLoading());
+        View v2 = bd.commonLoadingLayout.setEmptyView(com.xiajun.lib.common.R.layout.common_loading_layout_empty_2);
+        v2.findViewById(com.xiajun.lib.common.R.id.common_loading_layout_tv_empty_2).setOnClickListener(v -> bd.commonLoadingLayout.showLoading());
         bd.btn1.setOnClickListener(v -> bd.commonLoadingLayout.showLoading());
         bd.btn2.setOnClickListener(v -> bd.commonLoadingLayout.showContent());
         bd.btn3.setOnClickListener(v -> bd.commonLoadingLayout.showEmpty());
@@ -130,7 +130,7 @@ public class AddressActivity extends BaseTitleBarActivity {
                         if (grated) {
                             getData();
                         } else {
-                            showToast(com.style.app.MyApp.R.string.please_open_contacts_permission);
+                            showToast(com.xiajun.app.MyApp.R.string.please_open_contacts_permission);
                         }
                     }, throwable -> {
                         throwable.printStackTrace();
@@ -172,11 +172,11 @@ public class AddressActivity extends BaseTitleBarActivity {
         new androidx.appcompat.app.AlertDialog.Builder(getContext())
                 .setTitle("拨号")
                 .setMessage("拨打客服电话" + number)
-                .setPositiveButton(com.style.app.MyApp.R.string.ok, (dialog, which) -> {
+                .setPositiveButton(com.xiajun.app.MyApp.R.string.ok, (dialog, which) -> {
                     dialog.dismiss();
                     openDial(number);
                 })
-                .setNegativeButton(com.style.app.MyApp.R.string.cancel, (dialog, which) -> {
+                .setNegativeButton(com.xiajun.app.MyApp.R.string.cancel, (dialog, which) -> {
                     dialog.dismiss();
                 }).create().show();
 

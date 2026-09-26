@@ -3,8 +3,8 @@ package example.customView;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
-import com.style.base.BaseTitleBarActivity;
-import com.style.app.MyApp.databinding.ActivityReportTrendBinding;
+import com.xiajun.base.BaseTitleBarActivity;
+import com.xiajun.app.MyApp.databinding.ActivityReportTrendBinding;
 
 import java.util.ArrayList;
 import java.util.Random;

@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ndk.JniCommon;
 import com.ndk.JniTest;
-import com.style.app.MyApp.databinding.ActivityJniTestBinding;
+import com.xiajun.app.MyApp.databinding.ActivityJniTestBinding;
 
 public class JniTestActivity extends AppCompatActivity {
 

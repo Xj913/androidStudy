@@ -6,10 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.style.base.BaseNoPagerLazyRefreshFragment
-import com.style.base.BaseRecyclerViewAdapter
-import com.style.app.MyApp.databinding.FragmentHome2Binding
-import com.style.view.diviver.DividerItemDecoration
+import com.xiajun.base.BaseNoPagerLazyRefreshFragment
+import com.xiajun.app.MyApp.databinding.FragmentHome2Binding
+import com.xiajun.view.diviver.DividerItemDecoration
 import example.home.MainViewModel
 
 

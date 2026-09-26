@@ -4,9 +4,9 @@ import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.style.base.BaseTitleBarActivity;
-import com.style.app.MyApp.databinding.SwipeMenuActivityBinding;
-import com.style.view.diviver.DividerItemDecoration;
+import com.xiajun.base.BaseTitleBarActivity;
+import com.xiajun.app.MyApp.databinding.SwipeMenuActivityBinding;
+import com.xiajun.view.diviver.DividerItemDecoration;
 
 import org.jetbrains.annotations.Nullable;
 

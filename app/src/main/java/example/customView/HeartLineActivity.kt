@@ -1,9 +1,9 @@
 package example.customView
 
 import android.os.Bundle
-import com.style.app.MyApp.databinding.ActivityHeartLineBinding
-import com.style.base.BaseTitleBarActivity
-import com.style.view.healthy.HeartLineChart
+import com.xiajun.app.MyApp.databinding.ActivityHeartLineBinding
+import com.xiajun.base.BaseTitleBarActivity
+import com.xiajun.view.healthy.HeartLineChart
 import java.util.*
 
 class HeartLineActivity : BaseTitleBarActivity() {

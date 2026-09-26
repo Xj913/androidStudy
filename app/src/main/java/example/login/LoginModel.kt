@@ -1,18 +1,14 @@
 package example.login
 
-import android.text.TextUtils
-import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.style.base.BaseCompoModel
-import com.style.data.http.function.impl.UserNetSourceImpl
-import com.style.data.http.function.impl.WebNetSourceImpl
-import com.style.data.prefs.AppPrefsManager
-import com.style.entity.UserInfo
-import com.style.http.response.safeApiCall
+import com.xiajun.base.BaseCompoModel
+import com.xiajun.data.http.function.impl.UserNetSourceImpl
+import com.xiajun.data.prefs.AppPrefsManager
+import com.xiajun.entity.UserInfo
+import com.xiajun.http.core.safeApiCall
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.reactivex.rxjava3.disposables.Disposable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow

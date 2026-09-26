@@ -47,7 +47,7 @@
             android:text="网络错误" />
     </LinearLayout>
 
-    <com.style.common_ui.CommonLoadingLayout
+    <com.xiajun.common_view.CommonLoadingLayout
         android:id="@+id/common_loading_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -73,7 +73,7 @@
                 android:textSize="30.0dip"
                 android:visibility="invisible" />
 
-            <com.style.view.sort.IndexBar
+            <com.xiajun.view.sort.IndexBar
                 android:id="@+id/index_bar"
                 android:layout_width="16dp"
                 android:layout_height="wrap_content"
@@ -84,5 +84,5 @@
                 app:letterSize="10sp"
                 app:letterSpacingExtra="1.4" />
         </RelativeLayout>
-    </com.style.common_ui.CommonLoadingLayout>
+    </com.xiajun.common_view.CommonLoadingLayout>
 </LinearLayout>

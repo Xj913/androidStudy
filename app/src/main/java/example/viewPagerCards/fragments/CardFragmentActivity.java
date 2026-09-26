@@ -3,9 +3,9 @@ package example.viewPagerCards.fragments;
 import android.content.Context;
 import android.os.Bundle;
 
-import com.style.base.BaseTitleBarActivity;
-import com.style.app.MyApp.R;
-import com.style.app.MyApp.databinding.ViewPagerCardsFragmentsActivityBinding;
+import com.xiajun.base.BaseTitleBarActivity;
+import com.xiajun.app.MyApp.R;
+import com.xiajun.app.MyApp.databinding.ViewPagerCardsFragmentsActivityBinding;
 
 import org.jetbrains.annotations.Nullable;
 

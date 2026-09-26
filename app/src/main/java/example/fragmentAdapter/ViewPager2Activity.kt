@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
-import com.style.base.BaseRecyclerViewAdapter
-import com.style.base.BaseTitleBarActivity
-import com.style.app.MyApp.databinding.Viewpager2WithViewActivityBinding
-import com.style.app.MyApp.databinding.Viewpager2WithViewAdapterBinding
+import com.xiajun.base.BaseRecyclerViewAdapter
+import com.xiajun.base.BaseTitleBarActivity
+import com.xiajun.app.MyApp.databinding.Viewpager2WithViewActivityBinding
+import com.xiajun.app.MyApp.databinding.Viewpager2WithViewAdapterBinding
 
 class ViewPager2Activity : BaseTitleBarActivity() {
 

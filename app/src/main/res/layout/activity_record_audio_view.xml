@@ -14,7 +14,7 @@
 
         <include layout="@layout/title_bar_default" />
 
-        <com.style.view.other.CustomTagsLayout
+        <com.xiajun.view.other.CustomTagsLayout
             android:id="@+id/tags_container"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:text="777" />
-        </com.style.view.other.CustomTagsLayout>
+        </com.xiajun.view.other.CustomTagsLayout>
 
         <Button
             android:id="@+id/btn_update_tags"
@@ -103,7 +103,7 @@
         android:layout_alignParentBottom="true"
         android:orientation="vertical">
 
-        <com.style.view.other.RecordAudioView
+        <com.xiajun.view.other.RecordAudioView
             android:id="@+id/record_audio_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

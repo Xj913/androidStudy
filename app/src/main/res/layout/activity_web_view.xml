@@ -8,7 +8,7 @@
 
     <include layout="@layout/title_bar_default" />
 
-    <com.style.view.progressbar.HorizontalProgressBar
+    <com.xiajun.view.progressbar.HorizontalProgressBar
         android:id="@+id/progress"
         android:layout_width="match_parent"
         android:layout_height="3dp"

@@ -11,11 +11,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 
-import com.style.config.FileDirConfig;
-import com.style.app.MyApp.R;
-import com.style.lib.media.camera2video.Camera2Activity;
-import com.style.lib.media.video.PlayVideoActivity;
-import com.style.utils.BitmapUtil;
+import com.xiajun.config.FileDirConfig;
+import com.xiajun.app.MyApp.R;
+import com.xiajun.lib.media.camera2video.Camera2Activity;
+import com.xiajun.lib.media.video.PlayVideoActivity;
+import com.xiajun.utils.BitmapUtil;
 
 import java.io.File;
 import java.io.IOException;

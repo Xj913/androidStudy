@@ -27,14 +27,14 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <com.style.view.wheel.views.WheelView
+        <com.xiajun.view.wheel.views.WheelView
             android:id="@+id/wv_address_province"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:layout_weight="1" />
 
-        <com.style.view.wheel.views.WheelView
+        <com.xiajun.view.wheel.views.WheelView
             android:id="@+id/wv_address_city"
             android:layout_width="0dip"
             android:layout_height="match_parent"

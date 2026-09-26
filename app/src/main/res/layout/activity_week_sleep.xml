@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_week_sleep_view">
 
-                <com.style.view.healthy.SleepWeekHistogram
+                <com.xiajun.view.healthy.SleepWeekHistogram
                     android:id="@+id/sleep_histogram"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp">
 
-                <com.style.view.healthy.SleepDetailView
+                <com.xiajun.view.healthy.SleepDetailView
                     android:id="@+id/sleep_detail_view"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"

@@ -2,7 +2,7 @@ package example.helper;
 
 import android.content.Context;
 
-import com.style.app.MyApp.R;
+import com.xiajun.app.MyApp.R;
 
 import java.util.ArrayList;
 import java.util.List;
