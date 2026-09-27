@@ -1,12 +1,20 @@
 package com.xiajun.http.core
 
+import android.text.TextUtils
+import android.util.Log
+import com.google.gson.Gson
+import com.xiajun.data.prefs.AppPrefsManager
+import com.xiajun.lib.common.BuildConfig
 import okhttp3.FormBody
+import okhttp3.HttpUrl.Companion.toHttpUrl
+import okhttp3.Interceptor
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.logging.HttpLoggingInterceptor
 import java.util.concurrent.TimeUnit
 
 
@@ -28,10 +36,11 @@ object NetClient {
                 val request = chain.request().newBuilder()
                     .header("Content-Type", "application/json")
                     .header("Accept", "application/json")
-                    // .header("Authorization", "Bearer ${UserInfo.token}")
                     .build()
                 chain.proceed(request)
             }
+            .addInterceptor(NetInterceptors.loggingInterceptor)
+            .addInterceptor(NetInterceptors.headerInterceptor)
             .build()
     }
 
@@ -45,6 +54,17 @@ object NetClient {
         return builder.build()
     }
 
+    fun <T> postJsonT(url: String, bean: T): Request =
+        postJson(url, Gson().toJson(bean))
+
+    /** 构造 POST JSON Request */
+    fun postJson(url: String, json: String): Request =
+        Request.Builder().url(url).post(jsonBody(json)).build()
+
+    /** 构造 POST Form Request */
+    fun postForm(url: String, params: Map<String, String>): Request =
+        Request.Builder().url(url).post(formBody(params)).build()
+
     /** 构造 GET Request */
     fun get(url: String, params: Map<String, String>? = null): Request {
         val finalUrl = if (params.isNullOrEmpty()) {
@@ -57,14 +77,6 @@ object NetClient {
         return Request.Builder().url(finalUrl).get().build()
     }
 
-    /** 构造 POST JSON Request */
-    fun postJson(url: String, json: String): Request =
-        Request.Builder().url(url).post(jsonBody(json)).build()
-
-    /** 构造 POST Form Request */
-    fun postForm(url: String, params: Map<String, String>): Request =
-        Request.Builder().url(url).post(formBody(params)).build()
-
     /** 构造 PUT JSON Request */
     fun putJson(url: String, json: String): Request =
         Request.Builder().url(url).put(jsonBody(json)).build()
@@ -74,5 +86,27 @@ object NetClient {
         val builder = Request.Builder().url(url)
         if (json != null) builder.delete(jsonBody(json)) else builder.delete()
         return builder.build()
+    }
+}
+
+object NetInterceptors {
+    val loggingInterceptor: HttpLoggingInterceptor by lazy {
+        HttpLoggingInterceptor({ message: String? ->
+            if (BuildConfig.DEBUG) Log.e("okhttp", message!!)
+        }).setLevel(HttpLoggingInterceptor.Level.BODY)
+    }
+    val headerInterceptor: Interceptor by lazy {
+        Interceptor { chain ->
+            val original = chain.request()
+            val newBuilder = original.newBuilder()
+            if (TextUtils.isEmpty(original.header("Authorization")))  //这里没打印Authorization因为执行在日志拦截后
+                newBuilder.addHeader(
+                    "Authorization",
+                    AppPrefsManager.getInstance().signKey
+                )
+            //String language = Locale.getDefault().getLanguage();//服务器根据不同语言返回不同描述
+            val newRequest = newBuilder.build()
+            chain.proceed(newRequest)
+        }
     }
 }

@@ -7,7 +7,6 @@ import com.xiajun.base.BaseCompoModel
 import com.xiajun.data.http.function.impl.UserNetSourceImpl
 import com.xiajun.data.prefs.AppPrefsManager
 import com.xiajun.entity.UserInfo
-import com.xiajun.http.core.safeApiCall
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -58,13 +57,11 @@ class LoginModel @Inject constructor() : BaseCompoModel() {
 
     fun login2(userName: String, pass: String) {
         viewModelScope.launch(context = Dispatchers.IO) {
-            val s = async { safeApiCall { UserNetSourceImpl.getToken() } }.await()
-            if (s.isSucceed()) {
+            val s = async { UserNetSourceImpl.getToken() }.await()
+            if (s.isOk()) {
                 AppPrefsManager.getInstance().setSignKey(s.data?.access_token)
-                val s1 = async {
-                    safeApiCall { UserNetSourceImpl.login2(userName, pass) }
-                }.await()
-                if (s1.isSucceed()) {
+                val s1 = async { UserNetSourceImpl.login2(userName, pass) }.await()
+                if (s1.isOk()) {
                     logI("login", s1.data.toString())
                 }
             }
@@ -77,9 +74,8 @@ class LoginModel @Inject constructor() : BaseCompoModel() {
         viewModelScope.launch(Dispatchers.IO) {
             val s = async {
                 synData()
-                UserNetSourceImpl.login(userName, password)
-            }.await()
-            if (s.isSucceed()) {
+                UserNetSourceImpl.login(userName, password) }.await()
+            if (s.isOk()) {
                 withContext(Dispatchers.Main) {
                     loginState.value = true
                 }

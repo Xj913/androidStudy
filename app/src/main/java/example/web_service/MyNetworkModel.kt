@@ -1,16 +1,13 @@
 package example.web_service;
 
-
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.viewModelScope
 import com.xiajun.base.BaseCompoModel
 import com.xiajun.data.http.function.impl.WebNetSourceImpl
-import com.xiajun.http.core.safeApiCall
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-
 
 class MyNetworkModel : BaseCompoModel() {
     val phone = mutableStateOf("")
@@ -19,12 +16,8 @@ class MyNetworkModel : BaseCompoModel() {
 
     fun getPhoneInfo(phone: String = this.phone.value) {
         viewModelScope.launch(context = Dispatchers.IO) {
-            val s = async {
-                safeApiCall {
-                    WebNetSourceImpl.getPhoneInfo(phone)
-                }
-            }.await()
-            if (s.isSucceed()) {
+            val s = async { WebNetSourceImpl.getPhoneInfo(phone) }.await()
+            if (s.isOk()) {
                 content.value = s.data!!
             }
         }
@@ -32,8 +25,8 @@ class MyNetworkModel : BaseCompoModel() {
 
     fun getWeather(code: String) {
         viewModelScope.launch(context = Dispatchers.IO) {
-                val s = async { safeApiCall { WebNetSourceImpl.getWeather(code) } }.await()
-            if (s.isSucceed()) {
+                val s = async { WebNetSourceImpl.getWeather(code) }.await()
+            if (s.isOk()) {
                 withContext(Dispatchers.Main) {
                     content.value = s.data!!
                     showToast("查询成功")
@@ -44,8 +37,8 @@ class MyNetworkModel : BaseCompoModel() {
 
     fun getKuaiDi(s: String = "", s1: String = "") {
         viewModelScope.launch(context = Dispatchers.IO) {
-            val s = async { safeApiCall { WebNetSourceImpl.getKuaiDi("", "") } }.await()
-            if (s.isSucceed()) {
+            val s = async { WebNetSourceImpl.getKuaiDi("", "") }.await()
+            if (s.isOk()) {
                 withContext(Dispatchers.Main) {
                     content.value = s.data!!
                     showToast("查询成功")
@@ -56,8 +49,8 @@ class MyNetworkModel : BaseCompoModel() {
 
     fun getKuaiDilist(s: String, s1: String) {
         viewModelScope.launch(context = Dispatchers.IO) {
-            val s = async { safeApiCall { WebNetSourceImpl.getkuaidilist("") } }.await()
-            if (s.isSucceed()) {
+            val s = async { WebNetSourceImpl.getkuaidi("") }.await()
+            if (s.isOk()) {
                 withContext(Dispatchers.Main) {
                     content.value = s.data!!.toString()
                     showToast("查询成功")

@@ -55,7 +55,8 @@ dependencies {
     api(libs.room)
     ksp(libs.room.compiler)
     api(libs.fastjson)
-    api(libs.bundles.retrofit)
+    api(libs.bundles.okhttp)
+    api(libs.bundles.rxjava)
     api(libs.refresh.layout)
     api(projects.libCustomView)
 }

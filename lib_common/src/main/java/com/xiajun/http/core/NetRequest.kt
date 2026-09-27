@@ -1,10 +1,15 @@
-package com.example.net
+package com.xiajun.http.core
 
 import com.google.gson.Gson
-import com.xiajun.http.core.NetClient
+import com.google.gson.reflect.TypeToken
+import com.xiajun.data.app.MyAppManager
+import com.xiajun.http.core.ApiResp.Companion.OK
+import com.xiajun.toast.ToastManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.Request
+import okhttp3.ResponseBody
+import okio.BufferedSource
 import java.io.IOException
 
 /** suspend 请求执行器 */
@@ -15,30 +20,36 @@ object NetRequest {
      * @param request OkHttp Request
      * @param typeOfT Gson TypeToken，用于解析 data 字段
      */
-    suspend fun <T> execute(
-        request: Request,
-        typeOfT: java.lang.reflect.Type
-    ): NetResult<T> = withContext(Dispatchers.IO) {
-        try {
-            val response = NetClient.okHttpClient.newCall(request).execute()
-            if (!response.isSuccessful) {
-                return@withContext NetResult.Error(response.code, "HTTP ${response.code}")
+    suspend inline fun <reified T : Any> execute(request: Request): ApiResp<T> {
+        runCatching {
+            NetClient.okHttpClient.newCall(request).execute()
+        }.onSuccess {
+            if (it.isSuccessful) {
+                if (T::class == ResponseBody::class) {
+                    return ApiResp(OK, it.body as T?, it.message)
+                }
+                val bs: BufferedSource = it.body.source().buffer
+                val tempStr = bs.readUtf8()
+                bs.close()
+                if (T::class == String::class) {
+                    return ApiResp(OK, tempStr as T?, it.message)
+                }
+                val type = object : TypeToken<T>() {}.type
+                val t: T = Gson().fromJson(tempStr, type)
+                return ApiResp(OK, t, "请求成功")
             }
-            val body = response.body?.string()
-                ?: return@withContext NetResult.Error(-1, "响应体为空")
-
-            val apiResp = Gson().fromJson<ApiResponse<T>>(body, typeOfT)
-                ?: return@withContext NetResult.Error(-1, "JSON 解析失败")
-
-            if (apiResp.code != 0 || apiResp.data == null) {
-                NetResult.Error(apiResp.code, apiResp.message)
-            } else {
-                NetResult.Success(apiResp.data)
+            withContext(Dispatchers.Main) {
+                ToastManager.showToast(MyAppManager.getInstance().app, it.message)
             }
-        } catch (e: IOException) {
-            NetResult.Exception(e)
-        } catch (e: Exception) {
-            NetResult.Exception(e)
+            return netResp(code = it.code, msg = it.message)
+        }.onFailure { e ->
+            e.printStackTrace()
+            if (e is IOException) {
+                withContext(Dispatchers.Main) {
+                    ToastManager.showToast(MyAppManager.getInstance().app, e.message)
+                }
+            }
         }
+        return netResp(d = null)
     }
 }

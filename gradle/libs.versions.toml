@@ -67,8 +67,6 @@ hilt = "com.google.dagger:hilt-android:2.60.1"
 hilt-compiler = "com.google.dagger:hilt-android-compiler:2.60.1"
 zxing = "com.google.zxing:core:3.3.0"
 material = "com.google.android.material:material:1.10.0"
-retrofit = "com.squareup.retrofit2:retrofit:3.0.0"
-retrofit-apt-rxjava = "com.squareup.retrofit2:adapter-rxjava3:3.0.0"
 okio = "com.squareup.okio:okio:3.16.4"
 okhttp = "com.squareup.okhttp3:okhttp:5.3.2"
 okhttp-log-ipt = "com.squareup.okhttp3:logging-interceptor:5.3.2"
@@ -88,7 +86,8 @@ compose = ["material3", "foundation", "acyivity-compose", "hilt-navigation-compo
     "livedata", "livedata-core", "lifecycle-runtime", "lifecycle-rea", "compose-livedata", "lifecycle-runtime-compose", "compose-rxjava3","navigation3-runtime",
     "navigation3-ui", "viewmodel-nav3", "hilt"]
 glide = ["glide", "glide-integration"]
-retrofit = [ "rxjava", "rxjava-rxandroid", "retrofit", "retrofit-apt-rxjava", "okhttp", "okhttp-log-ipt"]
+okhttp = ["okhttp", "okhttp-log-ipt"]
+rxjava = ["rxjava", "rxjava-rxandroid"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
