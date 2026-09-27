@@ -54,7 +54,7 @@ object NetClient {
         return builder.build()
     }
 
-    fun <T> postJsonT(url: String, bean: T): Request =
+    fun postJsonT(url: String, bean: Any): Request =
         postJson(url, Gson().toJson(bean))
 
     /** 构造 POST JSON Request */
