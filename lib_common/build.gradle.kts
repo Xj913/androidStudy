@@ -28,6 +28,7 @@ android {
     buildFeatures {
         buildConfig = true
         viewBinding = true
+        compose = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -43,11 +44,11 @@ android {
 
 dependencies {
     testImplementation(libs.junit)
-    androidTestImplementation(libs.compose.ui.test.junit)
-    debugImplementation(libs.compose.ui.test.manifest)
     implementation(libs.kotlin)
     implementation(platform(libs.compose.bom))
-    //androidTestImplementation(libs.compose.bom)
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.compose.ui.test.junit)
+    debugImplementation(libs.compose.ui.test.manifest)
     debugImplementation(libs.ui.tool)
     debugImplementation(libs.ui.preview)
     implementation(libs.bundles.base)

@@ -14,7 +14,7 @@ object MyColors {
     val PurpleDark = Color(0xFF7D26CD)
     val WhiteLight = Color(0xFFF7F7F7)
     val BlackLight = Color(0xFF323232)
-    val ColorTranslucent = Color(0x30000000)
+    val BlackTranslucent = Color(0x30000000)
     val WhiteTranslucent = Color(0xFFB8DDFF)
     val BlueTranslucent = Color(0x9000A0E9)
     // 主题
@@ -26,7 +26,7 @@ object MyColors {
     val TitleBarGray = Color(0xFF343434)
     val PopbgColor = Color(0xFF49484A)
     val BgRefreshView = UiBg
-    val ColorDivider = Color(0xFFD1D1D1)
+    val Divider = Color(0xFFD1D1D1)
     // 文字
     val TextPrimary = BlackLight
     val TextSecond = Color.DarkGray

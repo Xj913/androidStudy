@@ -1,8 +1,23 @@
 package com.xiajun.ui
 
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+
+val replyShapes = Shapes(
+    extraSmall = RoundedCornerShape(4.dp),
+    small = RoundedCornerShape(8.dp),
+    medium = RoundedCornerShape(12.dp),
+    large = RoundedCornerShape(16.dp),
+    extraLarge = RoundedCornerShape(24.dp)
+)
 
 object MyTextStyles {
     val textPrimary = TextStyle(color = MyColors.TextPrimary)
@@ -51,3 +66,26 @@ object MyTextStyles {
     val textWhite17sp = textWhite.copy(fontSize = 17.sp)
     val textWhite18sp = textWhite.copy(fontSize = 18.sp)
 }
+
+@Composable
+fun CardPrimary(content: @Composable ()-> Unit = {}) {
+    val customCardColors = CardDefaults.cardColors(
+        contentColor = Color.White,
+        containerColor = MyColors.ColorPrimary,
+        disabledContentColor = Color.Gray,
+        disabledContainerColor = Color.LightGray,
+    )
+    val customCardElevation = CardDefaults.cardElevation(
+        defaultElevation = 8.dp,
+        pressedElevation = 2.dp,
+        focusedElevation = 4.dp
+    )
+    Card(
+        colors = customCardColors,
+        elevation = customCardElevation
+    ) {
+        content()
+    }
+
+}
+

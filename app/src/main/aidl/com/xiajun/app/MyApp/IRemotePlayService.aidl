@@ -1,5 +1,5 @@
 // IRemotePlayService.aidl
-package com.style.app.MyApp;
+package com.xiajun.app.MyApp;
 
 // Declare any non-default types here with import statements
 

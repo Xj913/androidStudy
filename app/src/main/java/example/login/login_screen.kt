@@ -8,12 +8,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocal
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,9 +16,10 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import example.base.CpgDialog
+import example.home.RouteEvent
 
 @Composable
-fun LoginScreen(vml: LoginModel = hiltViewModel(), evt: () -> Unit = {}) {
+fun LoginScreen(vml: LoginModel = hiltViewModel(), evt: (et : RouteEvent) -> Unit = {}) {
     val phone = vml.phone.collectAsStateWithLifecycle()
     Column(modifier = Modifier.padding(all = 16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         OutlinedTextField(

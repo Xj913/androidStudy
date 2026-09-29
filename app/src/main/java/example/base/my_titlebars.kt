@@ -25,13 +25,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.xiajun.lib.common.R
+import com.xiajun.ui.MyColors
+import com.xiajun.ui.MyDimens
+import com.xiajun.ui.MyTextStyles
 
 @OptIn(ExperimentalFlexBoxApi::class)
 @Composable
 fun TitleBarDefault(back: ()-> Unit, title: String = "", menu: @Composable ()-> Unit = {}) {
     Column(modifier = Modifier.fillMaxWidth()) {
         Spacer(modifier = Modifier.fillMaxWidth().height(24.dp))
-        Row(modifier = Modifier.background(Colorprimary)) {
+        Row(modifier = Modifier.background(MyColors.ColorPrimary)) {
             FlexBox(modifier = Modifier.fillMaxWidth().height(48.dp),
                 config = {
                     direction(FlexDirection.Row)
@@ -47,7 +50,7 @@ fun TitleBarDefault(back: ()-> Unit, title: String = "", menu: @Composable ()-> 
                         back()
                     }
                 )
-                Text(text = title, fontSize = 18.sp, color = ColorWhite)
+                Text(text = title, style = MyTextStyles.textWhite18sp)
                 menu()
             }
         }
@@ -75,14 +78,14 @@ fun TitleBarWhite(back: ()-> Unit, title: String = "", menu: @Composable ()-> Un
                         back()
                     }
                 )
-                Text(text = title, fontSize = 18.sp, color = ColorTitleBargray)
+                Text(text = title, style = MyTextStyles.textSecond18sp)
                 menu()
             }
         }
         HorizontalDivider(
             modifier = Modifier.fillMaxWidth(),
-            thickness = 0.3.dp,
-            color = ColorDivider
+            thickness = MyDimens.DividerH,
+            color = MyColors.Divider
         )
     }
 }
@@ -108,14 +111,14 @@ fun TitleBarTransparent(back: ()-> Unit, title: String = "", menu: @Composable (
                         back()
                     }
                 )
-                Text(text = title, fontSize = 18.sp)
+                Text(text = title, style = MyTextStyles.textWhite18sp)
                 menu()
             }
         }
         HorizontalDivider(
             modifier = Modifier.fillMaxWidth(),
-            thickness = 0.3.dp,
-            color = ColorDivider
+            thickness = MyDimens.DividerH,
+            color = MyColors.Divider
         )
     }
 }

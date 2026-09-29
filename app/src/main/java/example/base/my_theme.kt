@@ -14,6 +14,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Immutable
+data class ColorSystem(
+    val color: Color,
+    val gradient: List<Color>
+)
+
+@Immutable
 data class ReplacementTypography(
     val body: TextStyle,
     val title: TextStyle
@@ -24,6 +30,19 @@ data class ReplacementShapes(
     val component: Shape,
     val surface: Shape
 )
+
+@Immutable
+data class CustomSystem(
+    val value1: Int,
+    val value2: String
+)
+
+val LocalColorSystem = staticCompositionLocalOf {
+    ColorSystem(
+        color = Color.Unspecified,
+        gradient = emptyList()
+    )
+}
 
 val LocalReplacementTypography = staticCompositionLocalOf {
     ReplacementTypography(
@@ -38,10 +57,19 @@ val LocalReplacementShapes = staticCompositionLocalOf {
     )
 }
 
+val LocalCustomSystem = staticCompositionLocalOf {
+    CustomSystem(
+        value1 = 0,
+        value2 = ""
+    )
+}
+
 @Composable
-fun ReplacementTheme(
-    content: @Composable () -> Unit
-) {
+fun ReplacementTheme(content: @Composable () -> Unit) {
+    val colorSystem = ColorSystem(
+        color = Color(0xFF3DDC84),
+        gradient = listOf(Color.White, Color(0xFFD7EFFF))
+    )
     val replacementTypography = ReplacementTypography(
         body = TextStyle(fontSize = 16.sp),
         title = TextStyle(fontSize = 32.sp)
@@ -50,24 +78,34 @@ fun ReplacementTheme(
         component = RoundedCornerShape(percent = 50),
         surface = RoundedCornerShape(size = 40.dp)
     )
+    val customSystem = CustomSystem(
+        value1 = 1000,
+        value2 = "Custom system"
+    )
     CompositionLocalProvider(
+        LocalColorSystem provides colorSystem,
         LocalReplacementTypography provides replacementTypography,
-        LocalReplacementShapes provides replacementShapes
-    ) {
+        LocalReplacementShapes provides replacementShapes,
+        LocalCustomSystem provides customSystem,
+        ) {
         MaterialTheme(
-            /* colors = ... */
             content = content
         )
     }
 }
 
-// Use with eg. ReplacementTheme.typography.body
-object ReplacementTheme {
+object CustomTheme {
+    val colorSystem: ColorSystem
+        @Composable
+        get() = LocalColorSystem.current
     val typography: ReplacementTypography
         @Composable
         get() = LocalReplacementTypography.current
     val shapes: ReplacementShapes
         @Composable
         get() = LocalReplacementShapes.current
+    val customSystem: CustomSystem
+        @Composable
+        get() = LocalCustomSystem.current
 }
 

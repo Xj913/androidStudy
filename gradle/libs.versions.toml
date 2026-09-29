@@ -42,7 +42,7 @@ room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 compose-bom = "androidx.compose:compose-bom:2026.06.00"
 material3.module = "androidx.compose.material3:material3"
 foundation.module = "androidx.compose.foundation:foundation"
-compose-ui.module = "androidx.compose.ui:ui-graphics"
+compose-ui.module = "androidx.compose.ui:ui"
 ui-tool.module = "androidx.compose.ui:ui-tooling"
 ui-preview.module = "androidx.compose.ui:ui-tooling-preview"
 adaptive.module = "androidx.compose.material3.adaptive:adaptive"
@@ -82,7 +82,7 @@ photoview = "com.github.chrisbanes:PhotoView:2.1.4"
 [bundles]
 base = ["org-annotation", "and-annotation", "javax-annotation", "ktx-serialization-core", "ktx-serialization-json", "ktx-coroutines-android", "ax-core", "prefrence-ktx", "splite", "activity",
     "appcompat", "fragment", "fragment-ktx", "recyclerview", "cardview", "legacy", "vectordrawable", "constraintlayout", "material", "gson", "coordinatorlayout", "palette-ktx"]
-compose = ["material3", "foundation", "acyivity-compose", "hilt-navigation-compose", "viewmodel-compose", "viewmodel", "viewmodel-common",
+compose = ["material3", "foundation", "compose-ui", "acyivity-compose", "hilt-navigation-compose", "viewmodel-compose", "viewmodel", "viewmodel-common",
     "livedata", "livedata-core", "lifecycle-runtime", "lifecycle-rea", "compose-livedata", "lifecycle-runtime-compose", "compose-rxjava3","navigation3-runtime",
     "navigation3-ui", "viewmodel-nav3", "hilt"]
 glide = ["glide", "glide-integration"]

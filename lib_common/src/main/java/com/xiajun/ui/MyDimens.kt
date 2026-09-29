@@ -8,7 +8,7 @@ object MyDimens {
     // 页面边距
     val ActivityHorizontalMargin = 16.dp
     val ActivityVerticalMargin = 16.dp
-    val Divider1px = Dp.Hairline
+    val DividerH = Dp.Hairline
     val AppBarHeightExtra = 180.dp
     val StatusbarH = 24.dp
     val ToolbarH = 48.dp
