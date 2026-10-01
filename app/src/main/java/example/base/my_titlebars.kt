@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
@@ -22,31 +23,30 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.xiajun.lib.common.R
 import com.xiajun.ui.MyColors
 import com.xiajun.ui.MyDimens
 import com.xiajun.ui.MyTextStyles
+import example.home.HomeScreen
 
 @OptIn(ExperimentalFlexBoxApi::class)
 @Composable
-fun TitleBarDefault(back: ()-> Unit, title: String = "", menu: @Composable ()-> Unit = {}) {
-    Column(modifier = Modifier.fillMaxWidth()) {
+fun TitleBarDefault(back: ()-> Unit, title: String = " ", menu: @Composable ()-> Unit = { MenuPlace() }) {
+    Column(modifier = Modifier.fillMaxWidth().background(MyColors.ColorPrimary)) {
         Spacer(modifier = Modifier.fillMaxWidth().height(24.dp))
-        Row(modifier = Modifier.background(MyColors.ColorPrimary)) {
+        Row() {
             FlexBox(modifier = Modifier.fillMaxWidth().height(48.dp),
                 config = {
                     direction(FlexDirection.Row)
-                    alignContent(FlexAlignContent.SpaceAround)
+                    justifyContent(FlexJustifyContent.SpaceBetween)
                     alignItems(FlexAlignItems.Center)
-                    justifyContent(FlexJustifyContent.Center)
-                    wrap(FlexWrap.Wrap)
-                    gap(16.dp)
                 }) {
                 Image(painter = painterResource(id = R.drawable.ic_menu_back_white),
                     contentDescription = "",
-                    modifier = Modifier.size(40.dp).clickable {
+                    modifier = Modifier.size(40.dp).padding(10.dp).clickable {
                         back()
                     }
                 )
@@ -59,18 +59,15 @@ fun TitleBarDefault(back: ()-> Unit, title: String = "", menu: @Composable ()-> 
 
 @OptIn(ExperimentalFlexBoxApi::class)
 @Composable
-fun TitleBarWhite(back: ()-> Unit, title: String = "", menu: @Composable ()-> Unit = {}) {
-    Column(modifier = Modifier.fillMaxWidth()) {
+fun TitleBarWhite(back: ()-> Unit, title: String = "", menu: @Composable ()-> Unit = { MenuPlace() }) {
+    Column(modifier = Modifier.fillMaxWidth().background(Color.White)) {
         Spacer(modifier = Modifier.fillMaxWidth().height(24.dp))
-        Row(modifier = Modifier.background(Color.White)) {
+        Row() {
             FlexBox(modifier = Modifier.fillMaxWidth().height(48.dp),
                 config = {
                     direction(FlexDirection.Row)
-                    alignContent(FlexAlignContent.SpaceAround)
+                    alignContent(FlexAlignContent.SpaceBetween)
                     alignItems(FlexAlignItems.Center)
-                    justifyContent(FlexJustifyContent.Center)
-                    wrap(FlexWrap.Wrap)
-                    gap(16.dp)
                 }) {
                 Image(painter = painterResource(id = R.drawable.ic_menu_back_black),
                     contentDescription = "",
@@ -92,18 +89,15 @@ fun TitleBarWhite(back: ()-> Unit, title: String = "", menu: @Composable ()-> Un
 
 @OptIn(ExperimentalFlexBoxApi::class)
 @Composable
-fun TitleBarTransparent(back: ()-> Unit, title: String = "", menu: @Composable ()-> Unit = {}) {
-    Column(modifier = Modifier.fillMaxWidth())  {
+fun TitleBarTransparent(back: ()-> Unit, title: String = "", menu: @Composable ()-> Unit = { MenuPlace() }) {
+    Column(modifier = Modifier.fillMaxWidth().background(Color.Transparent))  {
         Spacer(modifier = Modifier.fillMaxWidth().height(24.dp))
-        Row(modifier = Modifier.background(Color.Transparent)) {
+        Row(modifier = Modifier) {
             FlexBox(modifier = Modifier.fillMaxWidth().height(48.dp),
                 config = {
                     direction(FlexDirection.Row)
-                    alignContent(FlexAlignContent.SpaceAround)
+                    alignContent(FlexAlignContent.SpaceBetween)
                     alignItems(FlexAlignItems.Center)
-                    justifyContent(FlexJustifyContent.Center)
-                    wrap(FlexWrap.Wrap)
-                    gap(16.dp)
                 }) {
                 Image(painter = painterResource(id = R.drawable.ic_menu_back_white),
                     contentDescription = "",
@@ -124,9 +118,12 @@ fun TitleBarTransparent(back: ()-> Unit, title: String = "", menu: @Composable (
 }
 
 @Composable
-fun MenuDefault(onMenu: ()-> Unit) {
-    Text(text = "menu",
-        modifier = Modifier.size(40.dp).clickable {
-            onMenu()
-        })
+fun MenuPlace() {
+    Text(text = " ", modifier = Modifier.size(40.dp))
+}
+
+@Preview(showBackground = true)
+@Composable()
+fun Preview(){
+    TitleBarDefault({})
 }

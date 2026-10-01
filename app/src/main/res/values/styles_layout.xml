@@ -5,27 +5,27 @@
         <item name="android:layout_height">1.5dp</item>
         <item name="android:background">#eee</item>
     </style>
-    <!-- 黑色水平分割线风格 -->
+    <!-- 黑色水平分割线 -->
     <style name="divider_horizontal_transparent_black">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/divider_1px_width</item>
         <item name="android:background">@color/divider_color</item>
     </style>
-    <!-- 黑色竖直分割线风格 -->
+    <!-- 黑色竖直分割线 -->
     <style name="divider_vertical_transparent_black">
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">@dimen/divider_1px_width</item>
         <item name="android:background">@color/divider_color</item>
     </style>
-    <!-- 白色竖直分割线风格 -->
+    <!-- 白色竖直分割线 -->
     <style name="divider_horizontal_white">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/divider_1px_width</item>
         <item name="android:background">@android:color/white</item>
     </style>
-    <!-- 公共布局风格 -->
+    <!-- 公共布局 -->
     <style name="Layouts" />
-    <!-- 一般水平布局元素父风格 -->
+    <!-- 一般水平布局元素 -->
     <style name="Layouts.base_normal">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/height_normal</item>
@@ -34,15 +34,15 @@
         <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
         <item name="android:clickable">true</item>
     </style>
-    <!-- 一般水平线性布局元素风格 -->
+    <!-- 一般水平线性布局元素 -->
     <style name="Layouts.normal_LinearLayout" parent="Layouts.base_normal">
         <item name="android:gravity">center_vertical</item>
     </style>
-    <!-- 一般水平相对布局元素风格 -->
+    <!-- 一般水平相对布局元素 -->
     <style name="Layouts.normal_RelativeLayout" parent="Layouts.base_normal">
 
     </style>
-    <!-- 一般适配器水平布局元素风格 -->
+    <!-- 一般适配器水平布局元素 -->
     <style name="normal_layout_adapter_item" parent="Layouts.base_normal">
         <item name="android:clickable">false</item>
     </style>
@@ -58,14 +58,14 @@
         <item name="android:layout_height">@dimen/height_normal</item>
         <item name="android:gravity">center_vertical</item>
     </style>
-    <!-- 普通水平布局元素左边图片尺寸风格 -->
+    <!-- 普通水平布局元素左边图片尺寸 -->
     <style name="layout_item_right_image">
         <item name="android:layout_width">32dp</item>
         <item name="android:layout_height">32dp</item>
         <item name="android:layout_marginLeft">8dp</item>
     </style>
 
-    <!-- 主页底部导航栏图片尺寸风格 -->
+    <!-- 主页底部导航栏图片尺寸 -->
     <style name="image_main_tap_size">
         <item name="android:layout_width">40dp</item>
         <item name="android:layout_height">40dp</item>

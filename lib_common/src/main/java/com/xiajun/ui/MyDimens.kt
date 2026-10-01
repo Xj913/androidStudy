@@ -6,14 +6,15 @@ import androidx.compose.ui.unit.sp
 
 object MyDimens {
     // 页面边距
-    val ActivityHorizontalMargin = 16.dp
-    val ActivityVerticalMargin = 16.dp
+    val MarginW16 = 16.dp
+    val MarginH16 = 16.dp
     val DividerH = Dp.Hairline
     val AppBarHeightExtra = 180.dp
     val StatusbarH = 24.dp
     val ToolbarH = 48.dp
     val TopbarH = 72.dp
     val ButtonH = 48.dp
+    val ItemDefault = 48.dp
     // 内边距
     val PaddingRightNormal = 12.dp
     val PaddingLeftNormal = 12.dp

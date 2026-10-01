@@ -81,7 +81,7 @@ fun NetworkScreen(vml: MyNetworkModel = hiltViewModel(), evt: () -> Unit = {}) {
 
 @Preview(showBackground = true)
 @Composable()
-fun ScreenPreview(){
+fun Preview(){
     NetworkScreen()
 }
 

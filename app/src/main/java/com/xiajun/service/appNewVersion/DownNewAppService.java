@@ -15,7 +15,7 @@ public class DownNewAppService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
-        mPresenter = new DownNewAppServiceModel(getApplication());
+        mPresenter = new DownNewAppServiceModel();
     }
 
     @Nullable

@@ -14,9 +14,9 @@
         android:showDividers="middle">
 
         <TextView
-            android:id="@+id/btn_address"
+            android:id="@+id/btn_contacts"
             style="@style/text_home_item"
-            android:text="address" />
+            android:text="contacts" />
 
         <TextView
             android:id="@+id/btn_album"
@@ -39,14 +39,14 @@
             android:text="悬浮窗" />
 
         <TextView
-            android:id="@+id/btn_radio_group"
+            android:id="@+id/btn_bigimage"
             style="@style/text_home_item"
-            android:text="banner" />
+            android:text="bigimage" />
 
         <TextView
             android:id="@+id/view_draw"
             style="@style/text_home_item"
-            android:text="画图测试" />
+            android:text="画图" />
 
         <TextView
             android:id="@+id/view_write_word"

@@ -51,7 +51,7 @@ fun LoginScreen(vml: LoginModel = hiltViewModel(), evt: (et : RouteEvent) -> Uni
 
 @Preview(showBackground = true)
 @Composable()
-fun ScreenPreview(){
+fun Preview(){
   LoginScreen()
 }
 

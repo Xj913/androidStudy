@@ -1,15 +1,26 @@
 package com.xiajun.ui
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Shapes
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+
 
 val replyShapes = Shapes(
     extraSmall = RoundedCornerShape(4.dp),
@@ -67,25 +78,28 @@ object MyTextStyles {
     val textWhite18sp = textWhite.copy(fontSize = 18.sp)
 }
 
-@Composable
-fun CardPrimary(content: @Composable ()-> Unit = {}) {
-    val customCardColors = CardDefaults.cardColors(
-        contentColor = Color.White,
-        containerColor = MyColors.ColorPrimary,
-        disabledContentColor = Color.Gray,
-        disabledContainerColor = Color.LightGray,
-    )
-    val customCardElevation = CardDefaults.cardElevation(
-        defaultElevation = 8.dp,
-        pressedElevation = 2.dp,
-        focusedElevation = 4.dp
-    )
-    Card(
-        colors = customCardColors,
-        elevation = customCardElevation
-    ) {
-        content()
+    // 防抖点击
+    fun Modifier.clickableOnce(
+        intervalMs: Long = 500,
+        onClick: () -> Unit
+    ): Modifier = composed {
+        val lastClickTime = remember { mutableLongStateOf(0L) }
+        this.clickable {
+            val now = System.currentTimeMillis()
+            if (now - lastClickTime.longValue >= intervalMs) {
+                lastClickTime.longValue = now
+                onClick()
+            }
+        }
     }
 
-}
+    fun Modifier.ifTrue(condition: Boolean, block: Modifier.() -> Modifier): Modifier {
+        return if (condition) this.block() else this
+    }
+
+    fun <T> T. applyIf (condition: Boolean , block: T .() -> Unit ) : T {
+        if (condition) this .block()
+        return this
+    }
+
 

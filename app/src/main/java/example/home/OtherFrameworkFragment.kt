@@ -39,6 +39,6 @@ class OtherFrameworkFragment : BaseNoPagerLazyRefreshFragment() {
         bd.viewSocket.setOnClickListener { skip(SocketTestActivity::class.java) }
         bd.viewEventManager.setOnClickListener { skip(QueueTestActivity::class.java) }
         bd.viewWifi.setOnClickListener { skip(WifiTestActivity::class.java) }
-        bd.viewWebservice.setOnClickListener { skip(WebServiceActivity::class.java) }
+        //bd.viewWebservice.setOnClickListener { skip(WebServiceActivity::class.java) }
     }
 }

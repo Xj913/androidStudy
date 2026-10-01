@@ -35,13 +35,12 @@ class CustomViewFragment : BaseNoPagerLazyRefreshFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        bd.btnContacts.setOnClickListener { skip(AddressActivity::class.java) }
         bd.btnAlbum.setOnClickListener { skip(SelectLocalPictureActivity::class.java) }
-        bd.btnAddress.setOnClickListener { skip(AddressActivity::class.java) }
         bd.btnDialog.setOnClickListener { skip(DialogActivity::class.java) }
         bd.btnWheel.setOnClickListener { skip(WheelActivity::class.java) }
         bd.viewSuspend.setOnClickListener { skip(SuspendWindowActivity::class.java) }
-        bd.btnRadioGroup.setOnClickListener { skip(BannerActivity::class.java) }
+        bd.btnBigimage.setOnClickListener { skip(BannerActivity::class.java) }
         bd.viewDraw.setOnClickListener { skip(DrawViewActivity::class.java) }
         bd.viewWriteWord.setOnClickListener { skip(WriteWordActivity::class.java) }
         bd.btnCustomView.setOnClickListener { skip(CustomViewMainActivity::class.java) }

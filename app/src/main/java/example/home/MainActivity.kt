@@ -35,7 +35,7 @@ class MainActivity : BaseActivity() {
         const val NET_CHANGE = "net_change"
 
         private val fragTags = arrayOf("tag1", "tag20", "tag2", "tag3", "tag4", "tag5")
-        private val titles = arrayOf("View相关", "手势", "列表", "原生相关", "其他框架", "客户")
+        private val titles = arrayOf("View", "手势", "列表", "原生", "其他")
     }
 
     private lateinit var homeFragment1: CustomViewFragment

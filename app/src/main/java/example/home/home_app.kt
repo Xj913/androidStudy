@@ -50,7 +50,11 @@ fun route(backStack: NavBackStack<NavKey>, e : RouteEvent) {
     e.route?.isNotEmpty().let {  }
 }
 
+
 fun EntryProviderScope<NavKey>.entryBuilder(backStack: NavBackStack<NavKey>) {
+    entry(key = HomeNav) {
+        HomeScreen()
+    }
     entry(key = LoginNav) {
         LoginScreen(evt = { route(backStack, it) })
     }

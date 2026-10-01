@@ -1,31 +1,50 @@
 package example.home
 
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavKey
-import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
+import com.xiajun.ui.MyDimens
 import kotlinx.serialization.Serializable
 
-
-data class RouteEvent (val route: String? = null, val key : NavKey?, val isBack: Boolean = false )
-
-object MyRouteEvents {
-    private val _events = MutableSharedFlow<RouteEvent>(
-        replay = 0,
-        extraBufferCapacity = 2,
-        onBufferOverflow = BufferOverflow.DROP_OLDEST
-    )
-    val events: SharedFlow<RouteEvent> = _events.asSharedFlow()
-
-    fun send(event: RouteEvent) {
-        _events.tryEmit(event)
-    }
-}
 @Serializable
-data object HomeNav : NavKey
+sealed interface MyAppNavKey : NavKey
 @Serializable
 data object LoginNav : NavKey
 @Serializable
-sealed interface MyAppNavKey : NavKey
+data object HomeNav : NavKey
+@Serializable
+data object ContactsNav : NavKey
+@Serializable
+data object AlbumNav : NavKey
+@Serializable
+data object DialogNav : NavKey
+@Serializable
+data object WheelNav : NavKey
+@Serializable
+data object SuspendWindowNav : NavKey
+@Serializable
+data object BigimageNav : NavKey
+@Serializable
+data object DrawNav : NavKey
+@Serializable
+data object WriteWordNav : NavKey
+@Serializable
+data object CustomViewNav : NavKey
+@Serializable
+data object HeartViewNav : NavKey
+@Serializable
+data object TempViewNav : NavKey
+@Serializable
+data object BpViewNav : NavKey
+@Serializable
+data object SleepViewNav : NavKey
+@Serializable
+data object SportViewNav : NavKey
+@Serializable
+data object EcgViewNav : NavKey
+@Serializable
+data object RecordAudioViewNav : NavKey
+@Serializable
+data object RefreshViewNav : NavKey
 
