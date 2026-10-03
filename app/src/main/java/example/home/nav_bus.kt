@@ -1,6 +1,5 @@
 package example.home
 
-import androidx.navigation3.runtime.NavKey
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -8,7 +7,8 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.serialization.Serializable
 
 
-data class RouteEvent (val route: String? = null, val key : NavKey?, val isBack: Boolean = false )
+open class RouteEvent (val route: String? = null, val key : MyNavKey?, val isBack: Boolean = false )
+data object LoginSucceed : RouteEvent(key = null)
 
 object MyRouteEvents {
     private val _events = MutableSharedFlow<RouteEvent>(

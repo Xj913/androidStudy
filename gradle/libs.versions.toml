@@ -8,7 +8,7 @@ ksp = "2.3.11"
 kotlin = "2.4.20"
 room = "2.5.1"
 lifecycle = "2.11.0"
-nav3Core = "1.1.7"
+nav3Core = "1.2.0"
 ktxSerCore = "1.11.0"
 
 [libraries]

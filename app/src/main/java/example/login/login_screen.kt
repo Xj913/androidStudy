@@ -15,11 +15,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation3.runtime.result.LocalResultEventBus
 import example.base.CpgDialog
+import example.home.LoginSucceed
+import example.home.MyRouteEvents
 import example.home.RouteEvent
 
 @Composable
 fun LoginScreen(vml: LoginModel = hiltViewModel(), evt: (et : RouteEvent) -> Unit = {}) {
+    val resultBus = LocalResultEventBus.current
+
     val phone = vml.phone.collectAsStateWithLifecycle()
     Column(modifier = Modifier.padding(all = 16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         OutlinedTextField(
@@ -42,7 +47,11 @@ fun LoginScreen(vml: LoginModel = hiltViewModel(), evt: (et : RouteEvent) -> Uni
 
         LaunchedEffect(0) {
             while (vml.loginState.value == true) {
-
+                resultBus.sendResult(
+                    resultKey = "from",
+                    result = "login"
+                )
+                MyRouteEvents.send(LoginSucceed)
             }
         }
     }

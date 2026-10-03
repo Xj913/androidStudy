@@ -13,6 +13,8 @@ import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
+import androidx.navigation3.runtime.result.rememberResultEventBus
+import androidx.navigation3.runtime.result.rememberResultEventBusNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import example.login.LoginScreen
 import kotlinx.serialization.Serializable
@@ -20,13 +22,14 @@ import kotlinx.serialization.Serializable
 
 @Composable
 fun HomeApp() {
-    val backStack = rememberNavBackStack(LoginNav)
+    val backStack = rememberNavBackStack(MyNavKey.LoginNav)
     NavDisplay(
         backStack = backStack,
         onBack = { backStack.removeLastOrNull() },
         entryDecorators = listOf(
             rememberSaveableStateHolderNavEntryDecorator(),
             rememberViewModelStoreNavEntryDecorator(),
+            rememberResultEventBusNavEntryDecorator()
         ),
         entryProvider = entryProvider {
            entryBuilder(backStack)
@@ -38,6 +41,12 @@ fun HomeApp() {
     LaunchedEffect(backStack, lifecycleOwner) {
         lifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
             MyRouteEvents.events.collect {
+                when(it) {
+                    is LoginSucceed -> {
+                        backStack.clear();
+                        backStack.add(MyNavKey.HomeNav)
+                    }
+                }
                 route(backStack, it)
             }
         }
@@ -52,10 +61,10 @@ fun route(backStack: NavBackStack<NavKey>, e : RouteEvent) {
 
 
 fun EntryProviderScope<NavKey>.entryBuilder(backStack: NavBackStack<NavKey>) {
-    entry(key = HomeNav) {
+    entry(key = MyNavKey.HomeNav) {
         HomeScreen()
     }
-    entry(key = LoginNav) {
+    entry(key = MyNavKey.LoginNav) {
         LoginScreen(evt = { route(backStack, it) })
     }
 }

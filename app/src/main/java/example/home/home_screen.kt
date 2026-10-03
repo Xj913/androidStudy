@@ -25,6 +25,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation3.runtime.result.LocalResultEventBus
+import androidx.navigation3.runtime.result.ResultEffect
 import com.xiajun.app.MyApp.R
 import com.xiajun.base.DividerHorizontal16
 import com.xiajun.base.myitem
@@ -35,6 +37,11 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun HomeScreen(vml: HomeViewModel = hiltViewModel()) {
+    val resultBus = LocalResultEventBus.current
+    ResultEffect<String>(resultKey = "from") { f ->
+        vml.logI("f", f)
+        resultBus.removeResult(resultKey = "from")
+    }
     val coroutineScope = rememberCoroutineScope()
     val pagerState = rememberPagerState(pageCount = {
         5

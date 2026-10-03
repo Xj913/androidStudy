@@ -23,20 +23,19 @@ abstract class BaseCompoModel : ViewModel() {
         Log.e(TAG, "onCleared")
     }
 
-
-    protected fun showToast(str: CharSequence) {
+    fun showToast(str: CharSequence) {
         ToastManager.showToast(getApp(), str)
     }
 
-    protected fun showToast(@StringRes resId: Int) {
+    fun showToast(@StringRes resId: Int) {
         ToastManager.showToast(getApp(), resId)
     }
 
-    protected fun logI(tag: String, msg: String) {
+    fun logI(tag: String, msg: String) {
         LogManager.logI(tag, msg)
     }
 
-    protected fun logE(tag: String, msg: String) {
+    fun logE(tag: String, msg: String) {
         LogManager.logE(tag, msg)
     }
 }

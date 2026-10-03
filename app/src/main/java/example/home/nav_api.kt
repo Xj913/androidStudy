@@ -1,50 +1,46 @@
 package example.home
 
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavKey
-import com.xiajun.ui.MyDimens
 import kotlinx.serialization.Serializable
 
 @Serializable
-sealed interface MyAppNavKey : NavKey
-@Serializable
-data object LoginNav : NavKey
-@Serializable
-data object HomeNav : NavKey
-@Serializable
-data object ContactsNav : NavKey
-@Serializable
-data object AlbumNav : NavKey
-@Serializable
-data object DialogNav : NavKey
-@Serializable
-data object WheelNav : NavKey
-@Serializable
-data object SuspendWindowNav : NavKey
-@Serializable
-data object BigimageNav : NavKey
-@Serializable
-data object DrawNav : NavKey
-@Serializable
-data object WriteWordNav : NavKey
-@Serializable
-data object CustomViewNav : NavKey
-@Serializable
-data object HeartViewNav : NavKey
-@Serializable
-data object TempViewNav : NavKey
-@Serializable
-data object BpViewNav : NavKey
-@Serializable
-data object SleepViewNav : NavKey
-@Serializable
-data object SportViewNav : NavKey
-@Serializable
-data object EcgViewNav : NavKey
-@Serializable
-data object RecordAudioViewNav : NavKey
-@Serializable
-data object RefreshViewNav : NavKey
-
+sealed class MyNavKey : NavKey {
+    @Serializable
+    data object LoginNav : MyNavKey()
+    @Serializable
+    data object HomeNav : MyNavKey()
+    @Serializable
+    data object ContactsNav : MyNavKey()
+    @Serializable
+    data object AlbumNav : MyNavKey()
+    @Serializable
+    data object DialogNav : MyNavKey()
+    @Serializable
+    data object WheelNav : MyNavKey()
+    @Serializable
+    data object SuspendWindowNav : MyNavKey()
+    @Serializable
+    data object BigimageNav : MyNavKey()
+    @Serializable
+    data object DrawNav : MyNavKey()
+    @Serializable
+    data object WriteWordNav : MyNavKey()
+    @Serializable
+    data object CustomViewNav : MyNavKey()
+    @Serializable
+    data object HeartViewNav : MyNavKey()
+    @Serializable
+    data object TempViewNav : MyNavKey()
+    @Serializable
+    data object BpViewNav : MyNavKey()
+    @Serializable
+    data object SleepViewNav : MyNavKey()
+    @Serializable
+    data object SportViewNav : MyNavKey()
+    @Serializable
+    data object EcgViewNav : MyNavKey()
+    @Serializable
+    data object RecordAudioViewNav : MyNavKey()
+    @Serializable
+    data object RefreshViewNav : MyNavKey()
+}
