@@ -12,8 +12,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -52,8 +56,8 @@ fun HomeScreen(vml: HomeViewModel = hiltViewModel()) {
             HorizontalPager(state = pagerState) { page ->
                 when(page) {
                     0 -> MyViewScreen(vml)
-                    1 -> GestureScreen(vml)
-                    2 -> ListScreen(vml)
+                    1 -> ListScreen(vml)
+                    2 -> GestureScreen(vml)
                     3 -> OriginalScreen(vml)
                     4 -> OtherScreen(vml)
                 }
@@ -167,35 +171,45 @@ fun OnItem(s: String, routeEvent: RouteEvent) {
 
 @Composable
 fun MyViewScreen(vml: HomeViewModel) {
-    Column(modifier = Modifier.fillMaxWidth().padding(MyDimens.MarginW16)) {
-        OnItem("contacts", RouteEvent(key = ContactsNav))
-        OnItem("album", RouteEvent(key = AlbumNav))
-        OnItem("弹窗", RouteEvent(key = DialogNav))
-        OnItem("wheel", RouteEvent(key = WheelNav))
-        OnItem("悬浮窗", RouteEvent(key = SuspendWindowNav))
-        OnItem("bigimages", RouteEvent(key = BigimageNav))
-        OnItem("画图测试", RouteEvent(key = DrawNav))
-        OnItem("写字板", RouteEvent(key = WriteWordNav))
-        OnItem("customviews", RouteEvent(key = CustomViewNav))
-        OnItem("心率图", RouteEvent(key = HeartViewNav))
-        OnItem("体温图", RouteEvent(key = TempViewNav))
-        OnItem("血压图", RouteEvent(key = BpViewNav))
-        OnItem("睡眠图", RouteEvent(key = SleepViewNav))
-        OnItem("运动图", RouteEvent(key = SportViewNav))
-        OnItem("心电图", RouteEvent(key = EcgViewNav))
-        OnItem("录音动画图", RouteEvent(key = RecordAudioViewNav))
-        OnItem("自定义下拉刷新", RouteEvent(key = RefreshViewNav))
-        OnItem("", RouteEvent(key = ContactsNav))
-        OnItem("", RouteEvent(key = ContactsNav))
-        OnItem("", RouteEvent(key = ContactsNav))
-        OnItem("", RouteEvent(key = ContactsNav))
-
+    Column(modifier = Modifier.fillMaxWidth().padding(MyDimens.MarginW16).
+    verticalScroll(rememberScrollState())) {
+        OnItem("contacts", RouteEvent(key = MyNavKey.ContactsNav))
+        OnItem("album", RouteEvent(key = MyNavKey.AlbumNav))
+        OnItem("弹窗", RouteEvent(key = MyNavKey.DialogNav))
+        OnItem("wheel", RouteEvent(key = MyNavKey.WheelNav))
+        OnItem("悬浮窗", RouteEvent(key = MyNavKey.SuspendWindowNav))
+        OnItem("bigimages", RouteEvent(key = MyNavKey.BigimageNav))
+        OnItem("画图测试", RouteEvent(key = MyNavKey.DrawNav))
+        OnItem("写字板", RouteEvent(key = MyNavKey.WriteWordNav))
+        OnItem("customviews", RouteEvent(key = MyNavKey.CustomViewNav))
+        OnItem("心率图", RouteEvent(key = MyNavKey.HeartViewNav))
+        OnItem("体温图", RouteEvent(key = MyNavKey.TempViewNav))
+        OnItem("血压图", RouteEvent(key = MyNavKey.BpViewNav))
+        OnItem("睡眠图", RouteEvent(key = MyNavKey.SleepViewNav))
+        OnItem("运动图", RouteEvent(key = MyNavKey.SportViewNav))
+        OnItem("心电图", RouteEvent(key = MyNavKey.EcgViewNav))
+        OnItem("录音动画图", RouteEvent(key = MyNavKey.RecordAudioViewNav))
+        OnItem("自定义下拉刷新", RouteEvent(key = MyNavKey.RefreshViewNav))
     }
 }
 
 @Composable
 fun ListScreen(vml: HomeViewModel) {
-    TODO("Not yet implemented")
+    val llState = rememberLazyListState()
+    LazyColumn(state = llState) {
+        items(
+            vml.mList.size, key = { vml.mList[it].id },
+            contentType = { vml.mList[it] }
+        ) {
+            for (m in vml.mList)
+                when (m) {
+                    is Myitem -> {
+                        Text(text = "text-${m.id}",
+                            modifier = Modifier.fillMaxWidth().height(50.dp))
+                    }
+                }
+        }
+    }
 }
 
 @Composable

@@ -54,14 +54,14 @@ class HomeListFragment : BaseNoPagerLazyRefreshFragment() {
 
     private fun loadMore() {
         pageNo++
-        val t= getData()
+        val t= getData(pageNo)
         bd.refreshLayout.complete()
         onDataResult(t)
     }
 
     private fun refresh() {
         pageNo = 1
-        val t= getData()
+        val t= getData(pageNo)
         bd.refreshLayout.complete()
         onDataResult(t)
     }
@@ -80,10 +80,9 @@ class HomeListFragment : BaseNoPagerLazyRefreshFragment() {
             bd.refreshLayout.setEnableLoadMore(true)
             bd.refreshLayout.setNoMoreData(false)
         }
-
     }
 
-    private fun getData(): ArrayList<Int> {
+    private fun getData(pageNo: Int): ArrayList<Int> {
         val list = arrayListOf<Int>()
         if (pageNo == 4)
             return list
@@ -92,5 +91,4 @@ class HomeListFragment : BaseNoPagerLazyRefreshFragment() {
         }
         return list
     }
-
 }

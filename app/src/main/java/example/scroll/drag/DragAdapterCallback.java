@@ -57,7 +57,7 @@ public class DragAdapterCallback extends ItemTouchHelper.Callback {
         for (Integer i : mAdapter.getList()) {
             Log.e(TAG, "" + i);
         }
-        //这个方法同时也会移动数据源在list集合中的位置
+        //改变数据在list的位置
         mAdapter.notifyItemMoved(from, to);
         mAdapter.setOnItemClickListener(viewHolder.itemView, to);
         mAdapter.setOnItemClickListener(target.itemView, from);

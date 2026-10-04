@@ -26,7 +26,7 @@ class LoginModel @Inject constructor() : BaseCompoModel() {
     val phone = MutableStateFlow("")
     val password = mutableStateOf("")
     var user = MutableLiveData<UserInfo>()
-    val loginState = MutableLiveData<Boolean>()
+    val loginState = mutableStateOf(false)
 
     init {
 
