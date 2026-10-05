@@ -23,4 +23,4 @@ class HomeViewModel @Inject constructor() : BaseCompoModel() {
     val mList = mutableStateListOf<Myitem>()
 }
 
-data class Myitem(val id: Int)
+data class Myitem(var id: Int)
