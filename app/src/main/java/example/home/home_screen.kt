@@ -44,6 +44,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation3.runtime.result.LocalResultEventBus
 import androidx.navigation3.runtime.result.ResultEffect
+import com.lx.compose.refresh.SmartSwipeRefresh
+import com.lx.compose.refresh.rememberSmartSwipeRefreshState
 import com.xiajun.app.MyApp.R
 import com.xiajun.base.DividerHorizontal16
 import com.xiajun.base.myitem
@@ -76,7 +78,6 @@ fun HomeScreen(vml: HomeViewModel = hiltViewModel()) {
                     4 -> OtherScreen(vml)
                 }
             }
-
         }
         DividerHorizontal16()
         Row(modifier = Modifier.fillMaxWidth().height(55.dp).background(color = Color.White)) {
@@ -222,6 +223,17 @@ fun ListScreen(vml: HomeViewModel) {
     val statew = remember {
         AnchoredDraggableState(DragValue.Start, anchors = anchors)
     }
+    val scope = rememberCoroutineScope()
+    val state = rememberSmartSwipeRefreshState()
+    SmartSwipeRefresh(
+        state = state,
+        onRefresh = {
+            vml.refresh()
+        },
+        onLoadMore = {
+            vml.loadMore()
+        }
+    ) {
     LazyColumn(state = llState) {
         items(
             vml.mList.size, key = { vml.mList[it].id },
@@ -266,6 +278,20 @@ fun ListScreen(vml: HomeViewModel) {
                 }
         }
     }
+    }
+    LaunchedEffect(vml.mRefreshState.value) {
+        when(vml.mRefreshState.value) {
+            RefreshState.Refreshing -> {}
+            RefreshState.LoadingMore -> {}
+            RefreshState.RefreshedNoData, RefreshState.LoadedMoreNoMoreData -> state.finish(true)
+            RefreshState.RefreshedHasMoreData, RefreshState.LoadedMoreHasMoreData -> state.finish(false)
+        }
+    }
+}
+
+@Composable
+fun GestureScreen(vml: HomeViewModel) {
+    TODO("Not yet implemented")
 }
 
 @Composable
@@ -278,10 +304,6 @@ fun OtherScreen(vml: HomeViewModel) {
     TODO("Not yet implemented")
 }
 
-@Composable
-fun GestureScreen(vml: HomeViewModel) {
-    TODO("Not yet implemented")
-}
 
 @Preview(showBackground = true)
 @Composable()

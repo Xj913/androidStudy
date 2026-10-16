@@ -33,6 +33,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "my-project"
 include("app", "lib_custom_view")
+include("lib_collapsing_topbar")
 include("lib_common")
 include("lib_media_picker")
 include("lib_video_record")
