@@ -1,5 +1,6 @@
 [versions]
 compileSdk = "37"
+composeSmartRefresh = "1.0.2"
 minSdk = "24"
 targetSdk = "36"
 ndk = "29.0.14206865"
@@ -10,6 +11,7 @@ room = "2.5.1"
 lifecycle = "2.11.0"
 nav3Core = "1.2.0"
 ktxSerCore = "1.11.0"
+exifinterface = "1.4.2"
 
 [libraries]
 junit = "junit:junit:4.13.2"
@@ -78,10 +80,12 @@ glide-integration = "com.github.bumptech.glide:okhttp3-integration:5.0.9"
 glide-compiler = "com.github.bumptech.glide:compiler:5.0.9"
 refresh-layout = "io.github.scwang90:refresh-layout-kernel:2.1.1"
 photoview = "com.github.chrisbanes:PhotoView:2.1.4"
+exifinterface = { group = "androidx.exifinterface", name = "exifinterface", version.ref = "exifinterface" }
+compose-smart-refresh = { module = "io.github.lx-0713:compose-smart-refresh", version.ref = "composeSmartRefresh" }
 
 [bundles]
 base = ["org-annotation", "and-annotation", "javax-annotation", "ktx-serialization-core", "ktx-serialization-json", "ktx-coroutines-android", "ax-core", "prefrence-ktx", "splite", "activity",
-    "appcompat", "fragment", "fragment-ktx", "recyclerview", "cardview", "legacy", "vectordrawable", "constraintlayout", "material", "gson", "coordinatorlayout", "palette-ktx"]
+    "appcompat", "fragment", "fragment-ktx", "recyclerview", "cardview", "legacy", "vectordrawable", "constraintlayout", "material", "gson", "coordinatorlayout", "palette-ktx", "exifinterface"]
 compose = ["material3", "foundation", "compose-ui", "acyivity-compose", "hilt-navigation-compose", "viewmodel-compose", "viewmodel", "viewmodel-common",
     "livedata", "livedata-core", "lifecycle-runtime", "lifecycle-rea", "compose-livedata", "lifecycle-runtime-compose", "compose-rxjava3","navigation3-runtime",
     "navigation3-ui", "viewmodel-nav3", "hilt"]

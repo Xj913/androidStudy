@@ -1,11 +1,11 @@
 package com.xiajun.utils;
 
-import android.media.ExifInterface;
+import androidx.exifinterface.media.ExifInterface;
 import android.util.Log;
 
 import java.io.IOException;
 
-public class PictureUtil {
+public final  class PictureUtil {
 
     /**
      * 读取图片属性：旋转的角度

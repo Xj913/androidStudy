@@ -163,7 +163,7 @@ dependencies {
     implementation(libs.bundles.glide)
     annotationProcessor(libs.glide.compiler)
     implementation(libs.photoview)
-    implementation("io.github.lx-0713:compose-smart-refresh:1.0.2")
+    implementation(libs.compose.smart.refresh)
     implementation(projects.libCommon)
     implementation(projects.libCustomView)
     implementation(projects.libMediaPicker)

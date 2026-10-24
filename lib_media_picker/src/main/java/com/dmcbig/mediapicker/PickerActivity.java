@@ -33,11 +33,6 @@ import com.dmcbig.mediapicker.utils.ScreenUtils;
 
 import java.util.ArrayList;
 
-
-/**
- * Created by dmcBig on 2017/6/9.
- */
-
 public class PickerActivity extends AppCompatActivity implements DataCallback, View.OnClickListener {
 
     Intent argsIntent;

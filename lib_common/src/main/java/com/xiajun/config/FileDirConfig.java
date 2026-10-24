@@ -25,5 +25,5 @@ public class FileDirConfig {
      */
     public static final String DIR_VIDEO = DIR_APP + "/video";
 
-    public static final String FILE_PROVIDER_AUTHORITY = "com.style.file.provider";
+    public static final String FILE_PROVIDER_AUTHORITY = "com.xiajun.file.provider";
 }

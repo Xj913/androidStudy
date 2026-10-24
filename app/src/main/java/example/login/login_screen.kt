@@ -22,7 +22,7 @@ import example.home.MyRouteEvents
 import example.home.RouteEvent
 
 @Composable
-fun LoginScreen(vml: LoginModel = hiltViewModel(), evt: (et : RouteEvent) -> Unit = {}) {
+fun LoginScreen(vml: LoginViewModel = hiltViewModel(), evt: (et : RouteEvent) -> Unit = {}) {
     val resultBus = LocalResultEventBus.current
 
     val phone = vml.phone.collectAsStateWithLifecycle()
@@ -60,7 +60,7 @@ fun LoginScreen(vml: LoginModel = hiltViewModel(), evt: (et : RouteEvent) -> Uni
 
 @Preview(showBackground = true)
 @Composable()
-fun Preview(){
+fun Pre(){
   LoginScreen()
 }
 

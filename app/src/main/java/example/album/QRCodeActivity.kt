@@ -1,4 +1,4 @@
-package example.activity;
+package example.album
 
 import android.Manifest
 import android.content.Intent
@@ -10,9 +10,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.zxing.activity.CaptureActivity
 import com.google.zxing.encoding.EncodingHandler
-import com.xiajun.base.BaseTitleBarActivity
 import com.xiajun.app.MyApp.R
 import com.xiajun.app.MyApp.databinding.ActivityQrCodeScanBinding
+import com.xiajun.base.BaseTitleBarActivity
 
 class QRCodeActivity : BaseTitleBarActivity() {
     private lateinit var bd: ActivityQrCodeScanBinding

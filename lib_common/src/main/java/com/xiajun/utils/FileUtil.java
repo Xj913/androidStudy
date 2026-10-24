@@ -162,13 +162,12 @@ public class FileUtil {
 
     public static File UriToFile(Context context, Uri uri) {
         String res = UriToRealFilePath(context, uri);
-        File file = new File(res);
-        return file;
+        return new File(res);
     }
 
     public static String UriToRealFilePath(Context context, Uri uri) {
         String res = null;
-        String[] proj = {MediaStore.Images.Media.DATA};
+        String[] proj = { MediaStore.Images.Media.DATA };
         Cursor cursor = context.getContentResolver().query(uri, proj, null, null, null);
         if (cursor.moveToFirst()) {
             int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);

@@ -1,9 +1,5 @@
 package com.dmcbig.mediapicker;
 
-/**
- * Created by dmcBig on 2017/6/9.
- */
-
 public class PickerConfig {
     public static final String LOG_TAG = "MediaPicker";
 

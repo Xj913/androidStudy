@@ -21,7 +21,7 @@ import javax.net.ssl.HttpsURLConnection
 import kotlin.experimental.and
 
 @HiltViewModel
-class LoginModel @Inject constructor() : BaseCompoModel() {
+class LoginViewModel @Inject constructor() : BaseCompoModel() {
 
     val phone = MutableStateFlow("")
     val password = mutableStateOf("")

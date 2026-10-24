@@ -2,15 +2,11 @@ package com.xiajun.utils;
 
 /**
  * 16进制数的字符串转字节数组。
- * 注意：16进制数的字符串都是两个字符,譬如010203090A0BFF
  */
 public class BytesHexStrTranslate {
 
-    /*
-     * 16进制字符串转字节数组
-     */
     public static byte[] hexString2Bytes(String hex) {
-        if ((hex == null) || (hex.equals(""))) {
+        if ((hex == null) || (hex.isEmpty())) {
             return null;
         } else if (hex.length() % 2 != 0) {
             return null;
@@ -28,14 +24,12 @@ public class BytesHexStrTranslate {
 
     }
 
-    /*
-     * 字符转换为字节:asc码转换为数字
-     */
+    /* 字符转换为字节:asc码转换为数字 */
     private static byte charToByte(char c) {
         return (byte) "0123456789ABCDEF".indexOf(c);
     }
 
-    /*16进制数的byte数组转String*/
+    /* 16进制数的byte数组转String */
     public static String bytes2HexString(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
         String hexString;

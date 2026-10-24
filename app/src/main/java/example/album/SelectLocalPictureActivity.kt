@@ -32,9 +32,6 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.io.File
 
-/**
- * Created by xiajun on 2016/10/8.
- */
 public class SelectLocalPictureActivity : BaseTitleBarActivity() {
 
     lateinit var bd: ActivitySelectLocalPictureBinding;
@@ -152,7 +149,7 @@ public class SelectLocalPictureActivity : BaseTitleBarActivity() {
                     }
                 CODE_TAKE_CAMERA ->
                     if (photoFile!!.exists()) {
-                        DeviceInfoUtil.notifyUpdateGallary(this, photoFile);// 通知系统更新相册
+                        DeviceInfoUtil.scanFile(this, photoFile);// 通知系统更新相册
                         var filePath = photoFile?.getAbsolutePath();// 获取相片的保存路径
                         var size = paths.size;
                         if (size >= 10) {

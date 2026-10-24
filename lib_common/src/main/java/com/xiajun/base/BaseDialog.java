@@ -9,10 +9,6 @@ import android.view.ContextThemeWrapper;
 
 import com.xiajun.toast.SmartToast;
 
-/**
- * Created by xiajun on 2018/6/8.
- */
-
 public abstract class BaseDialog extends Dialog {
     private SmartToast mToast;
 

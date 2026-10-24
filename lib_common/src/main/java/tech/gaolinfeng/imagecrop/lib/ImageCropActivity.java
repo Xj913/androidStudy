@@ -1,6 +1,7 @@
 package tech.gaolinfeng.imagecrop.lib;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,10 +20,8 @@ import com.xiajun.lib.common.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
-/**
- * Created by gaolf on 15/12/21.
- */
 public class ImageCropActivity extends Activity {
     private static final String TAG = "ImageCropActivity";
     private static final String REQUEST_IMAGE_PATH = "REQUEST_IMAGE_PATH";
@@ -41,7 +40,7 @@ public class ImageCropActivity extends Activity {
      * @param maxSize       裁剪后图片最大大小 默认100kb，单位kb
      * @return
      */
-    public static Intent createIntent(Activity from, String imageFilePath, String targetPath, String cropRect, boolean cropInCircle, int maxSize) {
+    public static Intent createIntent(Context from, String imageFilePath, String targetPath, String cropRect, boolean cropInCircle, int maxSize) {
         Intent intent = new Intent(from, ImageCropActivity.class);
         intent.putExtra(REQUEST_IMAGE_PATH, imageFilePath);
         intent.putExtra(REQUEST_TARGET_PATH, targetPath);
@@ -126,8 +125,6 @@ public class ImageCropActivity extends Activity {
         cropImageView.setImageBitmap(bitmap);
         cropImageView.setEdge(cropRect);
         cropImageView.startCrop();
-
-
     }
 
     private static class CropTask extends AsyncTask<Void, Void, Integer> {
@@ -178,26 +175,16 @@ public class ImageCropActivity extends Activity {
                 inSampleSize *= 2;
             }
 
-            Bitmap bmp;
+            Bitmap bmp = null;
             try {
-                if (Build.VERSION.SDK_INT > 9) {
-                    BitmapRegionDecoder decoder = BitmapRegionDecoder.newInstance(inPath, true);
+                    BitmapRegionDecoder decoder;
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                        decoder = BitmapRegionDecoder.newInstance(inPath);
+                    } else
+                        decoder = BitmapRegionDecoder.newInstance(inPath, true);
                     BitmapFactory.Options options = new BitmapFactory.Options();
                     options.inSampleSize = inSampleSize;
                     bmp = decoder.decodeRegion(mappedCropRect, options);
-                } else {
-                    // sdk < 10的系统不支持BitmapRegionDecoder方法
-                    // 把原图从系统中读取进来，进行内存裁剪
-                    BitmapFactory.Options options = new BitmapFactory.Options();
-                    options.inSampleSize = inSampleSize;
-                    Bitmap originBitmap = BitmapFactory.decodeFile(inPath, options);
-                    bmp = Bitmap.createBitmap(originBitmap,
-                            mappedCropRect.left, mappedCropRect.top,
-                            mappedCropRect.width(), mappedCropRect.height());
-                    if (originBitmap != bmp) {
-                        originBitmap.recycle();
-                    }
-                }
             } catch (Exception e) {
                 e.printStackTrace();
                 return FAIL_CROP;
@@ -228,7 +215,7 @@ public class ImageCropActivity extends Activity {
                 fos.flush();
                 //ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());//把压缩后的数据baos存放到ByteArrayInputStream中
                 //Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);//把ByteArrayInputStream数据生成图片
-            } catch (java.io.IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
                 return FAIL_OUT_PATH;
             } finally {

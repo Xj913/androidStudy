@@ -43,4 +43,8 @@ sealed class MyNavKey : NavKey {
     data object RecordAudioViewNav : MyNavKey()
     @Serializable
     data object RefreshViewNav : MyNavKey()
+    @Serializable
+    data object ScrollingCollapsingNav : MyNavKey()
+    @Serializable
+    data object PikerPhotoNav : MyNavKey()
 }

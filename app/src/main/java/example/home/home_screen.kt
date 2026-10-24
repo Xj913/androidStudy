@@ -291,17 +291,20 @@ fun ListScreen(vml: HomeViewModel) {
 
 @Composable
 fun GestureScreen(vml: HomeViewModel) {
-    TODO("Not yet implemented")
+    Column(
+        modifier = Modifier.fillMaxWidth().padding(MyDimens.MarginW16)
+            .verticalScroll(rememberScrollState())
+    ) {
+        OnItem("scroll collapsing", RouteEvent(key = MyNavKey.ScrollingCollapsingNav))
+    }
 }
 
 @Composable
 fun OriginalScreen(vml: HomeViewModel) {
-    TODO("Not yet implemented")
 }
 
 @Composable
 fun OtherScreen(vml: HomeViewModel) {
-    TODO("Not yet implemented")
 }
 
 
