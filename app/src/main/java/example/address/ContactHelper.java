@@ -1,24 +1,22 @@
 package example.address;
 
-
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.util.Log;
-
 import com.xiajun.utils.FormatUtil;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.TimeZone;
 
 public class ContactHelper {
     private static final String TAG = "ContactHelper";
 
-    private static String[] RINGTONE_PROJECTION = {
+    private static final String[] RINGTONE_PROJECTION = {
             MediaStore.Audio.Media._ID
             , MediaStore.Audio.Media.TITLE
             , MediaStore.Audio.Media.DATA
@@ -35,11 +33,11 @@ public class ContactHelper {
             if (cur.getCount() > 0) {
                 MyRingtone ringtone;
                 while (cur.moveToNext()) {
-                    String id = cur.getString(cur.getColumnIndex(MediaStore.Audio.Media._ID));
-                    String name = cur.getString(cur.getColumnIndex(MediaStore.Audio.Media.TITLE));
-                    String path = cur.getString(cur.getColumnIndex(MediaStore.Audio.Media.DATA));
-                    String is_ringtone = cur.getString(cur.getColumnIndex(MediaStore.Audio.Media.IS_RINGTONE));
-                    String is_notification = cur.getString(cur.getColumnIndex(MediaStore.Audio.Media.IS_NOTIFICATION));
+                    String id = cur.getString(cur.getColumnIndexOrThrow(MediaStore.Audio.Media._ID));
+                    String name = cur.getString(cur.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE));
+                    String path = cur.getString(cur.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA));
+                    String is_ringtone = cur.getString(cur.getColumnIndexOrThrow(MediaStore.Audio.Media.IS_RINGTONE));
+                    String is_notification = cur.getString(cur.getColumnIndexOrThrow(MediaStore.Audio.Media.IS_NOTIFICATION));
                     ringtone = new MyRingtone(id, name, path, is_ringtone, is_notification);
                     Log.e(TAG, ringtone.toString());
                     list.add(ringtone);
@@ -60,24 +58,24 @@ public class ContactHelper {
             , ContactsContract.CommonDataKinds.Phone.NUMBER
     };
 
-    public static List<UploadPhone> getContacts(Context context) {
-        List<UploadPhone> contacts = new ArrayList<>();
+    public static ArrayList<UploadPhone> getContacts(Context context) {
+        ArrayList<UploadPhone> contacts = new ArrayList<>();
         ContentResolver cr = context.getContentResolver();
         Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI, Contacts_PROJECTION, null, null, null);
         if (cur != null) {
             if (cur.getCount() > 0) {
                 while (cur.moveToNext()) {
                     UploadPhone contact = new UploadPhone();
-                    String id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
-                    String name = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                    String id = cur.getString(cur.getColumnIndexOrThrow(ContactsContract.Contacts._ID));
+                    String name = cur.getString(cur.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
                     contact.setName(name);
-                    if (Integer.parseInt(cur.getString(cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
+                    if (Integer.parseInt(cur.getString(cur.getColumnIndexOrThrow(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
                         Cursor pCur = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, Phone_PROJECTION, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?", new String[]{id}, null);
                         while (pCur.moveToNext()) {
-                            String phone = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                            String phone = pCur.getString(pCur.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
                             phone = phone.replace("-", "").replace("-", "").replace(" ", "").trim();
                             if (phone.length() >= 11) {
-                                phone = phone.substring(phone.length() - 11, phone.length());
+                                phone = phone.substring(phone.length() - 11);
                                 if (FormatUtil.isMobileNum(phone)) {
                                     if (null == contact.getTelephone()) {
                                         boolean inResult = false;
@@ -106,7 +104,6 @@ public class ContactHelper {
 
     public List<MyCallLog> queryCalls(Context context) {
         List<MyCallLog> calls = new ArrayList<>();
-
        /* Cursor cursor = context.getContentResolver().query(CallLog.Calls.CONTENT_URI, null, null, null, CallLog.Calls.DEFAULT_SORT_ORDER);
         while (cursor.moveToNext()) {
             MyCallLog call = new MyCallLog();
@@ -125,10 +122,9 @@ public class ContactHelper {
     }
 
     public String formatTime(long date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd   HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd   HH:mm:ss", Locale.getDefault());
         sdf.setTimeZone(TimeZone.getTimeZone("GMT+8"));
         // Date currentTime = new Date(java.lang.System.currentTimeMillis());
-        String dateString = sdf.format(date);
-        return dateString;
+        return sdf.format(date);
     }
 }

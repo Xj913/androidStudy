@@ -1,21 +1,23 @@
 package example.music.data;
 
-import android.app.LoaderManager;
 import android.content.Context;
-import android.content.CursorLoader;
-import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
+
 import java.util.ArrayList;
 
 import example.music.entity.MediaFolder;
 import example.music.entity.MediaBean;
 
-public class AudioLoader extends BaseMediaLoader implements LoaderManager.LoaderCallbacks {
+public class AudioLoader extends BaseMediaLoader implements LoaderManager.LoaderCallbacks<Cursor> {
     String[] MEDIA_PROJECTION = {
             MediaStore.Files.FileColumns.DATA,
             MediaStore.Files.FileColumns.DISPLAY_NAME,
@@ -33,11 +35,12 @@ public class AudioLoader extends BaseMediaLoader implements LoaderManager.Loader
         this.mLoader = loader;
     }
 
+    @NonNull
     @Override
     public Loader onCreateLoader(int picker_type, Bundle bundle) {
         String selection = MediaStore.Files.FileColumns.MEDIA_TYPE + "=" + MediaStore.Files.FileColumns.MEDIA_TYPE_AUDIO;
         Uri queryUri = MediaStore.Files.getContentUri("external");
-        CursorLoader cursorLoader = new CursorLoader(
+        return new CursorLoader(
                 mContext,
                 queryUri,
                 MEDIA_PROJECTION,
@@ -45,13 +48,11 @@ public class AudioLoader extends BaseMediaLoader implements LoaderManager.Loader
                 null, // Selection args (none).
                 MediaStore.Files.FileColumns.DATE_ADDED + " DESC" // Sort order.
         );
-        return cursorLoader;
     }
 
     @Override
-    public void onLoadFinished(Loader loader, Object o) {
+    public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor cursor) {
         ArrayList<MediaFolder> folders = new ArrayList<>();
-        Cursor cursor = (Cursor) o;
         Log.e("VideoLoader", cursor.getCount() + "数量数量");
         while (cursor.moveToNext()) {
             String path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA));
@@ -80,7 +81,7 @@ public class AudioLoader extends BaseMediaLoader implements LoaderManager.Loader
 
 
     @Override
-    public void onLoaderReset(Loader loader) {
+    public void onLoaderReset(@NonNull Loader loader) {
 
     }
 }

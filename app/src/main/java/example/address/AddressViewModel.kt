@@ -1,80 +1,71 @@
-package example.address;
+package example.address
 
-import androidx.lifecycle.MutableLiveData;
-import android.media.MediaPlayer;
+import android.media.MediaPlayer
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import com.xiajun.base.AdapterRefresh
+import com.xiajun.base.BaseViewModel
+import com.xiajun.utils.PinyinUtils
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import java.io.IOException
+import java.util.Collections
+import kotlin.collections.get
+import kotlin.text.clear
 
-import com.xiajun.base.BaseViewModel;
-import com.xiajun.utils.PinyinUtils;
+class AddressViewModel : BaseViewModel() {
+    var dataList: ArrayList<UploadPhone> = ArrayList()
+    val mHeaderList = LinkedHashMap<Int, String?>()
+    var contacts: MutableLiveData<AdapterRefresh> = MutableLiveData<AdapterRefresh>()
+    var player: MediaPlayer? = null
 
-import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
-
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
-
-
-/**
- * Created by xiajun on 2018/4/29.
- */
-
-public class AddressViewModel extends BaseViewModel {
-    MutableLiveData<List<UploadPhone>> contacts = new MutableLiveData<>();
-    private MediaPlayer player;
-
-    public void getData() {
-
-        Disposable d = Observable.just("").map(param -> {
-            List<UploadPhone> list = ContactHelper.getContacts(getApp());
-                    int size = list.size();
-                    for (int i = 0; i < size; i++) {
-                        String sortLetter = PinyinUtils.getAbbreviation(list.get(i).getName()).substring(0, 1);
-                        list.get(i).setSortLetters(sortLetter);
+    fun getData() {
+            viewModelScope.launch(context = Dispatchers.IO) {
+                val list = async { getContacts(getApp()) }.await()
+                list?.let {
+                    if (list.isNotEmpty()) {
+                        dataList.clear()
+                        dataList.addAll(list)
+                        mHeaderList.clear()
+                        mHeaderList[0] = dataList[0].sortLetters
+                        for (i in 1..<dataList.size) {
+                            if (!dataList[i - 1].sortLetters.equals(dataList[i].sortLetters, ignoreCase = true)
+                            ) {
+                                mHeaderList[i] = dataList[i].sortLetters
+                            }
+                        }
+                        contacts.postValue(AdapterRefresh(begin = -1))
                     }
-                    // 根据a-z进行排序源数据
-                    Collections.sort(list, new UploadPhoneComparator());
-                    return list;
-        }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(list -> contacts.postValue(list));
-        addTask(d);
-
-    }
-
-    public void getRingtone() {
-        List<MyRingtone> list = ContactHelper.getRingtone(getApp());
-        player = new MediaPlayer();
-        try {
-            player.setDataSource(list.get(0).path);
-            player.prepareAsync();
-            player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mp) {
-                    player.start();
-
                 }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
+            }
+    }
+
+    fun getRringtones() {
+            val list = ContactHelper.getRingtone(getApp())
+            player = MediaPlayer()
+            try {
+                player!!.setDataSource(list[0]!!.path)
+                player!!.prepareAsync()
+                player!!.setOnPreparedListener { _: MediaPlayer? -> player!!.start() }
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+    }
+
+    fun stopPlay() {
+        if (player != null && player!!.isPlaying) {
+            player!!.pause()
+            player!!.stop()
         }
     }
 
-    public void stopPlay() {
-        if (player != null && player.isPlaying()) {
-            player.pause();
-            player.stop();
-        }
-    }
-
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-        if (player != null && player.isPlaying()) {
-            player.pause();
-            player.stop();
-            player.release();
+    override fun onCleared() {
+        super.onCleared()
+        if (player != null && player!!.isPlaying) {
+            player!!.pause()
+            player!!.stop()
+            player!!.release()
         }
     }
 }

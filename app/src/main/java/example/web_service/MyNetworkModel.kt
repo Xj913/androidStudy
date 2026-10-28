@@ -4,6 +4,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.viewModelScope
 import com.xiajun.base.BaseCompoModel
 import com.xiajun.data.http.function.impl.WebNetSourceImpl
+import example.address.getContacts
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch

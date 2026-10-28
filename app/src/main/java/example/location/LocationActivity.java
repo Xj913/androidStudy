@@ -129,14 +129,6 @@ public class LocationActivity extends BaseTitleBarActivity {
             }
         }
 
-        /**
-         * 某一个位置提供者的状态发生改变的时候调用的方法
-         */
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-            logE(this.provider, "onStatusChanged " + provider);
-        }
-
         @Override
         public void onProviderEnabled(String provider) {
             logE(this.provider, "onProviderEnabled " + provider);

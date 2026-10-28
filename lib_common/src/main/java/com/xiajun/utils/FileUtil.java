@@ -14,10 +14,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-/**
- * 文件相关工具类
- * Created by xiajun on 2017/1/9.
- */
 public class FileUtil {
 
     public static boolean isNewFileCanWrite(File file) {

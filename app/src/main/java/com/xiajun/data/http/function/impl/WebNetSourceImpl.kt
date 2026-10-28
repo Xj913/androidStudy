@@ -6,7 +6,6 @@ import com.xiajun.http.core.ApiResp
 import com.xiajun.http.core.NetClient
 import com.xiajun.http.core.NetRequest
 
-
 object WebNetSourceImpl {
     private const val BASE_URL = AssembleConfig.URL_BASE
 

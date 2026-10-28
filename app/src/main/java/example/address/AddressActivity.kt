@@ -1,253 +1,191 @@
-package example.address;
+package example.address
 
-import android.Manifest;
-import android.annotation.SuppressLint;
-import androidx.lifecycle.ViewModelProvider;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.provider.Settings;
-import androidx.core.app.NotificationManagerCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import android.telephony.TelephonyManager;
-import android.view.View;
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
+import android.os.Build
+import android.os.Bundle
+import android.provider.Settings
+import android.telephony.TelephonyManager
+import android.view.View
+import com.xiajun.app.MyApp.R
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
+import androidx.core.app.NotificationManagerCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.tbruyelle.rxpermissions3.RxPermissions
+import com.xiajun.app.MyApp.databinding.ActivityAddressBinding
+import com.xiajun.base.BaseTitleBarActivity
+import com.xiajun.view.diviver.DividerItemDecoration
+import com.xiajun.view.sort.FloatingBarItemDecoration
+import com.xiajun.view.sort.IndexBar.OnTouchingLetterChangeListener
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.functions.Consumer
+import java.lang.reflect.InvocationTargetException
+import java.lang.reflect.Method
+import androidx.core.net.toUri
+import com.xiajun.base.AdapterRefresh
 
-import com.xiajun.base.BaseTitleBarActivity;
-import com.xiajun.app.MyApp.R;
-import com.xiajun.app.MyApp.databinding.ActivityAddressBinding;
-import com.xiajun.view.diviver.DividerItemDecoration;
-import com.xiajun.view.sort.FloatingBarItemDecoration;
-import com.xiajun.view.sort.IndexBar;
-import com.tbruyelle.rxpermissions3.RxPermissions;
+class AddressActivity : BaseTitleBarActivity() {
+    lateinit var bd: ActivityAddressBinding
+    lateinit var layoutManager: LinearLayoutManager
+    lateinit var adapter: UploadPhoneAdapter
+    lateinit var mPresenter: AddressViewModel
 
-import org.jetbrains.annotations.Nullable;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-
-
-public class AddressActivity extends BaseTitleBarActivity {
-
-    private static int REQUEST_READ_CONTACTS = 5;
-    ActivityAddressBinding bd;
-    private ArrayList<UploadPhone> dataList;
-    private LinkedHashMap<Integer, String> mHeaderList = new LinkedHashMap<>();
-    private LinearLayoutManager layoutManager;
-    private UploadPhoneAdapter adapter;
-    private AddressViewModel mPresenter;
-
-    @Override
-    protected void onCreate(@Nullable Bundle arg0) {
-        super.onCreate(arg0);
-        bd = ActivityAddressBinding.inflate(getLayoutInflater());
-        setContentView(bd.getRoot());
-        setTitleBarTitle("通讯录");
-
-        mPresenter = new ViewModelProvider(this).get(AddressViewModel.class);
-        mPresenter.contacts.observe(this, uploadPhones -> {
-            setData(uploadPhones);
-        });
-        dataList = new ArrayList<>();
-        adapter = new UploadPhoneAdapter(getContext(), dataList);
-        layoutManager = new LinearLayoutManager(getContext());
-        bd.recyclerView.setLayoutManager(layoutManager);
-        bd.recyclerView.addItemDecoration(new DividerItemDecoration(getContext()));
-        bd.recyclerView.addItemDecoration(new FloatingBarItemDecoration(this, mHeaderList));
-        bd.recyclerView.setAdapter(adapter);
-
-        adapter.setOnItemClickListener((position, data) -> {
-            //AppDataHelper.openEditSms(PhoneActivity.this, up.getTelephone());
-            call(data.getTelephone());
-        });
+    override fun onCreate(arg0: Bundle?) {
+        super.onCreate(arg0)
+        bd = ActivityAddressBinding.inflate(layoutInflater)
+        setContentView(bd.getRoot())
+        setTitleBarTitle("通讯录")
+        mPresenter = ViewModelProvider(this)[AddressViewModel::class.java]
+        mPresenter.contacts.observe(this, Observer { d: AdapterRefresh ->
+            setData(d)
+        })
+        adapter = UploadPhoneAdapter(context, mPresenter.dataList)
+        layoutManager = LinearLayoutManager(context)
+        bd.recyclerView.setLayoutManager(layoutManager)
+        bd.recyclerView.addItemDecoration(DividerItemDecoration(context))
+        bd.recyclerView.addItemDecoration(FloatingBarItemDecoration(this, mHeaderList))
+        bd.recyclerView.setAdapter(adapter)
+        adapter.setOnItemClickListener { position: Int, data: UploadPhone? ->
+            call(data!!.telephone)
+        }
         // 设置右侧触摸监听
-        bd.indexBar.setOnTouchingLetterChangedListener(new IndexBar.OnTouchingLetterChangeListener() {
-            @Override
-            public void onTouchingLetterChanged(String s) {
-                showLetterHint(s);
-                for (Integer position : mHeaderList.keySet()) {
-                    if (mHeaderList.get(position).equals(s)) {
+        bd.indexBar.setOnTouchingLetterChangedListener(object : OnTouchingLetterChangeListener {
+            override fun onTouchingLetterChanged(s: String?) {
+                showLetterHint(s)
+                for (position in mPresenter.mHeaderList.keys) {
+                    if (mPresenter.mHeaderList[position] == s) {
                         //layoutManager.smoothScrollToPosition(bd.recyclerView, null, position);
                         //移动到屏幕顶端， 距离屏幕顶端offset
-                        layoutManager.scrollToPositionWithOffset(position, 0);
-                        return;
+                        layoutManager.scrollToPositionWithOffset(position, 0)
+                        return
                     }
                 }
             }
 
-            @Override
-            public void onTouchingStart(String s) {
-                showLetterHint(s);
+            override fun onTouchingStart(s: String?) {
+                showLetterHint(s)
             }
 
-            @Override
-            public void onTouchingEnd(String s) {
-                hideLetterHint();
+            override fun onTouchingEnd(s: String?) {
+                hideLetterHint()
             }
-        });
-        requestReadContactsPermissions();
-        View v2 = bd.commonLoadingLayout.setEmptyView(com.xiajun.lib.common.R.layout.common_loading_layout_empty_2);
-        v2.findViewById(com.xiajun.lib.common.R.id.common_loading_layout_tv_empty_2).setOnClickListener(v -> bd.commonLoadingLayout.showLoading());
-        bd.btn1.setOnClickListener(v -> bd.commonLoadingLayout.showLoading());
-        bd.btn2.setOnClickListener(v -> bd.commonLoadingLayout.showContent());
-        bd.btn3.setOnClickListener(v -> bd.commonLoadingLayout.showEmpty());
-        bd.btn4.setOnClickListener(v -> bd.commonLoadingLayout.showNetworkError());
-        bd.commonLoadingLayout.setOnClickRetryListener(() -> bd.commonLoadingLayout.showContent());
-        bd.commonLoadingLayout.showLoading();
+        })
+        mRequestContacts.launch(Manifest.permission.READ_CONTACTS)
+        val v2 = bd.commonLoadingLayout.setEmptyView(com.xiajun.lib.common.R.layout.common_loading_layout_empty_2)
+        v2.findViewById<View>(com.xiajun.lib.common.R.id.common_loading_layout_tv_empty_2)
+            .setOnClickListener { _: View? -> bd.commonLoadingLayout.showLoading() }
+        bd.btn1.setOnClickListener { _: View? -> bd.commonLoadingLayout.showLoading() }
+        bd.btn2.setOnClickListener { _: View? -> bd.commonLoadingLayout.showContent() }
+        bd.btn3.setOnClickListener { _: View? -> bd.commonLoadingLayout.showEmpty() }
+        bd.btn4.setOnClickListener { _: View? -> bd.commonLoadingLayout.showNetworkError() }
+        bd.commonLoadingLayout.setOnClickRetryListener { bd.commonLoadingLayout.showContent() }
+        bd.commonLoadingLayout.showLoading()
 
-        bd.btnImei.setOnClickListener(v -> isNotificationEnabled());
-        getImei(this);
+        bd.btnImei.setOnClickListener { _: View? -> this.isNotificationEnabled }
+        getImei(this)
     }
 
-    private void isNotificationEnabled() {
-        boolean is = NotificationManagerCompat.from(this).areNotificationsEnabled();
-        if (!is)
-            requestNotify(this);
+    private val isNotificationEnabled: Unit
+        get() {
+            val b = NotificationManagerCompat.from(this).areNotificationsEnabled()
+            if (!b) requestNotify(this)
+        }
+
+    private fun hideLetterHint() {
+        bd.tvDialog.visibility = View.INVISIBLE
     }
 
-    private void hideLetterHint() {
-        bd.tvDialog.setVisibility(View.INVISIBLE);
+    private fun showLetterHint(s: String?) {
+        bd.tvDialog.text = s
+        bd.tvDialog.visibility = View.VISIBLE
     }
 
-    private void showLetterHint(String s) {
-        bd.tvDialog.setText(s);
-        bd.tvDialog.setVisibility(View.VISIBLE);
+    fun setData(data: AdapterRefresh) {
+        adapter.notifyDataSetChanged()
+        bd.indexBar.setNavigators(ArrayList(mPresenter.mHeaderList.values))
+    }
+
+    var mRequestContacts = registerForActivityResult(ActivityResultContracts.RequestPermission()
+    ) { it ->
+        if (it) {
+            mPresenter.getData()
+        } else {
+            showToast(R.string.please_open_contacts_permission)
+        }
+    }
+
+    var mRequestImei = registerForActivityResult(ActivityResultContracts.RequestPermission()
+    ) { it ->
+        if (it) {
+            getImei(this)
+        } else {
+            showToast("no imei permission")
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mPresenter.stopPlay()
+    }
+
+    private fun call(number: String?) {
+        AlertDialog.Builder(context).setTitle("拨号").setMessage("拨打客服电话$number")
+            .setPositiveButton(R.string.ok
+            ) { dialog: DialogInterface?, _: Int ->
+                dialog!!.dismiss()
+                openDial(number)
+            }
+            .setNegativeButton(R.string.cancel
+            ) { dialog: DialogInterface?, _: Int ->
+                dialog!!.dismiss()
+            }.create().show()
+    }
+
+    private fun openDial(number: String?) {
+        val dialIntent = Intent(Intent.ACTION_DIAL, ("tel:$number").toUri())
+        startActivity(dialIntent)
     }
 
     @SuppressLint("CheckResult")
-    public void requestReadContactsPermissions() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            RxPermissions rxPermissions = new RxPermissions(this);
-            rxPermissions.request(Manifest.permission.READ_CONTACTS)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(grated -> {
-                        if (grated) {
-                            getData();
-                        } else {
-                            showToast(com.xiajun.app.MyApp.R.string.please_open_contacts_permission);
-                        }
-                    }, throwable -> {
-                        throwable.printStackTrace();
-                    });
-        } else {
-            getData();
-        }
-    }
-
-    public void getData() {
-        mPresenter.getData();
-    }
-
-    public void setData(List<UploadPhone> data) {
-        dataList.addAll(data);
-        mHeaderList.clear();
-        addHeaderToList(0, dataList.get(0).getSortLetters());
-        for (int i = 1; i < dataList.size(); i++) {
-            if (!dataList.get(i - 1).getSortLetters().equalsIgnoreCase(dataList.get(i).getSortLetters())) {
-                addHeaderToList(i, dataList.get(i).getSortLetters());
-            }
-        }
-        adapter.notifyDataSetChanged();
-
-        bd.indexBar.setNavigators(new ArrayList<>(mHeaderList.values()));
-    }
-
-    private void addHeaderToList(int index, String header) {
-        mHeaderList.put(index, header);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mPresenter.stopPlay();
-    }
-
-    private void call(String number) {
-        new androidx.appcompat.app.AlertDialog.Builder(getContext())
-                .setTitle("拨号")
-                .setMessage("拨打客服电话" + number)
-                .setPositiveButton(com.xiajun.app.MyApp.R.string.ok, (dialog, which) -> {
-                    dialog.dismiss();
-                    openDial(number);
-                })
-                .setNegativeButton(com.xiajun.app.MyApp.R.string.cancel, (dialog, which) -> {
-                    dialog.dismiss();
-                }).create().show();
-
-    }
-
-    private void openDial(String number) {
-        Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + number));//跳转到拨号界面，同时传递电话号码
-        startActivity(dialIntent);
-    }
-
-    /**
-     * 跳到通知栏设置界面
-     *
-     * @param context
-     */
-    public static void requestNotify(Context context) {
-        Intent localIntent = new Intent();
-        //跳转到应用通知设置的代码
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            localIntent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
-            localIntent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
-        } else if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            localIntent.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
-            localIntent.putExtra("app_package", context.getPackageName());
-            localIntent.putExtra("app_uid", context.getApplicationInfo().uid);
-        } else {
-            localIntent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-            localIntent.addCategory(Intent.CATEGORY_DEFAULT);
-            localIntent.setData(Uri.parse("package:" + context.getPackageName()));
-        }
-        context.startActivity(localIntent);
-    }
-
-
-    @SuppressLint("CheckResult")
-    private void getImei(Context context) {
+    private fun getImei(context: Context) {
         //64位数字（表示为十六进制字符串）是在用户首次设置设备时随机生成的
         //如果在设备上执行恢复出厂设置或APK签名密钥更改，则该值可能会更改。
-        String ANDROID_ID = Settings.System.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-        //实例化TelephonyManager对象
-        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        Class clazz = telephonyManager.getClass();
-        Method getImei = null;
+        val ANDROID_ID = Settings.System.getString(contentResolver, Settings.Secure.ANDROID_ID)
+        val telephonyManager = context.getSystemService(TELEPHONY_SERVICE) as TelephonyManager
+        val clazz: Class<*> = telephonyManager.javaClass
+        var getImei: Method? = null
         try {
-            getImei = clazz.getDeclaredMethod("getImei", int.class);//(int slotId)
-            String m = (String) getImei.invoke(telephonyManager, 0); //卡1
-            getImei.invoke(telephonyManager, 1); // 卡2
+            getImei = clazz.getDeclaredMethod("getImei", Int::class.java)
+            val m1 = getImei.invoke(telephonyManager, 0) as String //卡1
+            val m2 = getImei.invoke(telephonyManager, 1) as String// 卡2
             //Log.e(TAG, "IMEI1 : "+getImei.invoke(telephonyManager, 0)); //卡1
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            RxPermissions rxPermissions = new RxPermissions(this);
-            rxPermissions.request(Manifest.permission.READ_PHONE_STATE)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(grated -> {
-                        if (grated) {
-                            String deviceId = telephonyManager.getDeviceId();
-                            String imei = telephonyManager.getImei();
-                            //bd.btnImei.setText(imei);
-                        } else {
-                            showToast(R.string.error_no_external_storage_permission);
-                        }
-                    }, throwable -> {
-                        throwable.printStackTrace();
-                    });
+        } catch (e: NoSuchMethodException) {
+            e.printStackTrace()
+        } catch (e: IllegalAccessException) {
+            e.printStackTrace()
+        } catch (e: InvocationTargetException) {
+            e.printStackTrace()
         }
     }
 
+    companion object {
+        fun requestNotify(context: Context) {
+            val localIntent = Intent()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                localIntent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+                localIntent.putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
+            } else {
+                localIntent.setAction("android.settings.APP_NOTIFICATION_SETTINGS")
+                localIntent.putExtra("app_package", context.packageName)
+                localIntent.putExtra("app_uid", context.applicationInfo.uid)
+            }
+            context.startActivity(localIntent)
+        }
+    }
 }

@@ -4,97 +4,70 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
 import android.text.TextUtils
 import android.view.View
-import androidx.core.content.FileProvider
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dmcbig.mediapicker.PickerActivity
 import com.dmcbig.mediapicker.PickerConfig
 import com.dmcbig.mediapicker.entity.Media
 import com.xiajun.app.MyApp.R
 import com.xiajun.app.MyApp.databinding.ActivitySelectLocalPictureBinding
-import com.xiajun.base.BaseRecyclerViewAdapter
 import com.xiajun.base.BaseTitleBarActivity
 import com.xiajun.config.FileDirConfig
 import com.xiajun.dialog.SelAvatarDialog
 import com.xiajun.utils.BitmapUtil
-import com.xiajun.utils.DeviceInfoUtil
-import com.xiajun.utils.FileUtil
 import com.xiajun.utils.SystemShareUtil
-import com.tbruyelle.rxpermissions3.RxPermissions
 import example.viewPager.ImageScanActivity
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.io.File
 
-public class SelectLocalPictureActivity : BaseTitleBarActivity() {
+class SelectLocalPictureActivity : BaseTitleBarActivity() {
 
     lateinit var bd: ActivitySelectLocalPictureBinding;
-    private lateinit var TAG_ADD: Media;
-
+    private lateinit var mViewModel: SelectLocalPictureViewModel
     private lateinit var adapter: DynamicPublishImageAdapter;
-    private lateinit var paths: ArrayList<Media>;
-    protected var photoFile: File? = null;
-    private var dialog: SelAvatarDialog? = null;
-
-    private var haveImg = false;
+    private var dialog: SelAvatarDialog? = null
 
     override fun onCreate(arg0: Bundle?) {
         super.onCreate(arg0)
         bd = ActivitySelectLocalPictureBinding.inflate(layoutInflater)
         setContentView(bd.root)
         setTitleBarTitle("本地图片选择");
-
-        paths = ArrayList();
-        TAG_ADD = Media();
-        TAG_ADD.name = "addTag";
-        paths.add(TAG_ADD);
-        adapter = DynamicPublishImageAdapter(getContext(), paths);
-        var gridLayoutManager = GridLayoutManager(getContext(), 4);
+        mViewModel = ViewModelProvider(this)[SelectLocalPictureViewModel::class]
+        adapter = DynamicPublishImageAdapter(context, mViewModel.paths);
+        var gridLayoutManager = GridLayoutManager(context, 4);
         gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         bd.recyclerView.setLayoutManager(gridLayoutManager);
         //bd.recyclerView.addItemDecoration(GridDividerItemDecoration(20, Color.BLACK))
         bd.recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<Media> {
-            override fun onItemClick(position: Int, data: Media) {
-                var count = adapter.getItemCount();
-                if (position == count - 1) {
-                    showSelPicPopupWindow();
-                } else {
-                    var cacheList = ArrayList<Media>();
-                    if (count > 1) {
-                        for (i in 0 until count - 1) {
-                            cacheList.add(paths.get(i));
-                        }
-                    }
-                    var intent = Intent(getContext(), ImageScanActivity::class.java);
-                    intent.putExtra("list", cacheList); // (Optional)
-                    startActivityForResult(intent, PickerConfig.CODE_TAKE_ALBUM);
-                }
+        adapter.setOnItemClickListener { position, data ->
+            var count = adapter.itemCount;
+            if (position == count - 1) {
+                showSelPicPopupWindow();
+            } else {
+                var intent = Intent(context, ImageScanActivity::class.java);
+                intent.putExtra("list", mViewModel.getPhotos());
+                startActivityForResult(intent, PickerConfig.CODE_TAKE_ALBUM);
             }
-        });
-
+        }
         adapter.setOnDeleteClickListener(object : DynamicPublishImageAdapter.OnDeleteClickListener {
             override fun onItemClickDelete(position: Int) {
-                paths.removeAt(position);
-                adapter.notifyDataSetChanged();
-                setHaveDynamic();
+                mViewModel.paths.removeAt(position);
+                adapter.notifyItemRemoved(position);
             }
         })
         bd.btnCompress.setOnClickListener { compressImage() }
         bd.btnShareText.setOnClickListener({ v ->
-            SystemShareUtil.shareText(getContext(), "文章", "来自系统分享");
+            SystemShareUtil.shareText(context, "文章", "来自系统分享");
         });
         bd.btnShareImage.setOnClickListener { v ->
-            SystemShareUtil.shareImage(
-                getContext(),
-                FileDirConfig.FILE_PROVIDER_AUTHORITY,
-                paths.get(0).path
+            SystemShareUtil.shareImage(context, FileDirConfig.FILE_PROVIDER_AUTHORITY,
+                mViewModel.paths[0].path
             );
         }
     }
@@ -102,8 +75,8 @@ public class SelectLocalPictureActivity : BaseTitleBarActivity() {
     @SuppressLint("CheckResult")
     fun compressImage() {
         showProgressDialog("压缩中···")
-        val disposable = Observable.just(paths).subscribeOn(Schedulers.io())
-            .map {
+        val disposable = Observable.just(mViewModel.paths).subscribeOn(Schedulers.io())
+            .map { it ->
                 val list = ArrayList<String>()
                 it.forEach {
                     if (!TextUtils.isEmpty(it.path)) {
@@ -132,156 +105,85 @@ public class SelectLocalPictureActivity : BaseTitleBarActivity() {
         showSelPicPopupWindow();
     }
 
-    val CODE_TAKE_CAMERA = 997// 拍照
+    fun cameraBack(){
+        val ind = mViewModel.addPhoto()
+        if (ind >= 0)
+            adapter.notifyItemInserted(ind);
+    }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK || resultCode == PickerConfig.RESULT_CODE) {
-            when (requestCode) {
-                PickerConfig.CODE_TAKE_ALBUM ->
-                    if (data != null) {
-                        var newPaths: ArrayList<Media> =
-                            data.getParcelableArrayListExtra(PickerConfig.EXTRA_RESULT)!!;
-                        paths.clear();
-                        paths.addAll(newPaths);
-                        paths.add(TAG_ADD);
-                        adapter.notifyDataSetChanged();
-                    }
-                CODE_TAKE_CAMERA ->
-                    if (photoFile!!.exists()) {
-                        DeviceInfoUtil.scanFile(this, photoFile);// 通知系统更新相册
-                        var filePath = photoFile?.getAbsolutePath();// 获取相片的保存路径
-                        var size = paths.size;
-                        if (size >= 10) {
-                            showToast("最多上传9张图片");
-                        } else {
-                            var location = 0;
-                            if (size >= 1)
-                                location = size - 1;
-                            val media = Media();
-                            media.path = filePath;
-                            media.size = photoFile!!.length();
-                            paths.add(location, media);
-                            adapter.notifyDataSetChanged();
-                        }
-                    } else {
-                        showToast(R.string.file_does_not_exist);
-                    }
-            }
-            setHaveDynamic();
+    fun selectPhotos() {
+        mPikerPhotoResult.launch(mViewModel.getPikerPhotosIntent())
+    }
+
+    private fun takeCamera() {
+        val uri: Uri = mViewModel.getPhotoUri()
+        uri.let {
+            mCameraResult.launch(uri)
         }
     }
 
-    fun setHaveDynamic() {
-        var number = adapter.getItemCount();
-        haveImg = number > 1;
+    val mPikerPhotoResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()
+    ) {
+        if (it.resultCode == RESULT_OK && it.data != null) {
+                val newPaths: ArrayList<Media> = it.data!!.getParcelableArrayListExtra(PickerConfig.EXTRA_RESULT)!!;
+                mViewModel.addPhotoList(newPaths)
+                adapter.notifyDataSetChanged();
+            }
+    }
+    val mCameraResult = registerForActivityResult(
+        ActivityResultContracts.TakePicture()
+    ) {
+        if (!it)
+            showToast(R.string.file_does_not_exist)
+        else {
+            cameraBack()
+        }
+    }
+    val mRequestCamera = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()
+    ) { it ->
+        val allGranted = it.entries.all { it.value }
+        if (allGranted) {
+            takeCamera()
+        } else {
+            showToast(R.string.error_no_camera_and_external_storage_permission)
+        }
+    }
+    val mRequestStorage = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()
+    ) { it ->
+        val allGranted = it.entries.all { it.value }
+        if (allGranted) {
+            selectPhotos()
+        } else {
+            showToast(R.string.error_no_external_storage_permission)
+        }
     }
 
     fun showSelPicPopupWindow() {
         if (dialog == null) {
-            dialog = SelAvatarDialog(getContext());
+            dialog = SelAvatarDialog(context);
             dialog?.setOnItemClickListener(object : SelAvatarDialog.OnItemClickListener {
                 override fun OnClickCamera() {
-                    checkSDcardAndCameraPermission();
+                    mRequestCamera.launch(
+                        arrayOf(
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.READ_EXTERNAL_STORAGE,
+                            Manifest.permission.CAMERA,
+                        )
+                    )
                 }
 
                 override fun OnClickPhoto() {
-                    checkSDcardPermission();
-                }
+                    mRequestStorage.launch(
+                        arrayOf(
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.READ_EXTERNAL_STORAGE,
+                        )
+                    )                }
 
                 override fun OnClickCancel() {
                 }
             });
         }
         dialog?.show();
-    }
-
-    fun selectPhotos() {
-        var newCount = adapter.getItemCount();
-        var cacheList = ArrayList<Media>();
-        if (newCount > 1) {
-            for (i in 0 until newCount - 1) {
-                cacheList.add(paths.get(i));
-            }
-        }
-
-        var intent = Intent(getContext(), PickerActivity::class.java);
-        intent.putExtra(
-            PickerConfig.SELECT_MODE,
-            PickerConfig.PICKER_IMAGE
-        );//default image and video (Optional)
-        var maxSize = 188743680L;//long long long
-        intent.putExtra(PickerConfig.MAX_SELECT_SIZE, maxSize); //default 180MB (Optional)
-        intent.putExtra(PickerConfig.MAX_SELECT_COUNT, 40);  //default 40 (Optional)
-        intent.putExtra(PickerConfig.DEFAULT_SELECTED_LIST, cacheList); // (Optional)
-        this.startActivityForResult(intent, PickerConfig.CODE_TAKE_ALBUM);
-    }
-
-    private fun takePhoto() {
-        photoFile = File(FileDirConfig.DIR_APP_IMAGE_CAMERA, "${System.currentTimeMillis()}.jpg")
-        if (FileUtil.isNewFileCanWrite(photoFile)) {
-            val uri: Uri
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                uri = FileProvider.getUriForFile(
-                    this,
-                    FileDirConfig.FILE_PROVIDER_AUTHORITY,
-                    photoFile!!
-                )
-            } else {
-                uri = Uri.fromFile(photoFile)
-            }
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
-            startActivityForResult(intent, CODE_TAKE_CAMERA)
-        }
-    }
-
-    @SuppressLint("CheckResult")
-    private fun checkSDcardAndCameraPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            var rxPermissions = RxPermissions(this);
-            //拍照之前首先需要读写SD卡权限
-            rxPermissions.request(
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.CAMERA
-            )
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ grated ->
-                    if (grated) {
-                        takePhoto();
-                    } else {
-                        showToast(R.string.error_no_camera_and_external_storage_permission);
-                    }
-                }, { throwable ->
-                    throwable.printStackTrace();
-                });
-        } else {
-            takePhoto();
-        }
-    }
-
-    @SuppressLint("CheckResult")
-    private fun checkSDcardPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            var rxPermissions = RxPermissions(this);
-            //需要读写SD卡权限
-            rxPermissions.request(
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            )
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ grated ->
-                    if (grated) {
-                        selectPhotos();
-                    } else {
-                        showToast(R.string.error_no_external_storage_permission);
-                    }
-                }, { throwable ->
-                    throwable.printStackTrace();
-                });
-        } else {
-            selectPhotos();
-        }
     }
 }

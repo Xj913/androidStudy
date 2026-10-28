@@ -136,7 +136,6 @@ data class ExecuteOnPermissions(
             isGrant = false
             break        }
         if (!isGrant) {
-            // 申请权限
             requestPermissionLauncher.launch(permissions.toTypedArray())
         } else {
             onGrant()

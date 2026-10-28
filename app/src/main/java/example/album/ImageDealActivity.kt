@@ -28,7 +28,6 @@ import com.xiajun.data.glide.RoundRectTransform
 import com.xiajun.data.glide.RoundTransform
 import com.xiajun.dialog.SelAvatarDialog
 import com.xiajun.utils.BitmapUtil
-import tech.gaolinfeng.imagecrop.lib.ImageCropActivity
 import java.io.File
 
 class GlideDealActivity : BaseTitleBarActivity() {
@@ -41,15 +40,14 @@ class GlideDealActivity : BaseTitleBarActivity() {
         bd = ActivityGlideDealBinding.inflate(layoutInflater)
         setContentView(bd.getRoot())
         mViewModel = ViewModelProvider(this)[ImageDealViewModel::class]
-        bd.btnCircle.setOnClickListener(View.OnClickListener { v: View? -> dealCircle() })
-        bd.btnCircleBorder.setOnClickListener(View.OnClickListener { v: View? -> dealCircleBorder() })
-        bd.btnRound.setOnClickListener(View.OnClickListener { v: View? -> dealRound() })
-        bd.btnRectStroke.setOnClickListener(View.OnClickListener { v: View? -> dealRectStroke() })
-        bd.btnRectTop.setOnClickListener(View.OnClickListener { v: View? -> dealRectTop() })
-        bd.btnImageSize.setOnClickListener(View.OnClickListener { v: View? -> compressImage() })
-
-        bd.btnAvatar.setOnClickListener(View.OnClickListener { v: View? -> showSelPicPopupWindow() })
-        bd.btnCatchColor.setOnClickListener(View.OnClickListener { v: View? ->
+        bd.btnCircle.setOnClickListener { _: View? -> dealCircle() }
+        bd.btnCircleBorder.setOnClickListener { _: View? -> dealCircleBorder() }
+        bd.btnRound.setOnClickListener { _: View? -> dealRound() }
+        bd.btnRectStroke.setOnClickListener { _: View? -> dealRectStroke() }
+        bd.btnRectTop.setOnClickListener { _: View? -> dealRectTop() }
+        bd.btnImageSize.setOnClickListener { _: View? -> compressImage() }
+        bd.btnAvatar.setOnClickListener { _: View? -> showSelPicPopupWindow() }
+        bd.btnCatchColor.setOnClickListener { _: View? ->
             //bd.ivAvatar.setImageResource(R.mipmap.home_banner_3);
             bd.ivAvatar.setDrawingCacheEnabled(true)
             val bitmap = Bitmap.createBitmap(bd.ivAvatar.getDrawingCache())
@@ -57,7 +55,7 @@ class GlideDealActivity : BaseTitleBarActivity() {
             // 用来提取颜色的Bitmap
             //Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.home_banner_3);
             catchColor(bitmap)
-        })
+        }
         downImage()
     }
 
@@ -169,8 +167,7 @@ class GlideDealActivity : BaseTitleBarActivity() {
         }
     }
 
-     val mCropPhotoResult = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
+     val mCropPhotoResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode == RESULT_OK) {
             onAvatarCropped()
@@ -185,8 +182,7 @@ class GlideDealActivity : BaseTitleBarActivity() {
              toCrop(true, null)
          }
      }
-     val mPhotoResult = registerForActivityResult(
-         ActivityResultContracts.PickVisualMedia()
+     val mPhotoResult = registerForActivityResult(ActivityResultContracts.PickVisualMedia()
      ) { it ->
          if (it == null)
              showToast(R.string.file_does_not_exist)
@@ -194,8 +190,7 @@ class GlideDealActivity : BaseTitleBarActivity() {
              toCrop(false, it)
          }
      }
-     val mRequestCamera = registerForActivityResult(
-         ActivityResultContracts.RequestMultiplePermissions()
+     val mRequestCamera = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()
      ) { it ->
              val allGranted = it.entries.all { it.value }
              if (allGranted) {
@@ -204,8 +199,7 @@ class GlideDealActivity : BaseTitleBarActivity() {
                  showToast(R.string.error_no_camera_and_external_storage_permission)
              }
          }
-     val mRequestStorage = registerForActivityResult(
-         ActivityResultContracts.RequestMultiplePermissions()
+     val mRequestStorage = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()
      ) { it ->
              val allGranted = it.entries.all { it.value }
              if (allGranted) {

@@ -73,3 +73,5 @@ abstract class BaseViewModel : ViewModel() {
         LogManager.logE(tag, msg)
     }
 }
+
+data class AdapterRefresh(val begin: Int = -1, val end: Int = -1)

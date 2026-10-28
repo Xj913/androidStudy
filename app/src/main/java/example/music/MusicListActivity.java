@@ -13,6 +13,7 @@ import android.os.IBinder;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.loader.app.LoaderManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.util.Log;
@@ -102,8 +103,7 @@ public class MusicListActivity extends BaseTitleBarActivity implements MediaData
     }
 
     private void getMediaData() {
-        getLoaderManager().initLoader(101, null, new AudioLoader(this, this));
-
+        LoaderManager.getInstance(this).initLoader(101, null, new AudioLoader(this, this));
     }
 
     @Override

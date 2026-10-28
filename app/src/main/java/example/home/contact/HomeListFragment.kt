@@ -28,8 +28,8 @@ class HomeListFragment : BaseNoPagerLazyRefreshFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mHostViewModel = ViewModelProvider(this.requireActivity()).get(MainViewModel::class.java)
-        mViewModel = ViewModelProvider(this).get(ContactViewModel::class.java)
+        mHostViewModel = ViewModelProvider(this.requireActivity())[MainViewModel::class.java]
+        mViewModel = ViewModelProvider(this)[ContactViewModel::class.java]
         dataList = ArrayList()
         adapter = FriendAdapter(context, dataList)
         val layoutManager = LinearLayoutManager(context)
