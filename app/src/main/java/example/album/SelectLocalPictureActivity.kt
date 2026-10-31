@@ -1,11 +1,9 @@
 package example.album;
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
@@ -18,13 +16,8 @@ import com.xiajun.app.MyApp.databinding.ActivitySelectLocalPictureBinding
 import com.xiajun.base.BaseTitleBarActivity
 import com.xiajun.config.FileDirConfig
 import com.xiajun.dialog.SelAvatarDialog
-import com.xiajun.utils.BitmapUtil
 import com.xiajun.utils.SystemShareUtil
 import example.viewPager.ImageScanActivity
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.schedulers.Schedulers
-import java.io.File
 
 class SelectLocalPictureActivity : BaseTitleBarActivity() {
 
@@ -61,6 +54,9 @@ class SelectLocalPictureActivity : BaseTitleBarActivity() {
                 adapter.notifyItemRemoved(position);
             }
         })
+        mViewModel.compressed.observe(this) {
+            if (it) dismissProgressDialog()
+        }
         bd.btnCompress.setOnClickListener { compressImage() }
         bd.btnShareText.setOnClickListener({ v ->
             SystemShareUtil.shareText(context, "文章", "来自系统分享");
@@ -72,33 +68,9 @@ class SelectLocalPictureActivity : BaseTitleBarActivity() {
         }
     }
 
-    @SuppressLint("CheckResult")
     fun compressImage() {
         showProgressDialog("压缩中···")
-        val disposable = Observable.just(mViewModel.paths).subscribeOn(Schedulers.io())
-            .map { it ->
-                val list = ArrayList<String>()
-                it.forEach {
-                    if (!TextUtils.isEmpty(it.path)) {
-                        val path =
-                            FileDirConfig.DIR_CACHE + File.separatorChar + System.currentTimeMillis() + ".jpg"
-                        val bytes = BitmapUtil.compress(it.path, 200)
-                        BitmapUtil.saveByte(path, bytes)
-                        list.add(path)
-                    }
-                }
-                return@map list
-            }
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                dismissProgressDialog()
-                it.forEach {
-                    logE("compressImage", it)
-                }
-            }, {
-                dismissProgressDialog()
-                logE("compressImage", "压缩出错")
-            })
+        mViewModel.compressImages()
     }
 
     fun selAvatar(v: View) {

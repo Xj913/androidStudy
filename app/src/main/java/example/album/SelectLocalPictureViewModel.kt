@@ -3,13 +3,19 @@ package example.album
 import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.net.Uri
-import androidx.compose.runtime.mutableStateOf
 import androidx.core.content.FileProvider
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.dmcbig.mediapicker.PickerActivity
 import com.dmcbig.mediapicker.PickerConfig
 import com.dmcbig.mediapicker.entity.Media
 import com.xiajun.base.BaseViewModel
+import com.xiajun.config.FileDirConfig
+import com.xiajun.utils.BitmapUtil
 import com.xiajun.utils.DeviceInfoUtil
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
 import java.util.Date
 import java.util.Locale
@@ -20,7 +26,7 @@ class SelectLocalPictureViewModel : BaseViewModel() {
     var cacheList = ArrayList<Media>();
     var photoFile: File? = null
     var uri: Uri? =null
-    val bottomDlgShow = mutableStateOf(false)
+    val compressed = MutableLiveData(false)
 
     init {
         TAG_ADD.name = "addTag";
@@ -84,5 +90,23 @@ class SelectLocalPictureViewModel : BaseViewModel() {
         photoFile = createCacheImageFile()
         uri = FileProvider.getUriForFile(getApp(), "${getApp().packageName}.fileprovider", photoFile!!)
         return uri!!
+    }
+
+    fun compressImages() {
+        viewModelScope.launch {
+            val list = ArrayList<String>()
+            withContext(Dispatchers.Default) {
+                paths.forEach {
+                    if (!it.path.isNullOrEmpty()) {
+                        val path = FileDirConfig.DIR_CACHE + File.separatorChar + System.currentTimeMillis() + ".jpg"
+                        val bytes = BitmapUtil.compress(it.path, 200)
+                        BitmapUtil.saveByte(path, bytes)
+                        list.add(path)
+                        logE("compressImage  ", path)
+                    }
+                }
+            }
+            compressed.value = true
+        }
     }
 }

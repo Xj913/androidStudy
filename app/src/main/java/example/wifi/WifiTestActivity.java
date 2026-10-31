@@ -70,7 +70,6 @@ public class WifiTestActivity extends BaseTitleBarActivity {
             // 未打开位置开关，可能导致定位失败或定位不准，提示用户或做相应处理
             showToast("请打开位置开关以便扫描周围wifi设备");
         }
-        //如果使用activity的context则不能访问存储空间，在版本大于Android N时,因此使用全局的Context
         mWifiManager = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         if (!mWifiManager.isWifiEnabled()) {
             mWifiManager.setWifiEnabled(true);

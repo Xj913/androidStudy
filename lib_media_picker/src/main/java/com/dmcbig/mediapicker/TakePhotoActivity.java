@@ -21,10 +21,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- * Created by dmcBig on 2017/11/14.
- */
-
 public class TakePhotoActivity extends Activity{
     Uri NuriForFile ;
     File mTmpFile = null;

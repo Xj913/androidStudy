@@ -9,6 +9,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
 
 class MyNetworkModel : BaseCompoModel() {
     val phone = mutableStateOf("")
@@ -16,8 +18,8 @@ class MyNetworkModel : BaseCompoModel() {
     val content = mutableStateOf("")
 
     fun getPhoneInfo(phone: String = this.phone.value) {
-        viewModelScope.launch(context = Dispatchers.IO) {
-            val s = async { WebNetSourceImpl.getPhoneInfo(phone) }.await()
+        viewModelScope.launch {
+            val s = WebNetSourceImpl.getPhoneInfo(phone)
             if (s.isOk()) {
                 content.value = s.data!!
             }
@@ -25,10 +27,10 @@ class MyNetworkModel : BaseCompoModel() {
     }
 
     fun getWeather(code: String) {
-        viewModelScope.launch(context = Dispatchers.IO) {
-                val s = async { WebNetSourceImpl.getWeather(code) }.await()
+        viewModelScope.launch {
+                val s = WebNetSourceImpl.getWeather(code)
             if (s.isOk()) {
-                withContext(Dispatchers.Main) {
+                withContext(Main) {
                     content.value = s.data!!
                     showToast("查询成功")
                 }
@@ -37,10 +39,10 @@ class MyNetworkModel : BaseCompoModel() {
     }
 
     fun getKuaiDi(s: String = "", s1: String = "") {
-        viewModelScope.launch(context = Dispatchers.IO) {
-            val s = async { WebNetSourceImpl.getKuaiDi("", "") }.await()
+        viewModelScope.launch {
+            val s = WebNetSourceImpl.getKuaiDi("", "")
             if (s.isOk()) {
-                withContext(Dispatchers.Main) {
+                withContext(Main) {
                     content.value = s.data!!
                     showToast("查询成功")
                 }
@@ -49,22 +51,13 @@ class MyNetworkModel : BaseCompoModel() {
     }
 
     fun getKuaiDilist(s: String, s1: String) {
-        viewModelScope.launch(context = Dispatchers.IO) {
-            val s = async { WebNetSourceImpl.getkuaidi("") }.await()
+        viewModelScope.launch {
+            val s = WebNetSourceImpl.getkuaidi("")
             if (s.isOk()) {
-                withContext(Dispatchers.Main) {
+                withContext(Main) {
                     content.value = s.data!!.toString()
                     showToast("查询成功")
                 }
-            }
-        }
-    }
-
-
-    fun getContact() {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                val s = async { getContacts(getApp()) }.await()
             }
         }
     }

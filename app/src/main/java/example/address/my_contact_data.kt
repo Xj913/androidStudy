@@ -3,9 +3,11 @@ package example.address
 import android.content.Context
 import com.xiajun.utils.LogManager.logI
 import com.xiajun.utils.PinyinUtils
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.withContext
 import java.util.*
 
-    suspend fun getContacts(con: Context) : ArrayList<UploadPhone>? {
+suspend fun getContacts(con: Context) : ArrayList<UploadPhone>? = withContext(IO) {
                 try {
                     val list = ContactHelper.getContacts(con)
                     if (null != list) {
@@ -19,9 +21,9 @@ import java.util.*
                             logI("info", it.toString())
                         }
                     }
-                    return list
-                } catch (e: Exception) {
+                    return@withContext list
+                } catch (e: Throwable) {
                     e.printStackTrace()
                 }
-        return null
-    }
+                null
+}

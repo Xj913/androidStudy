@@ -329,7 +329,7 @@ public class BitmapUtil {
      */
     public static byte[] compress(String path, int maxSize) {
         try {
-            FileInputStream in = new FileInputStream(new File(path));
+            FileInputStream in = new FileInputStream(path);
             int size = in.available();
             byte[] b = new byte[size];
             in.read(b);
@@ -340,7 +340,7 @@ public class BitmapUtil {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeByteArray(b, 0, b.length, options);
-            in = new FileInputStream(new File(path));
+            in = new FileInputStream(path);
             // 计算 inSampleSize 的值，解析器使用的inSampleSize都是2的指数倍，如果inSampleSize是其他值，则找一个离这个值最近的2的指数值。
             // 解码后的宽高变成原来的1/inSampleSize
             options.inSampleSize = getCompressInSampleSize(options.outWidth, options.outHeight);

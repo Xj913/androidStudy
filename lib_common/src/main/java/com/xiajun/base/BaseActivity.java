@@ -36,9 +36,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         return context;
     }
 
-    /**
-     * 重置字体缩放比例为默认，所以需要全部继承该基类。
-     */
     @Override
     protected void attachBaseContext(Context newBase) {
         Configuration config = newBase.getResources().getConfiguration();
@@ -131,11 +128,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         return showProgressDialog(getString(msgId));
     }
 
-    /**
-     * 使用注意后面不能在主线程执行耗时操作，会被阻塞延迟显示
-     *
-     * @return
-     */
     protected LoadingDialog showProgressDialog(CharSequence msg) {
         if (progressDialog == null)
             progressDialog = new LoadingDialog(context);
@@ -163,7 +155,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         LogManager.logE(tag, msg);
     }
 
-    //获取状态栏高度(竖屏时),有的手机竖屏时状态栏高度要高一些
     protected int getStatusHeight() {
         return DeviceInfoUtil.getStatusHeight(this);
     }

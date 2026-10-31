@@ -170,6 +170,5 @@ dependencies {
     implementation(projects.libVideoRecord)
     implementation(projects.libWheelPicker)
     implementation(projects.libZxing)
-    implementation(projects.libRxpermission)
     implementation(projects.libCollapsingTopbar)
 }

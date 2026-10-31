@@ -10,25 +10,22 @@ import android.os.Bundle
 import android.provider.Settings
 import android.telephony.TelephonyManager
 import android.view.View
-import com.xiajun.app.MyApp.R
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.net.toUri
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tbruyelle.rxpermissions3.RxPermissions
+import com.xiajun.app.MyApp.R
 import com.xiajun.app.MyApp.databinding.ActivityAddressBinding
+import com.xiajun.base.AdapterRefresh
 import com.xiajun.base.BaseTitleBarActivity
 import com.xiajun.view.diviver.DividerItemDecoration
 import com.xiajun.view.sort.FloatingBarItemDecoration
 import com.xiajun.view.sort.IndexBar.OnTouchingLetterChangeListener
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.functions.Consumer
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.Method
-import androidx.core.net.toUri
-import com.xiajun.base.AdapterRefresh
 
 class AddressActivity : BaseTitleBarActivity() {
     lateinit var bd: ActivityAddressBinding
@@ -42,14 +39,14 @@ class AddressActivity : BaseTitleBarActivity() {
         setContentView(bd.getRoot())
         setTitleBarTitle("通讯录")
         mPresenter = ViewModelProvider(this)[AddressViewModel::class.java]
-        mPresenter.contacts.observe(this, Observer { d: AdapterRefresh ->
-            setData(d)
-        })
+        mPresenter.contacts.observe(this) {
+            setData(it)
+        }
         adapter = UploadPhoneAdapter(context, mPresenter.dataList)
         layoutManager = LinearLayoutManager(context)
         bd.recyclerView.setLayoutManager(layoutManager)
         bd.recyclerView.addItemDecoration(DividerItemDecoration(context))
-        bd.recyclerView.addItemDecoration(FloatingBarItemDecoration(this, mHeaderList))
+        bd.recyclerView.addItemDecoration(FloatingBarItemDecoration(this, mPresenter.mHeaderList))
         bd.recyclerView.setAdapter(adapter)
         adapter.setOnItemClickListener { position: Int, data: UploadPhone? ->
             call(data!!.telephone)

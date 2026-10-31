@@ -1,208 +1,150 @@
-package example.location;
+package example.location
 
-import android.Manifest;
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.GnssStatus;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Build;
-import android.os.Bundle;
-import android.provider.Settings;
-import androidx.annotation.RequiresApi;
-import androidx.core.app.ActivityCompat;
-import android.view.View;
-import com.xiajun.base.BaseTitleBarActivity;
-import com.xiajun.app.MyApp.R;
-import com.xiajun.app.MyApp.databinding.LocationActivityBinding;
-import com.tbruyelle.rxpermissions3.RxPermissions;
+import android.Manifest
+import android.content.Intent
+import android.location.GnssStatus
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
+import android.os.Build
+import android.os.Bundle
+import android.provider.Settings
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresPermission
+import androidx.core.app.ActivityCompat
+import com.xiajun.app.MyApp.databinding.LocationActivityBinding
+import com.xiajun.base.BaseTitleBarActivity
 
-import org.jetbrains.annotations.Nullable;
+class LocationActivity : BaseTitleBarActivity() {
+    lateinit var bd: LocationActivityBinding
+    lateinit var lm: LocationManager
+    private var gpsListener: MyLocationListener? = null
+    private var networkListner: MyLocationListener? = null
+    private var mGnssStatusCallback: MyGnssStatusCallback? = null
 
-public class LocationActivity extends BaseTitleBarActivity {
-
-    private LocationActivityBinding bd;
-    private LocationManager lm;
-    private MyLocationListener gpsListener;
-    private MyLocationListener networkListner;
-    private MyGnssStatusCallback mGnssStatusCallback;
-
-    @Override
-    protected void onCreate(@Nullable Bundle arg0) {
-        super.onCreate(arg0);
-        bd = LocationActivityBinding.inflate(getLayoutInflater());
-        setContentView(bd.getRoot());
-        bd.btnStartLocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkLocationPermission();
+    override fun onCreate(arg0: Bundle?) {
+        super.onCreate(arg0)
+        bd = LocationActivityBinding.inflate(layoutInflater)
+        setContentView(bd.getRoot())
+        bd.btnStartLocation.setOnClickListener {
+            val res = ActivityResultContracts.RequestMultiplePermissions().getSynchronousResult(this,
+                arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_FINE_LOCATION)
+            )
+            res?.let { checkLocationProvider() }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                mRequestLocation.launch(
+                    arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION)
+                )
+            } else {
+                mRequestLocation.launch(
+                    arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_FINE_LOCATION)
+                )
             }
-        });
-        lm = (LocationManager) getSystemService(LOCATION_SERVICE);
-
+        }
+        lm = getSystemService(LOCATION_SERVICE) as LocationManager
     }
 
-    @Override
-    public void onDestroy() {
+    private fun checkLocationProvider() {
+        val isNetwork = this.isNetworkEnabled
+        val isGps = this.isGpsEnabled
+        if (!isGps) {
+            showToast("开启gps以便获取定位")
+            openGPSSetting()
+        } else {
+            initLocation()
+        }
+    }
+
+    //@RequiresPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+    private fun initLocation() {
+        //if (ActivityCompat.checkSelfPermission())
+        mGnssStatusCallback = MyGnssStatusCallback()
+        lm.registerGnssStatusCallback(mGnssStatusCallback!!, null)
+        networkListner = MyLocationListener(LocationManager.NETWORK_PROVIDER)
+        lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 3000, 10f, networkListner!!)
+        gpsListener = MyLocationListener(LocationManager.GPS_PROVIDER)
+        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3000, 10f, gpsListener!!)
+    }
+
+    inner class MyGnssStatusCallback : GnssStatus.Callback() {
+        override fun onStarted() {
+            logE(getTAG(), "onStarted")
+        }
+
+        override fun onStopped() {
+            logE(getTAG(), "onStopped")
+        }
+
+        override fun onFirstFix(ttffMillis: Int) {
+            logE(getTAG(), "onFirstFix")
+        }
+
+        override fun onSatelliteStatusChanged(status: GnssStatus) {
+            logE(getTAG(), "onSatelliteStatusChanged SatelliteCount " + status.satelliteCount)
+        }
+    }
+
+    inner class MyLocationListener(private val provider: String?) : LocationListener {
+        override fun onLocationChanged(location: Location) {
+            val accuracy = location.accuracy
+            val latitude = location.latitude
+            val longitude = location.longitude
+            logE("onLocationChanged", "latitude:$latitude,longitude:$longitude")
+            refreshLocation(location)
+        }
+
+        override fun onProviderEnabled(provider: String) {
+            logE(this.provider, "onProviderEnabled $provider")
+        }
+
+        override fun onProviderDisabled(provider: String) {
+            logE(this.provider, "onProviderDisabled $provider")
+        }
+    }
+
+    private fun refreshLocation(location: Location) {
+        runOnUiThread { bd.tvData.text = location.toString() }
+    }
+
+    private val isNetworkEnabled: Boolean
+        get() {
+            val isOpen: Boolean = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+            return isOpen
+        }
+
+    private val isGpsEnabled: Boolean
+        get() {
+            val isOpen: Boolean = lm.isProviderEnabled(LocationManager.GPS_PROVIDER)
+            return isOpen
+        }
+
+    private fun openGPSSetting() {
+        val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+    }
+
+    override fun onDestroy() {
         if (mGnssStatusCallback != null) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
-            }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                lm.unregisterGnssStatusCallback(mGnssStatusCallback);
-            }
+            lm.unregisterGnssStatusCallback(mGnssStatusCallback!!)
         }
         if (networkListner != null) {
-            lm.removeUpdates(networkListner);
+            lm.removeUpdates(networkListner!!)
         }
         if (gpsListener != null) {
-            lm.removeUpdates(gpsListener);
+            lm.removeUpdates(gpsListener!!)
         }
-        super.onDestroy();
+        super.onDestroy()
     }
 
-    private void initLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            mGnssStatusCallback = new MyGnssStatusCallback();
-            lm.registerGnssStatusCallback(mGnssStatusCallback);
-        }
-        networkListner = new MyLocationListener(LocationManager.NETWORK_PROVIDER);
-        lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 3000, 10, networkListner);
-        gpsListener = new MyLocationListener(LocationManager.GPS_PROVIDER);
-        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3000, 10, gpsListener);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private class MyGnssStatusCallback extends GnssStatus.Callback {
-        @Override
-        public void onStarted() {
-            logE(getTAG(), "onStarted");
-        }
-
-        @Override
-        public void onStopped() {
-            logE(getTAG(), "onStopped");
-        }
-
-        @Override
-        public void onFirstFix(int ttffMillis) {
-            logE(getTAG(), "onFirstFix");
-        }
-
-        @Override
-        public void onSatelliteStatusChanged(GnssStatus status) {
-            logE(getTAG(), "onSatelliteStatusChanged SatelliteCount " + status.getSatelliteCount());
-        }
-    }
-
-    private class MyLocationListener implements LocationListener {
-
-        private String provider;
-
-        public MyLocationListener(String provider) {
-            this.provider = provider;
-        }
-
-        /**
-         * 当位置改变的时候
-         */
-        @Override
-        public void onLocationChanged(Location location) {
-            if (location != null) {
-                float accuracy = location.getAccuracy();
-                double latitude = location.getLatitude(); //纬度
-                double longitude = location.getLongitude(); //经度
-                logE("onLocationChanged", "latitude:" + latitude + ",longitude:" + longitude);
-                refreshLocation(location);
-            }
-        }
-
-        @Override
-        public void onProviderEnabled(String provider) {
-            logE(this.provider, "onProviderEnabled " + provider);
-        }
-
-        @Override
-        public void onProviderDisabled(String provider) {
-            logE(this.provider, "onProviderDisabled " + provider);
-        }
-
-    }
-
-    private void refreshLocation(Location location) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                bd.tvData.setText(location.toString());
-            }
-        });
-    }
-
-    private void checkLocationProvider() {
-        boolean isNetwork = isNetworkEnabled();
-        boolean isGps = isGpsEnabled();
-
-        if (!isGps) {
-            showToast("开启gps以便获取定位");
-            openGPSSetting();
+    var mRequestLocation = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()
+    ) { it ->
+        val allGranted = it.entries.all { it.value }
+        if (allGranted) {
+            checkLocationProvider()
         } else {
-            initLocation();
+            showToast("请打开位置信息权限")
         }
     }
-
-    private boolean isNetworkEnabled() {
-        boolean isOpen;
-        isOpen = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-        return isOpen;
-    }
-
-    private int GPS_REQUEST_CODE = 1;
-
-    private boolean isGpsEnabled() {
-        boolean isOpen;
-        isOpen = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        return isOpen;
-    }
-
-    private void openGPSSetting() {
-        //跳转到手机原生设置页面
-        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-        startActivityForResult(intent, GPS_REQUEST_CODE);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == GPS_REQUEST_CODE) {
-            if (isGpsEnabled())
-                initLocation();
-        }
-    }
-
-    @SuppressLint("CheckResult")
-    private void checkLocationPermission() {
-        new RxPermissions(this)
-                .request(Manifest.permission.ACCESS_COARSE_LOCATION,
-                        Manifest.permission.ACCESS_FINE_LOCATION)
-                .subscribe(granted -> {
-                    if (granted) {
-                        checkLocationProvider();
-                    } else {
-                        showToast("请打开位置信息权限");
-                    }
-                });
-    }
-
 }

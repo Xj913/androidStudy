@@ -13,9 +13,6 @@ import com.xiajun.service.suspendWindow.CallInSuspendService
 import com.xiajun.service.suspendWindow.VideoSuspendService
 import com.xiajun.service.suspendWindow.VoiceSuspendService
 
-/**
- * Created by xiajun on 2017/8/1.
- */
 class SuspendWindowActivity : BaseTitleBarActivity() {
 
     private lateinit var bd: ActivitySuspendWindowBinding
@@ -45,7 +42,6 @@ class SuspendWindowActivity : BaseTitleBarActivity() {
         const val OVERLAY_PERMISSION_REQ_CODE = 1234;
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
     fun requestDrawOverLays() {
         //这种权限需要手动去设置里面修改
         if (!Settings.canDrawOverlays(this)) {
@@ -57,7 +53,6 @@ class SuspendWindowActivity : BaseTitleBarActivity() {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == OVERLAY_PERMISSION_REQ_CODE) {

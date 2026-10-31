@@ -16,13 +16,13 @@ import kotlin.text.clear
 
 class AddressViewModel : BaseViewModel() {
     var dataList: ArrayList<UploadPhone> = ArrayList()
-    val mHeaderList = LinkedHashMap<Int, String?>()
+    val mHeaderList = LinkedHashMap<Int, String>()
     var contacts: MutableLiveData<AdapterRefresh> = MutableLiveData<AdapterRefresh>()
     var player: MediaPlayer? = null
 
     fun getData() {
-            viewModelScope.launch(context = Dispatchers.IO) {
-                val list = async { getContacts(getApp()) }.await()
+            viewModelScope.launch {
+                val list = getContacts(getApp())
                 list?.let {
                     if (list.isNotEmpty()) {
                         dataList.clear()

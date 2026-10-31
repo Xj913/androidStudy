@@ -20,21 +20,17 @@ import com.xiajun.app.MyApp.R;
 
 public class CallInSuspendService extends Service {
 
-    //定义浮动窗口布局  
     private View mFloatLayout;
     private View mLeftLayout;
     private ImageView ivCallType;
     private TextView tvName;
-
     private Button btnHangup;
     private Button btnAnswer;
 
     LayoutParams wmParams;
-    //创建浮动窗口设置布局参数的对象  
     WindowManager mWindowManager;
 
     int statuaBarhight;
-
     private CallReceiver broadCast;
     private boolean isRegisterBroadcastReceiver;
 

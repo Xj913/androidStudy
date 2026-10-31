@@ -56,11 +56,11 @@ class LoginViewModel @Inject constructor() : BaseCompoModel() {
     }
 
     fun login2(userName: String, pass: String) {
-        viewModelScope.launch(context = Dispatchers.IO) {
-            val s = async { UserNetSourceImpl.getToken() }.await()
+        viewModelScope.launch {
+            val s = UserNetSourceImpl.getToken()
             if (s.isOk()) {
                 AppPrefsManager.getInstance().setSignKey(s.data?.access_token)
-                val s1 = async { UserNetSourceImpl.login2(userName, pass) }.await()
+                val s1 = UserNetSourceImpl.login2(userName, pass)
                 if (s1.isOk()) {
                     logI("login", s1.data.toString())
                 }
@@ -71,7 +71,7 @@ class LoginViewModel @Inject constructor() : BaseCompoModel() {
     fun login(userName: String, password: String) {
         val user = UserInfo(userName, password)
         AppPrefsManager.getInstance().currentUser = user
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             val s = async {
                 synData()
                 UserNetSourceImpl.login(userName, password) }.await()

@@ -73,8 +73,6 @@ okio = "com.squareup.okio:okio:3.16.4"
 okhttp = "com.squareup.okhttp3:okhttp:5.3.2"
 okhttp-log-ipt = "com.squareup.okhttp3:logging-interceptor:5.3.2"
 fastjson ="com.alibaba:fastjson:1.2.58"
-rxjava = "io.reactivex.rxjava3:rxjava:3.1.12"
-rxjava-rxandroid = "io.reactivex.rxjava3:rxandroid:3.0.2"
 glide = "com.github.bumptech.glide:glide:5.0.9"
 glide-integration = "com.github.bumptech.glide:okhttp3-integration:5.0.9"
 glide-compiler = "com.github.bumptech.glide:compiler:5.0.9"
@@ -91,7 +89,6 @@ compose = ["material3", "foundation", "compose-ui", "acyivity-compose", "hilt-na
     "navigation3-ui", "viewmodel-nav3", "hilt"]
 glide = ["glide", "glide-integration"]
 okhttp = ["okhttp", "okhttp-log-ipt"]
-rxjava = ["rxjava", "rxjava-rxandroid"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
