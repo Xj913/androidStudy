@@ -1,11 +1,16 @@
-package example.address;
+package com.contents;
 
-import android.content.ContentResolver;
+import  android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
+import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.util.Log;
+
+import com.contents.entity.MyCallLog;
+import com.contents.entity.MyRingtone;
+import com.contents.entity.UploadPhone;
 import com.xiajun.utils.FormatUtil;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,7 +18,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class ContactHelper {
+import com.contents.entity.MediaBean;
+import com.contents.entity.MediaFolder;
+
+public class MyContentsData {
     private static final String TAG = "ContactHelper";
 
     private static final String[] RINGTONE_PROJECTION = {
@@ -24,13 +32,12 @@ public class ContactHelper {
             , MediaStore.Audio.Media.IS_NOTIFICATION
     };
 
-    public static List<MyRingtone> getRingtone(Context context) {
-        List<MyRingtone> list = new ArrayList<>();
+    public static ArrayList<MyRingtone> getRingtone(Context context) {
+        ArrayList<MyRingtone> list = new ArrayList<>();
         ContentResolver cr = context.getContentResolver();
         String selection = "is_ringtone=1 or is_notification=1";
         Cursor cur = cr.query(MediaStore.Audio.Media.INTERNAL_CONTENT_URI, RINGTONE_PROJECTION, selection, null, null);
-        if (cur != null) {
-            if (cur.getCount() > 0) {
+        if (cur != null && cur.getCount() > 0) {
                 MyRingtone ringtone;
                 while (cur.moveToNext()) {
                     String id = cur.getString(cur.getColumnIndexOrThrow(MediaStore.Audio.Media._ID));
@@ -42,9 +49,8 @@ public class ContactHelper {
                     Log.e(TAG, ringtone.toString());
                     list.add(ringtone);
                 }
-            }
-            cur.close();
         }
+        if (cur != null) cur.close();
         return list;
     }
 
@@ -102,7 +108,7 @@ public class ContactHelper {
         return contacts;
     }
 
-    public List<MyCallLog> queryCalls(Context context) {
+    public static List<MyCallLog> queryCalls(Context context) {
         List<MyCallLog> calls = new ArrayList<>();
        /* Cursor cursor = context.getContentResolver().query(CallLog.Calls.CONTENT_URI, null, null, null, CallLog.Calls.DEFAULT_SORT_ORDER);
         while (cursor.moveToNext()) {
@@ -119,6 +125,64 @@ public class ContactHelper {
         }
         cursor.close();*/
         return calls;
+    }
+
+    static String[] AUDIO_PROJECTION = {
+            MediaStore.Files.FileColumns.DATA,
+            MediaStore.Files.FileColumns.DISPLAY_NAME,
+            MediaStore.Files.FileColumns.DATE_ADDED,
+            MediaStore.Files.FileColumns.MEDIA_TYPE,
+            MediaStore.Files.FileColumns.SIZE,
+            MediaStore.Files.FileColumns._ID,
+            MediaStore.Files.FileColumns.PARENT};
+
+    public static ArrayList<MediaFolder> getAudios(Context context) {
+        ArrayList<MediaFolder> folders = new ArrayList<>();
+        Uri queryUri = MediaStore.Files.getContentUri("external");
+        ContentResolver cr = context.getContentResolver();
+        String selection = MediaStore.Files.FileColumns.MEDIA_TYPE + "=" + MediaStore.Files.FileColumns.MEDIA_TYPE_AUDIO;
+        Cursor cursor = cr.query(queryUri, AUDIO_PROJECTION, selection, null, MediaStore.Files.FileColumns.DATE_ADDED + " DESC");
+        if (cursor != null && cursor.getCount() > 0) {
+            Log.e("getAudios ", cursor.getCount() + "数量数量");
+            while (cursor.moveToNext()) {
+                String path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA));
+                String name = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DISPLAY_NAME));
+                long dateTime = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATE_ADDED));
+                int mediaType = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.MEDIA_TYPE));
+                long size = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.SIZE));
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns._ID));
+
+                if (size < 1) continue;
+                String dirName = getParent(path);
+                MediaBean media = new MediaBean(path, name, dateTime, mediaType, size, id, dirName);
+
+                int index = hasDir(folders, dirName);
+                if (index != -1) {
+                    folders.get(index).addMedias(media);
+                } else {
+                    MediaFolder folder = new MediaFolder(dirName);
+                    folder.addMedias(media);
+                    folders.add(folder);
+                }
+            }
+        }
+        if (cursor != null) cursor.close();
+        return folders;
+    }
+
+    public static String getParent(String path) {
+        String sp[]=path.split("/");
+        return sp[sp.length-2];
+    }
+
+    public static int hasDir(ArrayList<MediaFolder> folders, String dirName){
+        for(int i = 0; i< folders.size(); i++){
+            MediaFolder folder = folders.get(i);
+            if( folder.name.equals(dirName)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public String formatTime(long date) {

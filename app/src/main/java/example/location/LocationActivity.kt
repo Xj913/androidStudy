@@ -2,6 +2,7 @@ package example.location
 
 import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.location.GnssStatus
 import android.location.Location
 import android.location.LocationListener
@@ -10,7 +11,6 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresPermission
 import androidx.core.app.ActivityCompat
 import com.xiajun.app.MyApp.databinding.LocationActivityBinding
 import com.xiajun.base.BaseTitleBarActivity
@@ -58,15 +58,17 @@ class LocationActivity : BaseTitleBarActivity() {
         }
     }
 
-    //@RequiresPermission(Manifest.permission.ACCESS_FINE_LOCATION)
     private fun initLocation() {
-        //if (ActivityCompat.checkSelfPermission())
-        mGnssStatusCallback = MyGnssStatusCallback()
-        lm.registerGnssStatusCallback(mGnssStatusCallback!!, null)
-        networkListner = MyLocationListener(LocationManager.NETWORK_PROVIDER)
-        lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 3000, 10f, networkListner!!)
-        gpsListener = MyLocationListener(LocationManager.GPS_PROVIDER)
-        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3000, 10f, gpsListener!!)
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
+            ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+        ) {
+            mGnssStatusCallback = MyGnssStatusCallback()
+            lm.registerGnssStatusCallback(mGnssStatusCallback!!, null)
+            networkListner = MyLocationListener(LocationManager.NETWORK_PROVIDER)
+            lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 3000, 10f, networkListner!!)
+            gpsListener = MyLocationListener(LocationManager.GPS_PROVIDER)
+            lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3000, 10f, gpsListener!!)
+        }
     }
 
     inner class MyGnssStatusCallback : GnssStatus.Callback() {

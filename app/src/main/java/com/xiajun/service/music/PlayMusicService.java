@@ -9,7 +9,7 @@ import android.os.IBinder;
 import androidx.annotation.Nullable;
 import android.util.Log;
 
-import example.music.entity.MediaBean;
+import com.contents.entity.MediaBean;
 
 /**
  * service通过Context.startService()方法开始，通过Context.stopService()方法停止；

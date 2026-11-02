@@ -3,10 +3,6 @@ package com.dmcbig.mediapicker.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by dmcBig on 2017/7/4.
- */
-
 public class Media implements Parcelable {
     public String path;
     public String name;

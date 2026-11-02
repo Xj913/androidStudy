@@ -14,9 +14,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.net.toUri
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.contents.entity.UploadPhone
 import com.xiajun.app.MyApp.R
 import com.xiajun.app.MyApp.databinding.ActivityAddressBinding
 import com.xiajun.base.AdapterRefresh
@@ -31,22 +31,19 @@ class AddressActivity : BaseTitleBarActivity() {
     lateinit var bd: ActivityAddressBinding
     lateinit var layoutManager: LinearLayoutManager
     lateinit var adapter: UploadPhoneAdapter
-    lateinit var mPresenter: AddressViewModel
+    lateinit var mViewModel: AddressViewModel
 
     override fun onCreate(arg0: Bundle?) {
         super.onCreate(arg0)
         bd = ActivityAddressBinding.inflate(layoutInflater)
         setContentView(bd.getRoot())
         setTitleBarTitle("通讯录")
-        mPresenter = ViewModelProvider(this)[AddressViewModel::class.java]
-        mPresenter.contacts.observe(this) {
-            setData(it)
-        }
-        adapter = UploadPhoneAdapter(context, mPresenter.dataList)
+        mViewModel = ViewModelProvider(this)[AddressViewModel::class.java]
+        adapter = UploadPhoneAdapter(context, mViewModel.dataList)
         layoutManager = LinearLayoutManager(context)
         bd.recyclerView.setLayoutManager(layoutManager)
         bd.recyclerView.addItemDecoration(DividerItemDecoration(context))
-        bd.recyclerView.addItemDecoration(FloatingBarItemDecoration(this, mPresenter.mHeaderList))
+        bd.recyclerView.addItemDecoration(FloatingBarItemDecoration(this, mViewModel.mHeaderList))
         bd.recyclerView.setAdapter(adapter)
         adapter.setOnItemClickListener { position: Int, data: UploadPhone? ->
             call(data!!.telephone)
@@ -55,8 +52,8 @@ class AddressActivity : BaseTitleBarActivity() {
         bd.indexBar.setOnTouchingLetterChangedListener(object : OnTouchingLetterChangeListener {
             override fun onTouchingLetterChanged(s: String?) {
                 showLetterHint(s)
-                for (position in mPresenter.mHeaderList.keys) {
-                    if (mPresenter.mHeaderList[position] == s) {
+                for (position in mViewModel.mHeaderList.keys) {
+                    if (mViewModel.mHeaderList[position] == s) {
                         //layoutManager.smoothScrollToPosition(bd.recyclerView, null, position);
                         //移动到屏幕顶端， 距离屏幕顶端offset
                         layoutManager.scrollToPositionWithOffset(position, 0)
@@ -73,7 +70,6 @@ class AddressActivity : BaseTitleBarActivity() {
                 hideLetterHint()
             }
         })
-        mRequestContacts.launch(Manifest.permission.READ_CONTACTS)
         val v2 = bd.commonLoadingLayout.setEmptyView(com.xiajun.lib.common.R.layout.common_loading_layout_empty_2)
         v2.findViewById<View>(com.xiajun.lib.common.R.id.common_loading_layout_tv_empty_2)
             .setOnClickListener { _: View? -> bd.commonLoadingLayout.showLoading() }
@@ -83,9 +79,12 @@ class AddressActivity : BaseTitleBarActivity() {
         bd.btn4.setOnClickListener { _: View? -> bd.commonLoadingLayout.showNetworkError() }
         bd.commonLoadingLayout.setOnClickRetryListener { bd.commonLoadingLayout.showContent() }
         bd.commonLoadingLayout.showLoading()
-
         bd.btnImei.setOnClickListener { _: View? -> this.isNotificationEnabled }
         getImei(this)
+        mViewModel.mAdapterRefresh.observe(this) {
+            setData(it)
+        }
+        mRequestContacts.launch(Manifest.permission.READ_CONTACTS)
     }
 
     private val isNotificationEnabled: Unit
@@ -105,13 +104,13 @@ class AddressActivity : BaseTitleBarActivity() {
 
     fun setData(data: AdapterRefresh) {
         adapter.notifyDataSetChanged()
-        bd.indexBar.setNavigators(ArrayList(mPresenter.mHeaderList.values))
+        bd.indexBar.setNavigators(ArrayList(mViewModel.mHeaderList.values))
     }
 
     var mRequestContacts = registerForActivityResult(ActivityResultContracts.RequestPermission()
     ) { it ->
         if (it) {
-            mPresenter.getData()
+            mViewModel.getData()
         } else {
             showToast(R.string.please_open_contacts_permission)
         }
@@ -128,7 +127,7 @@ class AddressActivity : BaseTitleBarActivity() {
 
     override fun onPause() {
         super.onPause()
-        mPresenter.stopPlay()
+        mViewModel.stopPlay()
     }
 
     private fun call(number: String?) {

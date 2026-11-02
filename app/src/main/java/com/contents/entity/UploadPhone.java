@@ -1,4 +1,4 @@
-package example.address;
+package com.contents.entity;
 
 import java.io.Serializable;
 

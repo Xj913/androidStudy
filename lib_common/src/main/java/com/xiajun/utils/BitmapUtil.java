@@ -327,7 +327,7 @@ public class BitmapUtil {
      * @param maxSize 单位kb
      * @return 压缩后的字节数据
      */
-    public static byte[] compress(String path, int maxSize) {
+    public static byte[] compress(String path, int maxSize) throws IOException {
         try {
             FileInputStream in = new FileInputStream(path);
             int size = in.available();
@@ -387,7 +387,7 @@ public class BitmapUtil {
             //}
             return baos.toByteArray();
         } catch (IOException e) {
-            return null;
+            throw e;
         }
     }
 

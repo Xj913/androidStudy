@@ -1,4 +1,4 @@
-package example.address;
+package com.contents.entity;
 
 public class MyCallLog {
 

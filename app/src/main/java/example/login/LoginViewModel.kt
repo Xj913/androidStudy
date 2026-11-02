@@ -3,7 +3,7 @@ package example.login
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.xiajun.base.BaseCompoModel
+import com.xiajun.base.BaseViewModel
 import com.xiajun.data.http.function.impl.UserNetSourceImpl
 import com.xiajun.data.prefs.AppPrefsManager
 import com.xiajun.entity.UserInfo
@@ -21,7 +21,7 @@ import javax.net.ssl.HttpsURLConnection
 import kotlin.experimental.and
 
 @HiltViewModel
-class LoginViewModel @Inject constructor() : BaseCompoModel() {
+class LoginViewModel @Inject constructor() : BaseViewModel() {
 
     val phone = MutableStateFlow("")
     val password = mutableStateOf("")

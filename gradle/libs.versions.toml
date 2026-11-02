@@ -85,7 +85,7 @@ compose-smart-refresh = { module = "io.github.lx-0713:compose-smart-refresh", ve
 base = ["org-annotation", "and-annotation", "javax-annotation", "ktx-serialization-core", "ktx-serialization-json", "ktx-coroutines-android", "ax-core", "prefrence-ktx", "splite", "activity",
     "appcompat", "fragment", "fragment-ktx", "recyclerview", "cardview", "legacy", "vectordrawable", "constraintlayout", "material", "gson", "coordinatorlayout", "palette-ktx", "exifinterface"]
 compose = ["material3", "foundation", "compose-ui", "acyivity-compose", "hilt-navigation-compose", "viewmodel-compose", "viewmodel", "viewmodel-common",
-    "livedata", "livedata-core", "lifecycle-runtime", "lifecycle-rea", "compose-livedata", "lifecycle-runtime-compose", "compose-rxjava3","navigation3-runtime",
+    "livedata", "livedata-core", "lifecycle-runtime", "lifecycle-rea", "compose-livedata", "lifecycle-runtime-compose", "navigation3-runtime",
     "navigation3-ui", "viewmodel-nav3", "hilt"]
 glide = ["glide", "glide-integration"]
 okhttp = ["okhttp", "okhttp-log-ipt"]

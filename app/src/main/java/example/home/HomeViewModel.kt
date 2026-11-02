@@ -4,7 +4,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.viewModelScope
-import com.xiajun.base.BaseCompoModel
+import com.xiajun.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -16,7 +16,7 @@ import javax.inject.Inject
 import kotlin.time.Duration.Companion.milliseconds
 
 @HiltViewModel
-class HomeViewModel @Inject constructor() : BaseCompoModel() {
+class HomeViewModel @Inject constructor() : BaseViewModel() {
     private val titles = arrayOf("View", "列表", "手势", "原生", "其他")
     val title = mutableStateOf(titles[0])
     val currentPage = mutableIntStateOf(0)

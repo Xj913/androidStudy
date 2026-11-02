@@ -38,7 +38,7 @@ class SelectLocalPictureActivity : BaseTitleBarActivity() {
         bd.recyclerView.setLayoutManager(gridLayoutManager);
         //bd.recyclerView.addItemDecoration(GridDividerItemDecoration(20, Color.BLACK))
         bd.recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener { position, data ->
+        adapter.setOnItemClickListener { position,_ ->
             var count = adapter.itemCount;
             if (position == count - 1) {
                 showSelPicPopupWindow();
@@ -48,15 +48,12 @@ class SelectLocalPictureActivity : BaseTitleBarActivity() {
                 startActivityForResult(intent, PickerConfig.CODE_TAKE_ALBUM);
             }
         }
-        adapter.setOnDeleteClickListener(object : DynamicPublishImageAdapter.OnDeleteClickListener {
-            override fun onItemClickDelete(position: Int) {
-                mViewModel.paths.removeAt(position);
-                adapter.notifyItemRemoved(position);
-            }
+        adapter.setOnDeleteClickListener(object : DynamicPublishImageAdapter.OnDeleteClickListener<Media> {
+            override fun onItemClickDelete(position: Int, p: Media) {
+            mViewModel.paths.removeAt(position);
+            adapter.notifyItemRemoved(position);
+                }
         })
-        mViewModel.compressed.observe(this) {
-            if (it) dismissProgressDialog()
-        }
         bd.btnCompress.setOnClickListener { compressImage() }
         bd.btnShareText.setOnClickListener({ v ->
             SystemShareUtil.shareText(context, "文章", "来自系统分享");
@@ -65,6 +62,9 @@ class SelectLocalPictureActivity : BaseTitleBarActivity() {
             SystemShareUtil.shareImage(context, FileDirConfig.FILE_PROVIDER_AUTHORITY,
                 mViewModel.paths[0].path
             );
+        }
+        mViewModel.compressed.observe(this) {
+            if (it) dismissProgressDialog()
         }
     }
 

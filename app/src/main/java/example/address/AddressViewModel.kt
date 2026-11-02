@@ -3,21 +3,17 @@ package example.address
 import android.media.MediaPlayer
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.contents.MyContentsData
+import com.contents.entity.UploadPhone
 import com.xiajun.base.AdapterRefresh
 import com.xiajun.base.BaseViewModel
-import com.xiajun.utils.PinyinUtils
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import java.io.IOException
-import java.util.Collections
-import kotlin.collections.get
-import kotlin.text.clear
 
 class AddressViewModel : BaseViewModel() {
     var dataList: ArrayList<UploadPhone> = ArrayList()
     val mHeaderList = LinkedHashMap<Int, String>()
-    var contacts: MutableLiveData<AdapterRefresh> = MutableLiveData<AdapterRefresh>()
+    val mAdapterRefresh: MutableLiveData<AdapterRefresh> = MutableLiveData<AdapterRefresh>()
     var player: MediaPlayer? = null
 
     fun getData() {
@@ -35,17 +31,17 @@ class AddressViewModel : BaseViewModel() {
                                 mHeaderList[i] = dataList[i].sortLetters
                             }
                         }
-                        contacts.postValue(AdapterRefresh(begin = -1))
+                        mAdapterRefresh.postValue(AdapterRefresh())
                     }
                 }
             }
     }
 
     fun getRringtones() {
-            val list = ContactHelper.getRingtone(getApp())
+            val list = MyContentsData.getRingtone(getApp())
             player = MediaPlayer()
             try {
-                player!!.setDataSource(list[0]!!.path)
+                player!!.setDataSource(list[0].path)
                 player!!.prepareAsync()
                 player!!.setOnPreparedListener { _: MediaPlayer? -> player!!.start() }
             } catch (e: IOException) {

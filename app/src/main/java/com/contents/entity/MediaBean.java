@@ -1,4 +1,4 @@
-package example.music.entity;
+package com.contents.entity;
 
 import android.os.Parcel;
 import android.os.Parcelable;

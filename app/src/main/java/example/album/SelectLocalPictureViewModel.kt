@@ -99,10 +99,14 @@ class SelectLocalPictureViewModel : BaseViewModel() {
                 paths.forEach {
                     if (!it.path.isNullOrEmpty()) {
                         val path = FileDirConfig.DIR_CACHE + File.separatorChar + System.currentTimeMillis() + ".jpg"
-                        val bytes = BitmapUtil.compress(it.path, 200)
-                        BitmapUtil.saveByte(path, bytes)
-                        list.add(path)
-                        logE("compressImage  ", path)
+                        try {
+                            val bytes = BitmapUtil.compress(it.path, 200)
+                            BitmapUtil.saveByte(path, bytes)
+                            list.add(path)
+                            logE("compressImage  ", path)
+                        } catch (e: Throwable) {
+                            e.printStackTrace()
+                        }
                     }
                 }
             }

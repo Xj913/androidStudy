@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.contents.entity.UploadPhone;
 import com.xiajun.base.BaseRecyclerViewAdapter;
 import com.xiajun.app.MyApp.databinding.AdapterAddressBinding;
 

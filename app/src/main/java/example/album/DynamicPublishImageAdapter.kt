@@ -14,9 +14,9 @@ import com.xiajun.data.glide.ImageLoader;
 
 import java.util.ArrayList;
 
-public class DynamicPublishImageAdapter : BaseRecyclerViewAdapter<Media> {
+class DynamicPublishImageAdapter : BaseRecyclerViewAdapter<Media> {
 
-    private var listener: OnDeleteClickListener? = null;
+    private var listener: OnDeleteClickListener<Media>? = null;
 
     constructor(context: Context, list: ArrayList<Media>) : super(context, list)
 
@@ -37,12 +37,7 @@ public class DynamicPublishImageAdapter : BaseRecyclerViewAdapter<Media> {
             holder.bd.ivActiveImages.setImageResource(R.mipmap.ic_add_photo);
         }
         super.setOnItemClickListener(holder.itemView, position);
-
-        holder.bd.ivDelete.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                listener?.onItemClickDelete(index);
-            }
-        });
+        holder.bd.ivDelete.setOnClickListener { listener?.onItemClickDelete(index, media); };
     }
 
     class ViewHolder : RecyclerView.ViewHolder {
@@ -53,12 +48,12 @@ public class DynamicPublishImageAdapter : BaseRecyclerViewAdapter<Media> {
         }
     }
 
-    fun setOnDeleteClickListener(listener: OnDeleteClickListener) {
+    fun setOnDeleteClickListener(listener: OnDeleteClickListener<Media>) {
             this.listener = listener;
     }
 
-    public interface OnDeleteClickListener {
-        fun onItemClickDelete(position: Int);
+    interface OnDeleteClickListener<Media> {
+        fun onItemClickDelete(position: Int, p: Media);
     }
 
 }

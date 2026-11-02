@@ -5,12 +5,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.xiajun.base.BaseRecyclerViewAdapter;
-import com.xiajun.app.MyApp.R;
 import com.xiajun.app.MyApp.databinding.AdapterMusicBinding;
 
 import java.util.ArrayList;
 
-import example.music.entity.MediaBean;
+import com.contents.entity.MediaBean;
 
 public class AudioAdapter extends BaseRecyclerViewAdapter<MediaBean> {
 
@@ -32,9 +31,8 @@ public class AudioAdapter extends BaseRecyclerViewAdapter<MediaBean> {
         super.setOnItemClickListener(holder.itemView, position);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         AdapterMusicBinding bd;
-
         ViewHolder(AdapterMusicBinding bd) {
             super(bd.getRoot());
             this.bd = bd;

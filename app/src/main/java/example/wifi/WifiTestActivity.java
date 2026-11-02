@@ -23,7 +23,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class WifiTestActivity extends BaseTitleBarActivity {
     private static int REQUEST_ENABLE_BT = 6;
     WifiActivityMainBinding bd;
@@ -50,11 +49,8 @@ public class WifiTestActivity extends BaseTitleBarActivity {
         bd.recyclerView.setLayoutManager(layoutManager);
         bd.recyclerView.addItemDecoration(new DividerItemDecoration(getContext()));
         bd.recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener(new BaseRecyclerViewAdapter.OnItemClickListener<ScanResult>() {
-            @Override
-            public void onItemClick(int position, ScanResult data) {
+        adapter.setOnItemClickListener((position, data) -> {
 
-            }
         });
         bd.btnScan.setOnClickListener(v -> {
             scan();

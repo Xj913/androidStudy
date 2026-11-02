@@ -12,9 +12,6 @@ import com.xiajun.utils.LogManager;
 
 import java.util.ArrayList;
 
-/**
- * Created by XiaJun on 2015/7/2.
- */
 public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     protected String TAG = getClass().getSimpleName();
@@ -71,7 +68,6 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Re
     }
 
     public void setOnItemClickListener(OnItemClickListener<T> mListener) {
-        if (mListener != null)
             this.onItemClickListener = mListener;
     }
 
