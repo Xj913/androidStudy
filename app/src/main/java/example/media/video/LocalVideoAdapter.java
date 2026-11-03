@@ -56,7 +56,7 @@ public class LocalVideoAdapter extends BaseRecyclerViewAdapter<File> {
 
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         AdapterLocalVideoBinding bd;
 
         ViewHolder(AdapterLocalVideoBinding bd) {

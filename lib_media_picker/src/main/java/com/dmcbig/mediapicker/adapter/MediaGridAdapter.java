@@ -1,6 +1,5 @@
 package com.dmcbig.mediapicker.adapter;
 
-
 import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
@@ -26,7 +25,6 @@ import com.dmcbig.mediapicker.utils.FileUtils;
 import com.dmcbig.mediapicker.utils.ScreenUtils;
 
 import java.util.ArrayList;
-
 
 public class MediaGridAdapter extends RecyclerView.Adapter<MediaGridAdapter.MyViewHolder> {
 

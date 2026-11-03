@@ -34,7 +34,7 @@ public class WifiDeviceAdapter extends BaseRecyclerViewAdapter<ScanResult> {
         super.setOnItemClickListener(holder.itemView, position);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         WifiMainAdapterBinding bd;
 
         ViewHolder(WifiMainAdapterBinding bd) {

@@ -26,7 +26,7 @@ public class AudioAdapter extends BaseRecyclerViewAdapter<MediaBean> {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         ViewHolder holder = (ViewHolder) viewHolder;
-        MediaBean f = (MediaBean) getList().get(position);
+        MediaBean f = getList().get(position);
         holder.bd.name.setText(f.name);
         super.setOnItemClickListener(holder.itemView, position);
     }

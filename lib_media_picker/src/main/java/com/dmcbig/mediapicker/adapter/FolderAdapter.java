@@ -17,10 +17,6 @@ import com.dmcbig.mediapicker.entity.Media;
 
 import java.util.ArrayList;
 
-/**
- * Created by dmcBig on 2017/7/19.
- */
-
 public class FolderAdapter extends BaseAdapter{
     ArrayList<Folder> folders;
     private LayoutInflater mInflater;
@@ -91,7 +87,7 @@ public class FolderAdapter extends BaseAdapter{
         return folders.get(lastSelected).getMedias();
     }
 
-    class ViewHolder {
+    static class ViewHolder {
         ImageView cover,indicator;
         TextView name,path,size;
 

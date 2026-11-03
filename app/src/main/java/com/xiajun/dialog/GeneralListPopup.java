@@ -87,7 +87,7 @@ public class GeneralListPopup extends PopupWindow {
             super.setOnItemClickListener(holder.itemView, position);
         }
 
-        public class ViewHolder extends RecyclerView.ViewHolder {
+        public static class ViewHolder extends RecyclerView.ViewHolder {
             GeneralPopupWindowAdapterItemBinding bd;
 
             ViewHolder(GeneralPopupWindowAdapterItemBinding bd) {

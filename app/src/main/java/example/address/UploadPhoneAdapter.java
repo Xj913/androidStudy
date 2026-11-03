@@ -34,7 +34,7 @@ public class UploadPhoneAdapter extends BaseRecyclerViewAdapter<UploadPhone> {
 		super.setOnItemClickListener(holder.itemView, position);
 	}
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 		AdapterAddressBinding bd;
 		ViewHolder(AdapterAddressBinding bd) {
             super(bd.getRoot());

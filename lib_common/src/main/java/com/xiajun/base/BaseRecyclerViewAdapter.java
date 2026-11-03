@@ -15,11 +15,11 @@ import java.util.ArrayList;
 public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     protected String TAG = getClass().getSimpleName();
-    private Context context;
-    private final LayoutInflater inflater;
-    private ArrayList<T> list;
-    private OnItemClickListener<T> onItemClickListener;
-    private OnItemLongClickListener<T> onItemLongClickListener;
+    public Context context;
+    public final LayoutInflater inflater;
+    public ArrayList<T> list;
+    public OnItemClickListener<T> onItemClickListener;
+    public OnItemLongClickListener<T> onItemLongClickListener;
 
     public BaseRecyclerViewAdapter(Context context, ArrayList<T> list) {
         this.context = context;

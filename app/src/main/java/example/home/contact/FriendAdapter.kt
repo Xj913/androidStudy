@@ -29,7 +29,6 @@ class FriendAdapter : BaseRecyclerViewAdapter<Int> {
 
     class ViewHolder : RecyclerView.ViewHolder {
         var bd: AdapterFriendBinding
-
         constructor(bd: AdapterFriendBinding) : super(bd.root) {
             this.bd = bd
         }

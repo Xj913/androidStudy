@@ -42,7 +42,7 @@ public class GlideListAdapter extends BaseRecyclerViewAdapter<Media> {
         super.setOnItemClickListener(holder.itemView, position);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         AdapterGlideListBinding bd;
 
         ViewHolder(AdapterGlideListBinding bd) {

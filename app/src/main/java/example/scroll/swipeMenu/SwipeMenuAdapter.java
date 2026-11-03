@@ -65,7 +65,7 @@ public class SwipeMenuAdapter extends BaseRecyclerViewAdapter<String> {
         holder.setIsRecyclable(false);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         SwipeMenuAdapterBinding bd;
 
         ViewHolder(SwipeMenuAdapterBinding bd) {

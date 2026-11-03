@@ -30,7 +30,7 @@ public class DragAdapter extends BaseRecyclerViewAdapter<Integer> {
         super.setOnItemClickListener(holder.itemView, position);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         DragAdapterBinding bd;
 
         ViewHolder(DragAdapterBinding bd) {
