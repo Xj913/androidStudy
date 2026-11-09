@@ -13,10 +13,14 @@ import androidx.compose.foundation.layout.FlexJustifyContent
 import androidx.compose.foundation.layout.FlexWrap
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,14 +35,17 @@ import com.xiajun.ui.MyColors
 import com.xiajun.ui.MyDimens
 import com.xiajun.ui.MyTextStyles
 import example.home.HomeScreen
+import example.home.MyRouteEvents
+import example.home.RouteEvent
 
 @OptIn(ExperimentalFlexBoxApi::class)
 @Composable
-fun TitleBarDefault(back: ()-> Unit, title: String = " ", menu: @Composable ()-> Unit = { MenuPlace() }) {
-    Column(modifier = Modifier.fillMaxWidth().background(MyColors.ColorPrimary)) {
-        Spacer(modifier = Modifier.fillMaxWidth().height(24.dp))
-        Row() {
-            FlexBox(modifier = Modifier.fillMaxWidth().height(48.dp),
+fun TitleBarDefault(back: ()-> Unit = { MyRouteEvents.send(RouteEvent(isBack = true)) }, title: String = " ", menu: @Composable ()-> Unit = { MenuPlace() }) {
+    Column(
+        modifier = Modifier.fillMaxWidth().background(MyColors.ColorPrimary)
+    ) {
+        Spacer(modifier = Modifier.fillMaxWidth().height(WindowInsets.statusBars.asPaddingValues().calculateTopPadding()))
+            FlexBox(modifier = Modifier.fillMaxWidth().height(MyDimens.TitlebarH),
                 config = {
                     direction(FlexDirection.Row)
                     justifyContent(FlexJustifyContent.SpaceBetween)
@@ -53,17 +60,17 @@ fun TitleBarDefault(back: ()-> Unit, title: String = " ", menu: @Composable ()->
                 Text(text = title, style = MyTextStyles.textWhite18sp)
                 menu()
             }
-        }
     }
 }
 
 @OptIn(ExperimentalFlexBoxApi::class)
 @Composable
-fun TitleBarWhite(back: ()-> Unit, title: String = "", menu: @Composable ()-> Unit = { MenuPlace() }) {
-    Column(modifier = Modifier.fillMaxWidth().background(Color.White)) {
-        Spacer(modifier = Modifier.fillMaxWidth().height(24.dp))
-        Row() {
-            FlexBox(modifier = Modifier.fillMaxWidth().height(48.dp),
+fun TitleBarWhite(back: ()-> Unit = { MyRouteEvents.send(RouteEvent(isBack = true)) }, title: String = "", menu: @Composable ()-> Unit = { MenuPlace() }) {
+    Column(
+        modifier = Modifier.fillMaxWidth().background(Color.White).statusBarsPadding()
+    ) {
+        Spacer(modifier = Modifier.fillMaxWidth().height(WindowInsets.statusBars.asPaddingValues().calculateTopPadding()))
+            FlexBox(modifier = Modifier.fillMaxWidth().height(MyDimens.TitlebarH),
                 config = {
                     direction(FlexDirection.Row)
                     alignContent(FlexAlignContent.SpaceBetween)
@@ -71,14 +78,13 @@ fun TitleBarWhite(back: ()-> Unit, title: String = "", menu: @Composable ()-> Un
                 }) {
                 Image(painter = painterResource(id = R.drawable.ic_menu_back_black),
                     contentDescription = "",
-                    modifier = Modifier.size(40.dp).clickable {
+                    modifier = Modifier.size(40.dp).padding(10.dp).clickable {
                         back()
                     }
                 )
                 Text(text = title, style = MyTextStyles.textSecond18sp)
                 menu()
             }
-        }
         HorizontalDivider(
             modifier = Modifier.fillMaxWidth(),
             thickness = MyDimens.DividerH,
@@ -89,11 +95,12 @@ fun TitleBarWhite(back: ()-> Unit, title: String = "", menu: @Composable ()-> Un
 
 @OptIn(ExperimentalFlexBoxApi::class)
 @Composable
-fun TitleBarTransparent(back: ()-> Unit, title: String = "", menu: @Composable ()-> Unit = { MenuPlace() }) {
-    Column(modifier = Modifier.fillMaxWidth().background(Color.Transparent))  {
-        Spacer(modifier = Modifier.fillMaxWidth().height(24.dp))
-        Row(modifier = Modifier) {
-            FlexBox(modifier = Modifier.fillMaxWidth().height(48.dp),
+fun TitleBarTransparent(back: ()-> Unit = { MyRouteEvents.send(RouteEvent(isBack = true)) }, title: String = "", menu: @Composable ()-> Unit = { MenuPlace() }) {
+    Column(
+        modifier = Modifier.fillMaxWidth().background(Color.Transparent)
+    )  {
+        Spacer(modifier = Modifier.fillMaxWidth().height(WindowInsets.statusBars.asPaddingValues().calculateTopPadding()))
+            FlexBox(modifier = Modifier.fillMaxWidth().height(MyDimens.TitlebarH),
                 config = {
                     direction(FlexDirection.Row)
                     alignContent(FlexAlignContent.SpaceBetween)
@@ -101,13 +108,42 @@ fun TitleBarTransparent(back: ()-> Unit, title: String = "", menu: @Composable (
                 }) {
                 Image(painter = painterResource(id = R.drawable.ic_menu_back_white),
                     contentDescription = "",
-                    modifier = Modifier.size(40.dp).clickable {
+                    modifier = Modifier.size(40.dp).padding(10.dp).clickable {
                         back()
                     }
                 )
                 Text(text = title, style = MyTextStyles.textWhite18sp)
                 menu()
             }
+        HorizontalDivider(
+            modifier = Modifier.fillMaxWidth(),
+            thickness = MyDimens.DividerH,
+            color = MyColors.Divider
+        )
+    }
+}
+
+@OptIn(ExperimentalFlexBoxApi::class)
+@Composable
+fun TitleBarTransparentDark(back: ()-> Unit = { MyRouteEvents.send(RouteEvent(isBack = true)) }, title: String = "", menu: @Composable ()-> Unit = { MenuPlace() }) {
+    Column(
+        modifier = Modifier.fillMaxWidth().background(Color.Transparent)
+    )  {
+        Spacer(modifier = Modifier.fillMaxWidth().height(WindowInsets.statusBars.asPaddingValues().calculateTopPadding()))
+        FlexBox(modifier = Modifier.fillMaxWidth().height(MyDimens.TitlebarH),
+            config = {
+                direction(FlexDirection.Row)
+                alignContent(FlexAlignContent.SpaceBetween)
+                alignItems(FlexAlignItems.Center)
+            }) {
+            Image(painter = painterResource(id = R.drawable.ic_menu_back_black),
+                contentDescription = "",
+                modifier = Modifier.size(40.dp).padding(10.dp).clickable {
+                    back()
+                }
+            )
+            Text(text = title, style = MyTextStyles.textSecond18sp)
+            menu()
         }
         HorizontalDivider(
             modifier = Modifier.fillMaxWidth(),
@@ -124,6 +160,6 @@ fun MenuPlace() {
 
 @Preview(showBackground = true)
 @Composable()
-fun Preview(){
+fun Pre2(){
     TitleBarDefault({})
 }

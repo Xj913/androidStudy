@@ -16,7 +16,11 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.runtime.result.rememberResultEventBus
 import androidx.navigation3.runtime.result.rememberResultEventBusNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
+import example.album.PikerPhotoScreen
 import example.login.LoginScreen
+import example.myrefresh.MyRefreshScreen
+import example.scroll.CollapsingScreen
+import example.web_service.NetworkScreen
 import kotlinx.serialization.Serializable
 
 
@@ -43,7 +47,7 @@ fun HomeApp() {
             MyRouteEvents.events.collect {
                 when(it) {
                     is LoginSucceed -> {
-                        backStack.clear();
+                        backStack.clear()
                         backStack.add(MyNavKey.HomeNav)
                     }
                 }
@@ -59,7 +63,6 @@ fun route(backStack: NavBackStack<NavKey>, e : RouteEvent) {
     e.route?.isNotEmpty().let {  }
 }
 
-
 fun EntryProviderScope<NavKey>.entryBuilder(backStack: NavBackStack<NavKey>) {
     entry(key = MyNavKey.HomeNav) {
         HomeScreen()
@@ -67,5 +70,18 @@ fun EntryProviderScope<NavKey>.entryBuilder(backStack: NavBackStack<NavKey>) {
     entry(key = MyNavKey.LoginNav) {
         LoginScreen(evt = { route(backStack, it) })
     }
+    entry(key = MyNavKey.ScrollingCollapsingNav) {
+        CollapsingScreen()
+    }
+    entry(key = MyNavKey.SwipeMenuNav) {
+        MyRefreshScreen()
+    }
+    entry(key = MyNavKey.PikerPhotoNav) {
+        PikerPhotoScreen()
+    }
+    entry(key = MyNavKey.NetworkTestNav) {
+        NetworkScreen()
+    }
+
 }
 

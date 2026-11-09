@@ -30,7 +30,9 @@ fun DividerVertical00(modifier: Modifier = Modifier) {
         color = MyColors.Divider)
 }
 
-fun Modifier.myitem() = fillMaxWidth().height(MyDimens.ItemDefault)
+fun Modifier.myPadding16dp() = padding(horizontal = 16.dp)
+
+fun Modifier.myItemSize() = fillMaxWidth().height(MyDimens.ItemDefault)
 
 @Composable
 fun CardPrimary(content: @Composable ()-> Unit = {}) {

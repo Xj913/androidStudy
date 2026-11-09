@@ -46,5 +46,9 @@ sealed class MyNavKey : NavKey {
     @Serializable
     data object ScrollingCollapsingNav : MyNavKey()
     @Serializable
+    data object SwipeMenuNav : MyNavKey()
+    @Serializable
     data object PikerPhotoNav : MyNavKey()
+    @Serializable
+    data object NetworkTestNav : MyNavKey()
 }

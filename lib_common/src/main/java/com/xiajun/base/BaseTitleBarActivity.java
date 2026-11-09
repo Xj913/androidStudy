@@ -11,7 +11,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.xiajun.lib.common.R;
 
-
 public abstract class BaseTitleBarActivity extends BaseActivity {
 
     private LinearLayout layoutRoot;

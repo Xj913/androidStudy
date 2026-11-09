@@ -79,25 +79,25 @@ class GlideDealActivity : BaseTitleBarActivity() {
     private fun dealCircle() {
         val myOptions =
             RequestOptions().transform(RoundTransform()).diskCacheStrategy(DiskCacheStrategy.NONE)
-        Glide.with(this).load(R.mipmap.empty_photo).apply(myOptions).into(bd!!.iv1)
+        Glide.with(this).load(R.mipmap.empty_photo).apply(myOptions).into(bd.iv1)
     }
 
     private fun dealCircleBorder() {
         val myOptions = RequestOptions().transform(RoundTransform(1.5f, -0x5147))
             .diskCacheStrategy(DiskCacheStrategy.NONE)
-        Glide.with(this).load(R.mipmap.empty_photo).apply(myOptions).into(bd!!.iv1)
+        Glide.with(this).load(R.mipmap.empty_photo).apply(myOptions).into(bd.iv1)
     }
 
     private fun dealRound() {
         val myOptions = RequestOptions().transform(RoundRectTransform(8f))
             .diskCacheStrategy(DiskCacheStrategy.NONE)
-        Glide.with(this).load(R.mipmap.empty_photo).apply(myOptions).into(bd!!.iv1)
+        Glide.with(this).load(R.mipmap.empty_photo).apply(myOptions).into(bd.iv1)
     }
 
     private fun dealRectStroke() {
         val myOptions = RequestOptions().transform(RoundRectTransform(8f, 4f, -0x9cb9))
             .diskCacheStrategy(DiskCacheStrategy.NONE)
-        Glide.with(this).load(R.mipmap.empty_photo).apply(myOptions).into(bd!!.iv1)
+        Glide.with(this).load(R.mipmap.empty_photo).apply(myOptions).into(bd.iv1)
     }
 
     private fun downImage() {
@@ -110,8 +110,8 @@ class GlideDealActivity : BaseTitleBarActivity() {
                     transition: Transition<in Bitmap?>?
                 ) {
                     val b =
-                        BitmapUtil.centerCrop(resource, bd!!.iv2.getWidth(), bd!!.iv2.getHeight())
-                    bd!!.iv2.setImageBitmap(b)
+                        BitmapUtil.centerCrop(resource, bd.iv2.width, bd.iv2.height)
+                    bd.iv2.setImageBitmap(b)
                 }
 
                 override fun onLoadCleared(placeholder: Drawable?) {

@@ -3,8 +3,10 @@ package example.album
 import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.net.Uri
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.core.content.FileProvider
+import com.dmcbig.mediapicker.entity.Media
 import com.xiajun.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.io.File
@@ -17,6 +19,8 @@ class PikerPhotoViewModel @Inject constructor() : BaseViewModel() {
     var photoFile: File? = null
     var uri: Uri? =null
     val bottomDlgShow = mutableStateOf(false)
+    var TAG_ADD: Media = Media()
+    var paths = mutableStateListOf<Uri>()
 
     fun getCropIntent(): Intent {
         val intent = Intent("com.android.camera.action.CROP")

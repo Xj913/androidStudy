@@ -10,6 +10,7 @@ import com.xiajun.entity.UserInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -32,23 +33,16 @@ class LoginViewModel @Inject constructor() : BaseViewModel() {
 
     }
     fun login() {
-        /*   new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        getPubkey();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();*/
-
-        val u = UserInfo("sfsf", "fasfgasfg")
-        user.value = u
-        u.password = "123456"
-        //loginSucceed.set(true);
-        loginState.value = true
-
+        isLoadingShow.value = true
+        viewModelScope.launch {
+            delay(2000L)
+            isLoadingShow.value = false
+            val u = UserInfo("sfsf", "fasfgasfg")
+            user.value = u
+            u.password = "123456"
+            //loginSucceed.set(true);
+            loginState.value = true
+        }
     }
 
     fun getLoginUser() {

@@ -164,6 +164,8 @@ dependencies {
     annotationProcessor(libs.glide.compiler)
     implementation(libs.photoview)
     implementation(libs.compose.smart.refresh)
+    implementation("io.coil-kt.coil3:coil-compose:3.6.3")
+    implementation("io.coil-kt.coil3:coil-network-okhttp:3.6.3")
     implementation(projects.libCommon)
     implementation(projects.libCustomView)
     implementation(projects.libMediaPicker)

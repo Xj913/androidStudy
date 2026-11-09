@@ -1,5 +1,9 @@
 package com.xiajun.ui
 
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -10,9 +14,7 @@ object MyDimens {
     val MarginH16 = 16.dp
     val DividerH = Dp.Hairline
     val AppBarHeightExtra = 180.dp
-    val StatusbarH = 24.dp
-    val ToolbarH = 48.dp
-    val TopbarH = 72.dp
+    val TitlebarH = 48.dp
     val ButtonH = 48.dp
     val ItemDefault = 48.dp
     // 内边距

@@ -7,6 +7,9 @@ import android.content.Intent
 import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import coil3.ImageLoader
+import coil3.SingletonImageLoader
+import coil3.request.crossfade
 import com.xiajun.common_view.refresh.MyAppRefreshLayout
 import com.xiajun.data.app.MyAppManager
 import com.xiajun.data.db.AppDatabase
@@ -29,6 +32,11 @@ class MyApp : Application() {
         //room不会自动检查数据库版本升级，需要手动操作一次
         AppDatabase.getInstance(this).testRoomDao.getCount()
         initRefreshView()
+        SingletonImageLoader.setSafe { context ->
+            ImageLoader.Builder(context)
+                .crossfade(true)
+                .build()
+        }
         //Thread.setDefaultUncaughtExceptionHandler(AppCrashHandler())
     }
 

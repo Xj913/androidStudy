@@ -12,7 +12,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,11 +19,14 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.xiajun.base.myPadding16dp
 import example.base.CpgDialog
+import example.base.TitleBarDefault
 
 @Composable
 fun NetworkScreen(vml: MyNetworkModel = hiltViewModel(), evt: () -> Unit = {}) {
-    Column(modifier = Modifier.padding(all = 16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(modifier = Modifier, horizontalAlignment = Alignment.CenterHorizontally) {
+        TitleBarDefault(title = "webservice") {}
         TextField(
             modifier = Modifier.fillMaxWidth(),
             value = vml.phone.value,
@@ -73,7 +75,7 @@ fun NetworkScreen(vml: MyNetworkModel = hiltViewModel(), evt: () -> Unit = {}) {
 
 
             if (vml.isLoadingShow.value)
-                CpgDialog { }
+                CpgDialog()
 
         }
     }
@@ -81,7 +83,7 @@ fun NetworkScreen(vml: MyNetworkModel = hiltViewModel(), evt: () -> Unit = {}) {
 
 @Preview(showBackground = true)
 @Composable()
-fun Preview(){
+fun Pre(){
     NetworkScreen()
 }
 

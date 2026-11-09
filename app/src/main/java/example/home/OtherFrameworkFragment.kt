@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.xiajun.base.BaseNoPagerLazyRefreshFragment
 import com.xiajun.app.MyApp.databinding.FragmentHome4Binding
-import example.activity.GlideDealActivity
+import com.xiajun.base.BaseNoPagerLazyRefreshFragment
 import example.activity.PreviewActivity
-import example.activity.QRCodeActivity
+import example.album.GlideDealActivity
+import example.album.QRCodeActivity
 import example.media.AudioRecordActivity
 import example.media.VideoTestActivity
 import example.media.socket.chat.SocketTestActivity

@@ -115,7 +115,6 @@ class AddressActivity : BaseTitleBarActivity() {
             showToast(R.string.please_open_contacts_permission)
         }
     }
-
     var mRequestImei = registerForActivityResult(ActivityResultContracts.RequestPermission()
     ) { it ->
         if (it) {

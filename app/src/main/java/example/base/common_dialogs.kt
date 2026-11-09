@@ -1,46 +1,57 @@
 package example.base
 
 import android.view.Gravity
-import android.view.View
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.compose.ui.window.DialogWindowProvider
+import androidx.compose.ui.window.Popup
+import androidx.compose.ui.window.PopupProperties
 import com.xiajun.app.MyApp.R
 import com.xiajun.app.MyApp.databinding.DlgSelAvatarBinding
+import com.xiajun.ui.MyColors
 
 @Composable
-fun CpgDialog(onDismissRequest: () -> Unit) {
-    Dialog(onDismissRequest = { onDismissRequest() },
-        properties = DialogProperties(
+fun CpgDialog() {
+    Popup(
+        alignment = Alignment.Center,
+        properties = PopupProperties(
             dismissOnBackPress = false,
             dismissOnClickOutside = false,
-            usePlatformDefaultWidth = false
-        )) {
-        Card(
-            modifier = Modifier
-                .width(100.dp)
-                .height(100.dp),
-            shape = RoundedCornerShape(16.dp),
+        )
+    ) {
+        Box(
+            modifier = Modifier.size(100.dp)
+                .background(MyColors.BlackTranslucent, shape = RoundedCornerShape(16.dp)),
+            contentAlignment = Alignment.Center
         ) {
             CircularProgressIndicator(
-                modifier = Modifier.width(64.dp),
+                modifier = Modifier.size(50.dp),
                 color = MaterialTheme.colorScheme.secondary,
-                trackColor = MaterialTheme.colorScheme.surfaceVariant,
+                trackColor = Color.LightGray,
             )
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable()
+fun Pre(){
+    CpgDialog()
 }
 
 @Composable

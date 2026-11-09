@@ -25,6 +25,7 @@ class HomeViewModel @Inject constructor() : BaseViewModel() {
         if (currentPage.intValue == i)
             return
         this.currentPage.intValue = i
+        title.value = titles[i]
     }
 
 
