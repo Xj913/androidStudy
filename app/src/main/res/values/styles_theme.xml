@@ -1,53 +1,37 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- 窗口颜色，位于activity之上，不设置activity也会有一层黑色背景 -->
         <item name="android:windowBackground">@color/windowBackground</item>
         <item name="android:windowAnimationStyle">@style/CustomEnterExitAnimation</item>
-        <!-- toolbar（actionbar）颜色 -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <!-- 状态栏颜色 -->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <!--按钮选中或者点击获得焦点后的颜色-->
         <item name="colorAccent">@color/colorAccent</item>
-        <!--英文全局小写-->
         <item name="android:textAllCaps">false</item>
-        <!--应用的主要文字颜色-->
         <item name="android:textColorPrimary">@color/textColorPrimary</item>
-        <!--Button按钮正常状态颜色-->
         <item name="colorButtonNormal">@color/colorButtonNormal</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
-        <!--EditText 输入框中字体的颜色-->
         <item name="editTextColor">@color/textColorPrimary</item>
     </style>
-    <!--启动页windowBackground需与启动页背景图一致，否则会导致再启动时显示windowBackground几秒-->
     <style name="AppTheme.Splash" parent="BaseAppTheme">
         <item name="android:windowBackground">@color/windowBackground_translucent</item>
     </style>
-    <!--activity的Window窗口背景透明-->
     <style name="AppTheme.Translucent" parent="BaseAppTheme">
         <item name="android:windowBackground">@color/windowBackground_translucent</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
-    <!--activity的Window窗口全屏,目前只是让状态栏不可以变黑不知为何-->
     <style name="AppTheme.Fullscreen" parent="BaseAppTheme">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
-    <!--activity的Window窗口背景半透明-->
     <style name="AppTheme.Translucent.ImageScan" parent="BaseAppTheme">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@color/windowBackground_translucent</item>
     </style>
 
     <style name="CustomEnterExitAnimation" parent="@android:style/Animation.Activity">
-        <!-- 当我们从 A1 启动 A2 时，A2 出现在屏幕上 -->
         <item name="android:activityOpenEnterAnimation">@anim/activity_open_enter</item>
-        <!-- 当我们从 A2 退出回到 A1 时，A2 从屏幕上消失 -->
-        <item name="android:activityCloseExitAnimation">@anim/activity_close_exit</item>
-        <!-- 当我们从 A1 启动 A2 时，A1退出屏幕的动画 -->
         <item name="android:activityOpenExitAnimation">@anim/activity_open_exit</item>
-        <!-- 当我们从 A2 回到 A1 时，A1进入屏幕的动画 -->
+        <item name="android:activityCloseExitAnimation">@anim/activity_close_exit</item>
         <item name="android:activityCloseEnterAnimation">@anim/activity_close_enter</item>
     </style>
 

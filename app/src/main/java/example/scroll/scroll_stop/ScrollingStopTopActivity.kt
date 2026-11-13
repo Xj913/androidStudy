@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView.*
 import com.xiajun.base.BaseRecyclerViewAdapter
 import com.xiajun.base.BaseActivity
 import com.xiajun.app.MyApp.databinding.ActivityScrollingStopTopBinding
+import com.xiajun.ui.StatusBarHelper
 import com.xiajun.view.diviver.DividerItemDecoration
 import java.util.*
 
@@ -19,11 +20,10 @@ class ScrollingStopTopActivity : BaseActivity() {
     private lateinit var mContentAdapter: ScrollStopContentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        StatusBarHelper.setup2edge(this)
         super.onCreate(savedInstanceState)
         bd = ActivityScrollingStopTopBinding.inflate(layoutInflater)
         setContentView(bd.root)
-        setFullScreenStableDarkMode(false)
-
         dataList = ArrayList()
         mTitleAdapter = ScrollStopTitleAdapter(this, dataList)
         bd.recyclerViewTitle.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)

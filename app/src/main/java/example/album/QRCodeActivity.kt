@@ -31,7 +31,7 @@ class QRCodeActivity : BaseTitleBarActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        logE(TAG, "onNewIntent")
+        logE(tAG, "onNewIntent")
     }
 
     private fun init() {

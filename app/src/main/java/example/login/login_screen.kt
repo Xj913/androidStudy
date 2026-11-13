@@ -63,7 +63,7 @@ fun LoginScreen(vml: LoginViewModel = hiltViewModel(), evt: (et : RouteEvent) ->
         if (vml.isLoadingShow.value)
             CpgDialog()
     }
-        LaunchedEffect(vml.loginState.value) {
+        LaunchedEffect(vml.loginState) {
             if (vml.loginState.value) {
                 resultBus.sendResult(
                     resultKey = "from",

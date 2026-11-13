@@ -40,7 +40,6 @@ class LoginViewModel @Inject constructor() : BaseViewModel() {
             val u = UserInfo("sfsf", "fasfgasfg")
             user.value = u
             u.password = "123456"
-            //loginSucceed.set(true);
             loginState.value = true
         }
     }

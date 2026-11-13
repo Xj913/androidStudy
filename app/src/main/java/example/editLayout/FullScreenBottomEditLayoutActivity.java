@@ -20,7 +20,6 @@ import example.adapter.StringAdapter;
 public class FullScreenBottomEditLayoutActivity extends BaseTitleBarActivity {
 
     EditLayoutMoveBottomOfFullScreenBinding bd;
-
     private ArrayList<String> dataList;
     private StringAdapter adapter;
 
@@ -31,7 +30,6 @@ public class FullScreenBottomEditLayoutActivity extends BaseTitleBarActivity {
         setContentView(bd.getRoot());
         setFullScreenStableDarkMode(true);
         setTitleBarTitle("调整编辑布局");
-
         dataList = new ArrayList<>();
         adapter = new StringAdapter(this, dataList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -39,11 +37,8 @@ public class FullScreenBottomEditLayoutActivity extends BaseTitleBarActivity {
         bd.recyclerView.addItemDecoration(new DividerItemDecoration(this));
         bd.recyclerView.setAdapter(adapter);
 
-        adapter.setOnItemClickListener(new BaseRecyclerViewAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position, Object data) {
+        adapter.setOnItemClickListener((BaseRecyclerViewAdapter.OnItemClickListener) (position, data) -> {
 
-            }
         });
         getData();
         addListener();

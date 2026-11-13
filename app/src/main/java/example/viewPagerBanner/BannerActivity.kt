@@ -16,6 +16,7 @@ import com.xiajun.app.MyApp.databinding.AdapterIndicatorBinding
 import com.xiajun.app.MyApp.databinding.BannerActivityBinding
 import com.xiajun.base.BaseActivity
 import com.xiajun.base.BaseRecyclerViewAdapter
+import com.xiajun.ui.StatusBarHelper
 
 class BannerActivity : BaseActivity() {
 
@@ -23,7 +24,6 @@ class BannerActivity : BaseActivity() {
     private lateinit var bannerFrags: ArrayList<BannerFragment>
     private lateinit var fAdapter: BannerAdapter
     private var mPageIndex: Int = 0
-
     private val fadeIn = R.anim.fade_in
     private val fadeOut = R.anim.fade_out
 
@@ -44,13 +44,10 @@ class BannerActivity : BaseActivity() {
     }
 
     override fun onCreate(arg0: Bundle?) {
+        StatusBarHelper.setup2edge(this, useDarkIcons = false)
         super.onCreate(arg0)
         bd = BannerActivityBinding.inflate(layoutInflater)
         setContentView(bd.root)
-        setFullScreenStableDarkMode(false)
-
-        //不知为何创建活动时设置会造成后面改变窗口透明度异常,目前只能在主题配置里面初始化窗口背景颜色.
-        //setWindowAlpha(255)
         bannerFrags = arrayListOf()
         bannerFrags.add(BannerFragment.newInstance(R.mipmap.home_banner_1))
         bannerFrags.add(BannerFragment.newInstance(R.mipmap.home_banner_2))

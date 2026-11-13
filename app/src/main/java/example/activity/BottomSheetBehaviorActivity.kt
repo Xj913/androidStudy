@@ -24,12 +24,12 @@ class BottomSheetBehaviorActivity : BaseTitleBarActivity() {
         }
         behavior.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
-                Log.e(TAG, "onStateChanged  $newState")
+                Log.e(tAG, "onStateChanged  $newState")
 
             }
 
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                Log.e(TAG, "onSlide  $slideOffset")
+                Log.e(tAG, "onSlide  $slideOffset")
 
             }
         })

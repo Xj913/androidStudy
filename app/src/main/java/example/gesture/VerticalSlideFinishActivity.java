@@ -12,6 +12,7 @@ import android.view.animation.DecelerateInterpolator;
 import com.xiajun.data.app.MyAppManager;
 import com.xiajun.base.BaseActivity;
 import com.xiajun.app.MyApp.databinding.ActivityTestGestureBinding;
+import com.xiajun.ui.StatusBarHelper;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -37,6 +38,7 @@ public class VerticalSlideFinishActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle arg0) {
+        StatusBarHelper.INSTANCE.setup2edge(this, false, false);
         super.onCreate(arg0);
         bd = ActivityTestGestureBinding.inflate(getLayoutInflater());
         setContentView(bd.getRoot());

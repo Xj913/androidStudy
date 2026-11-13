@@ -3,6 +3,8 @@ package com.xiajun.base;
 import android.graphics.Color;
 
 import androidx.annotation.StringRes;
+
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -10,6 +12,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.xiajun.lib.common.R;
+import com.xiajun.ui.StatusBarHelper;
+
+import org.jetbrains.annotations.Nullable;
 
 public abstract class BaseTitleBarActivity extends BaseActivity {
 
@@ -19,15 +24,15 @@ public abstract class BaseTitleBarActivity extends BaseActivity {
     private ImageView viewBack;
     private TextView tvTitle;
 
-    /**
-     * 子类需要调用此方法
-     * @param view
-     */
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        StatusBarHelper.INSTANCE.setup2edge(this, true, true);
+        super.onCreate(savedInstanceState);
+    }
+
     @Override
     public void setContentView(View view) {
         super.setContentView(view);
-        view.setFitsSystemWindows(false);
-        setFullScreenStableDarkMode(false);
         initTitleBar(view);
     }
 
@@ -37,12 +42,7 @@ public abstract class BaseTitleBarActivity extends BaseActivity {
         layoutTitle = mContentView.findViewById(R.id.base_title_bar_layout_title);
         viewBack = mContentView.findViewById(R.id.base_title_bar_iv_back);
         tvTitle = mContentView.findViewById(R.id.base_title_bar_tv_title);
-        viewBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onClickTitleBack();
-            }
-        });
+        viewBack.setOnClickListener(view -> onClickTitleBack());
         statusBar.getLayoutParams().height = getStatusHeight();
     }
 
@@ -71,12 +71,7 @@ public abstract class BaseTitleBarActivity extends BaseActivity {
         lp.addRule(RelativeLayout.ALIGN_PARENT_END);
         lp.addRule(RelativeLayout.CENTER_VERTICAL);
         layoutTitle.addView(menu, lp);
-        menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onClickTitleOption();
-            }
-        });
+        menu.setOnClickListener(view -> onClickTitleOption());
         return menu;
     }
 

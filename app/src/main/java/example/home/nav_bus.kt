@@ -6,7 +6,6 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.serialization.Serializable
 
-
 open class RouteEvent(val route: String? = null, val key : MyNavKey? = null, val isBack: Boolean = false )
 data object LoginSucceed : RouteEvent(key = null)
 

@@ -109,8 +109,8 @@
         <activity android:name="example.activity.JniTestActivity" />
         <activity android:name="example.aidl.AidlActivity" />
         <activity android:name="example.encrypt.EncryptActivity" />
-        <activity android:name="example.activity.GlideDealActivity" />
-        <activity android:name="example.activity.QRCodeActivity" />
+        <activity android:name="example.album.GlideDealActivity" />
+        <activity android:name="example.album.QRCodeActivity" />
         <activity android:name="example.activity.PreviewActivity" />
         <activity
             android:name="example.editLayout.EditLayoutChangeActivity"

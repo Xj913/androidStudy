@@ -23,7 +23,6 @@ class ViewPager2Activity : BaseTitleBarActivity() {
         setContentView(bd.root)
         setFullScreenStableDarkMode(true)
         setTitleBarTitle("ViewPager2WithView")
-
         mViewModel = ViewModelProvider(this).get(ViewPager2ActivityViewModel::class.java)
         mData.addAll(mViewModel.getData())
         fAdapter = StateAdapter(this, mData)
@@ -46,12 +45,7 @@ class ViewPager2Activity : BaseTitleBarActivity() {
             super.setOnItemClickListener(holder.itemView, position)
         }
 
-        class MyViewHolder internal constructor(bd: Viewpager2WithViewAdapterBinding) : RecyclerView.ViewHolder(bd.getRoot()) {
-            val bd: Viewpager2WithViewAdapterBinding
-
-            init {
-                this.bd = bd
-            }
+        class MyViewHolder internal constructor(val bd: Viewpager2WithViewAdapterBinding) : RecyclerView.ViewHolder(bd.getRoot()) {
         }
     }
 }

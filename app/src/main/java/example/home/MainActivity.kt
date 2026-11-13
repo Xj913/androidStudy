@@ -21,6 +21,7 @@ import com.xiajun.data.app.MyAppManager
 import com.xiajun.app.MyApp.R
 import com.xiajun.app.MyApp.databinding.ActivityMainBinding
 import com.xiajun.toast.ToastManager
+import com.xiajun.ui.StatusBarHelper
 import com.xiajun.utils.DeviceInfoUtil
 import com.xiajun.utils.NetWorkUtil
 import example.home.contact.HomeListFragment
@@ -53,10 +54,10 @@ class MainActivity : BaseActivity() {
     private var isLocked = false
 
     override fun onCreate(arg0: Bundle?) {
+        StatusBarHelper.setup2edge(this)
         super.onCreate(arg0)
         bd = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bd.root)
-        setFullScreenStableDarkMode(false)
         initData()
     }
 
@@ -82,16 +83,16 @@ class MainActivity : BaseActivity() {
         val permissions = arrayOf(Manifest.permission.BLUETOOTH, Manifest.permission.BLUETOOTH_ADMIN)
 
         if (ContextCompat.checkSelfPermission(this.application, permissions[0]) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this.application, permissions[1]) != PackageManager.PERMISSION_GRANTED) {
-            logE(TAG, "没有权限")
+            logE(tAG, "没有权限")
             /*if (!mBluetoothAdapter.isEnabled()) {
                 Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                 startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
             }*/
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[0]) || ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[1])) {
-                logE(TAG, "上次拒绝")
+                logE(tAG, "上次拒绝")
                 ActivityCompat.requestPermissions(this, permissions, REQUEST_ENABLE_BT)
             } else {
-                logE(TAG, "请求权限")
+                logE(tAG, "请求权限")
                 ActivityCompat.requestPermissions(this, permissions, REQUEST_ENABLE_BT)
             }
         } else {
@@ -190,10 +191,10 @@ class MainActivity : BaseActivity() {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         if (requestCode == REQUEST_ENABLE_BT) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                logE(TAG, "权限允许")
+                logE(tAG, "权限允许")
                 startBleService()
             } else {
-                logE(TAG, "权限拒绝")
+                logE(tAG, "权限拒绝")
                 // Permission Denied
                 showToast("权限拒绝")
             }

@@ -23,7 +23,6 @@ public class SafeKeyboardActivity extends BaseTitleBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.safe_keyboard_activity);
         setFullScreenStableDarkMode(true);
-
         initView();
     }
 

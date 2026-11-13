@@ -10,8 +10,11 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.animation.DecelerateInterpolator;
 
+import androidx.core.view.WindowCompat;
+
 import com.xiajun.base.BaseActivity;
 import com.xiajun.data.app.MyAppManager;
+import com.xiajun.ui.StatusBarHelper;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -35,16 +38,10 @@ public abstract class BaseVerticalSlideFinishActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle arg0) {
+        StatusBarHelper.INSTANCE.setup2edge(this, true,false);
         super.onCreate(arg0);
-
         viewConfiguration = ViewConfiguration.get(getContext());
         MyAppManager.getInstance().setTestTaskId(getTaskId());
-    }
-
-    @Override
-    public void setContentView(View view) {
-        super.setContentView(view);
-        setFullScreenStableDarkMode(false);
     }
 
     @Override
