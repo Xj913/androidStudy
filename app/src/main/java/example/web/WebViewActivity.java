@@ -18,7 +18,6 @@ import com.xiajun.app.MyApp.databinding.ActivityH5RemoteBinding;
 
 import org.jetbrains.annotations.Nullable;
 
-
 public class WebViewActivity extends BaseTitleBarActivity {
 
     ActivityH5RemoteBinding bd;

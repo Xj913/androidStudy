@@ -21,7 +21,6 @@ class ViewPager2Activity : BaseTitleBarActivity() {
         super.onCreate(arg0)
         bd = Viewpager2WithViewActivityBinding.inflate(layoutInflater)
         setContentView(bd.root)
-        setFullScreenStableDarkMode(true)
         setTitleBarTitle("ViewPager2WithView")
         mViewModel = ViewModelProvider(this).get(ViewPager2ActivityViewModel::class.java)
         mData.addAll(mViewModel.getData())

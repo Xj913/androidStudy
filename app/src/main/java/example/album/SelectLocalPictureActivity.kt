@@ -32,8 +32,8 @@ class SelectLocalPictureActivity : BaseTitleBarActivity() {
         setContentView(bd.root)
         setTitleBarTitle("本地图片选择");
         mViewModel = ViewModelProvider(this)[SelectLocalPictureViewModel::class]
-        adapter = DynamicPublishImageAdapter(context!!, mViewModel.paths);
-        var gridLayoutManager = GridLayoutManager(context, 4);
+        adapter = DynamicPublishImageAdapter(context, mViewModel.paths);
+        val gridLayoutManager = GridLayoutManager(context, 4);
         gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         bd.recyclerView.setLayoutManager(gridLayoutManager);
         //bd.recyclerView.addItemDecoration(GridDividerItemDecoration(20, Color.BLACK))

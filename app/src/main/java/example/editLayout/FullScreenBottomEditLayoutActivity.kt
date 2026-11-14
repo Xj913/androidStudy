@@ -1,69 +1,51 @@
-package example.editLayout;
+package example.editLayout
 
-import android.os.Bundle;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.xiajun.app.MyApp.databinding.EditLayoutMoveBottomOfFullScreenBinding
+import com.xiajun.base.BaseTitleBarActivity
+import com.xiajun.helper.InputMethodStateListener
+import com.xiajun.view.diviver.DividerItemDecoration
+import example.adapter.StringAdapter
 
-import com.xiajun.base.BaseRecyclerViewAdapter;
-import com.xiajun.base.BaseTitleBarActivity;
-import com.xiajun.app.MyApp.R;
-import com.xiajun.app.MyApp.databinding.EditLayoutMoveBottomOfFullScreenBinding;
-import com.xiajun.helper.InputMethodStateListener;
-import com.xiajun.view.diviver.DividerItemDecoration;
+class FullScreenBottomEditLayoutActivity : BaseTitleBarActivity() {
+    lateinit var bd: EditLayoutMoveBottomOfFullScreenBinding
+    lateinit var dataList: ArrayList<String>
+    lateinit var adapter: StringAdapter
 
-import org.jetbrains.annotations.Nullable;
-
-import java.util.ArrayList;
-
-import example.adapter.StringAdapter;
-
-
-public class FullScreenBottomEditLayoutActivity extends BaseTitleBarActivity {
-
-    EditLayoutMoveBottomOfFullScreenBinding bd;
-    private ArrayList<String> dataList;
-    private StringAdapter adapter;
-
-    @Override
-    protected void onCreate(@Nullable Bundle arg0) {
-        super.onCreate(arg0);
-        bd = EditLayoutMoveBottomOfFullScreenBinding.inflate(getLayoutInflater());
-        setContentView(bd.getRoot());
-        setFullScreenStableDarkMode(true);
-        setTitleBarTitle("调整编辑布局");
-        dataList = new ArrayList<>();
-        adapter = new StringAdapter(this, dataList);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        bd.recyclerView.setLayoutManager(layoutManager);
-        bd.recyclerView.addItemDecoration(new DividerItemDecoration(this));
-        bd.recyclerView.setAdapter(adapter);
-
-        adapter.setOnItemClickListener((BaseRecyclerViewAdapter.OnItemClickListener) (position, data) -> {
-
-        });
-        getData();
-        addListener();
-    }
-
-    private void addListener() {
-        bd.getRoot().getViewTreeObserver().addOnGlobalLayoutListener(new InputMethodStateListener(bd.layoutRoot) {
-            @Override
-            protected void onInputMethodClosed() {
-
-            }
-
-            @Override
-            protected void onInputMethodOpened(int invisibleHeight) {
-
-            }
-        });
-    }
-
-    private void getData() {
-        for (int i = 0; i < 3; i++) {
-            dataList.add(i + "");
+    override fun onCreate(arg0: Bundle?) {
+        super.onCreate(arg0)
+        bd = EditLayoutMoveBottomOfFullScreenBinding.inflate(layoutInflater)
+        setContentView(bd.getRoot())
+        setTitleBarTitle("调整编辑布局")
+        dataList = ArrayList()
+        adapter = StringAdapter(this, dataList)
+        val layoutManager = LinearLayoutManager(this)
+        bd.recyclerView.setLayoutManager(layoutManager)
+        bd.recyclerView.addItemDecoration(DividerItemDecoration(this))
+        bd.recyclerView.setAdapter(adapter)
+        adapter.setOnItemClickListener { position, data ->
         }
-        adapter.notifyDataSetChanged();
-
+        this.data
+        addListener()
     }
 
+    private fun addListener() {
+        bd.getRoot().getViewTreeObserver()
+            .addOnGlobalLayoutListener(object : InputMethodStateListener(bd.layoutRoot) {
+                override fun onInputMethodClosed() {
+                }
+
+                override fun onInputMethodOpened(invisibleHeight: Int) {
+                }
+            })
+    }
+
+    private val data: Unit
+        get() {
+            for (i in 0..2) {
+                dataList.add(i.toString() + "")
+            }
+            adapter.notifyDataSetChanged()
+        }
 }

@@ -73,19 +73,19 @@ class LocationActivity : BaseTitleBarActivity() {
 
     inner class MyGnssStatusCallback : GnssStatus.Callback() {
         override fun onStarted() {
-            logE(getTAG(), "onStarted")
+            logE(tag, "onStarted")
         }
 
         override fun onStopped() {
-            logE(getTAG(), "onStopped")
+            logE(tag, "onStopped")
         }
 
         override fun onFirstFix(ttffMillis: Int) {
-            logE(getTAG(), "onFirstFix")
+            logE(tag, "onFirstFix")
         }
 
         override fun onSatelliteStatusChanged(status: GnssStatus) {
-            logE(getTAG(), "onSatelliteStatusChanged SatelliteCount " + status.satelliteCount)
+            logE(tag, "onSatelliteStatusChanged SatelliteCount " + status.satelliteCount)
         }
     }
 

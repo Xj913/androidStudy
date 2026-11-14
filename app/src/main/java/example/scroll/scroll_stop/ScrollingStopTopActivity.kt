@@ -29,14 +29,12 @@ class ScrollingStopTopActivity : BaseActivity() {
         bd.recyclerViewTitle.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         bd.recyclerViewTitle.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.HORIZONTAL))
         bd.recyclerViewTitle.adapter = mTitleAdapter
-        mTitleAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<String> {
-            override fun onItemClick(position: Int, data: String) {
-                showToast(position.toString() + "")
-                //bd.recyclerView.scrollToPosition(position)
-                //注意会导致RecyclerView回调onScrolled
-                layoutManager.scrollToPositionWithOffset(position, 0)
-            }
-        })
+        mTitleAdapter.setOnItemClickListener { position, data ->
+            showToast(position.toString() + "")
+            //bd.recyclerView.scrollToPosition(position)
+            //注意会导致RecyclerView回调onScrolled
+            layoutManager.scrollToPositionWithOffset(position, 0)
+        }
         for (i in 0 until 10) {
             dataList.add("$i")
         }

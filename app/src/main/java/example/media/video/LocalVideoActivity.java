@@ -22,19 +22,16 @@ public class LocalVideoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_local_video);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         videoList = new ArrayList<>();
         adapter = new LocalVideoAdapter(this, videoList);
         recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener(new BaseRecyclerViewAdapter.OnItemClickListener<File>() {
-            @Override
-            public void onItemClick(int position, File data) {
-                Intent i = new Intent();
-                i.putExtra("path", data.getAbsolutePath());
-                i.setClass(LocalVideoActivity.this, PlayVideoActivity.class);
-                startActivity(i);
-            }
+        adapter.setOnItemClickListener((position, data) -> {
+            Intent i = new Intent();
+            i.putExtra("path", data.getAbsolutePath());
+            i.setClass(LocalVideoActivity.this, PlayVideoActivity.class);
+            startActivity(i);
         });
         getData();
     }

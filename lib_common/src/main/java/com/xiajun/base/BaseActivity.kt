@@ -23,9 +23,8 @@ import com.xiajun.utils.InputMethodUtil
 import com.xiajun.utils.LogManager
 
 abstract class BaseActivity : AppCompatActivity() {
-    protected var tAG: String = javaClass.getSimpleName()
-    protected var context: Context? = null
-        private set
+    protected var tag: String = javaClass.getSimpleName()
+    protected lateinit var context: Context
     private var progressDialog: LoadingDialog? = null
     private var toast: Toast? = null
 
@@ -39,20 +38,23 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        logI(this.tAG, "onCreate-------------")
+        logI(this.tag, "onCreate-------------")
         context = this
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
     }
 
     override fun onPause() {
         super.onPause()
-        logI(this.tAG, "onPause-------------")
+        logI(this.tag, "onPause-------------")
         InputMethodUtil.hiddenSoftInput(this)
     }
 
+    fun getTAG() : String {
+        return tag
+    }
     override fun onDestroy() {
         super.onDestroy()
-        logI(this.tAG, "onDestroy-------------")
+        logI(this.tag, "onDestroy-------------")
         dismissProgressDialog()
     }
 
@@ -98,7 +100,4 @@ abstract class BaseActivity : AppCompatActivity() {
     protected fun logE(tag: String?, msg: String?) {
         LogManager.logE(tag, msg)
     }
-
-    protected val statusHeight: Int
-        get() = DeviceInfoUtil.getStatusHeight(this)
 }

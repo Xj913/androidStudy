@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 import com.xiajun.base.BaseTitleBarActivity;
 import com.xiajun.app.MyApp.R;
 import com.xiajun.app.MyApp.databinding.EditLayoutMainActivityBinding;
+import com.xiajun.utils.DeviceInfoUtil;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -19,13 +20,12 @@ public class EditLayoutChangeActivity extends BaseTitleBarActivity {
         super.onCreate(arg0);
         bd = EditLayoutMainActivityBinding.inflate(getLayoutInflater());
         setContentView(bd.getRoot());
-        setFullScreenStableDarkMode(true);
         setTitleBarTitle("编辑布局调整");
 
         bd.viewTransparentColor.setOnClickListener(v -> startActivity(new Intent(getContext(), FullScreenBottomEditLayoutActivity.class)));
         bd.viewB.setOnClickListener(v -> {
             int h = getResources().getDisplayMetrics().heightPixels;
-            int h0 = getStatusHeight();
+            int h0 = DeviceInfoUtil.getStatusHeight(context);
             int y1 = getLocation(bd.viewTop);
             int y2 = getLocation(bd.viewB);
             int h1 = bd.viewB.getHeight();

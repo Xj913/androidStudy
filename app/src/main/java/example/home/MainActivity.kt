@@ -65,13 +65,13 @@ class MainActivity : BaseActivity() {
 
     private fun initData() {
         MyAppManager.getInstance().setMainTaskId(taskId)
-        mViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        mViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         appStateReceiver = DeviceStateBroadcastReceiver()
         val filter = IntentFilter(NET_CHANGE)
         filter.addAction(Intent.ACTION_SCREEN_ON)//屏幕点亮
         filter.addAction(Intent.ACTION_SCREEN_OFF)//屏幕关闭,会有延迟，如果刚好这个时候启动activity会造成崩溃
         filter.addAction(Intent.ACTION_USER_PRESENT)//用户解锁
-        registerReceiver(appStateReceiver, filter)
+        ContextCompat.registerReceiver(context, appStateReceiver, filter, ContextCompat.RECEIVER_EXPORTED)
         isRegisterBroadcastReceiver = true
 
         setToolbarTitle(titles[0])
@@ -83,16 +83,16 @@ class MainActivity : BaseActivity() {
         val permissions = arrayOf(Manifest.permission.BLUETOOTH, Manifest.permission.BLUETOOTH_ADMIN)
 
         if (ContextCompat.checkSelfPermission(this.application, permissions[0]) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this.application, permissions[1]) != PackageManager.PERMISSION_GRANTED) {
-            logE(tAG, "没有权限")
+            logE(tag, "没有权限")
             /*if (!mBluetoothAdapter.isEnabled()) {
                 Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                 startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
             }*/
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[0]) || ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[1])) {
-                logE(tAG, "上次拒绝")
+                logE(tag, "上次拒绝")
                 ActivityCompat.requestPermissions(this, permissions, REQUEST_ENABLE_BT)
             } else {
-                logE(tAG, "请求权限")
+                logE(tag, "请求权限")
                 ActivityCompat.requestPermissions(this, permissions, REQUEST_ENABLE_BT)
             }
         } else {
@@ -191,10 +191,10 @@ class MainActivity : BaseActivity() {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         if (requestCode == REQUEST_ENABLE_BT) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                logE(tAG, "权限允许")
+                logE(tag, "权限允许")
                 startBleService()
             } else {
-                logE(tAG, "权限拒绝")
+                logE(tag, "权限拒绝")
                 // Permission Denied
                 showToast("权限拒绝")
             }

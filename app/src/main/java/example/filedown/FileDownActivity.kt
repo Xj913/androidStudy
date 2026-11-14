@@ -26,7 +26,6 @@ class FileDownActivity : BaseTitleBarActivity(), EventReceiver {
 
     private lateinit var bd: FileDownListActivityBinding
     private val targetPath = FileDirConfig.DIR_APP_FILE + "/apache-tomcat-8.0.24_multi_thread.exe"
-
     private lateinit var dataList: ArrayList<CustomFileBean>
     private lateinit var adapter: FileDownListAdapter
     private lateinit var mViewModel: FileDownListViewModel
@@ -38,15 +37,16 @@ class FileDownActivity : BaseTitleBarActivity(), EventReceiver {
         setTitleBarTitle("文件下载")
         MyEventManager.getInstance().register(this, EventBusEvent.FILE_DOWNLOAD_STATE_CHANGED)
         dataList = ArrayList()
-        adapter = FileDownListAdapter(getContext(), dataList)
-        val layoutManager = LinearLayoutManager(getContext())
+        adapter = FileDownListAdapter(context, dataList)
+        val layoutManager = LinearLayoutManager(context)
         bd.recyclerView.layoutManager = layoutManager
-        bd.recyclerView.addItemDecoration(DividerItemDecoration(getContext()))
-        //解决默认动画造成的itemView闪烁
+        bd.recyclerView.addItemDecoration(DividerItemDecoration(context))
+        //默认动画闪烁
         (bd.recyclerView.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
         bd.recyclerView.adapter = adapter
-        adapter.onItemClickListener =
-            BaseRecyclerViewAdapter.OnItemClickListener { position, _ -> logE("onItemClick", position.toString()) }
+        adapter.setOnItemClickListener { position, _ ->
+            logE("onItemClick", position.toString())
+        }
         adapter.setOnItemLongClickListener { _, position, _ ->
             logE(
                 "onItemLongClick",
@@ -95,7 +95,7 @@ class FileDownActivity : BaseTitleBarActivity(), EventReceiver {
 
     private fun batchDownload() {
         val i = Intent(CustomFileDownloadManager.FLAG_BATCH_DOWNLOAD)
-        i.setClass(getContext(), FileDownloadService::class.java)
+        i.setClass(context, FileDownloadService::class.java)
         i.putExtra("fileBeanList", dataList)
         startService(i)
     }
@@ -103,7 +103,7 @@ class FileDownActivity : BaseTitleBarActivity(), EventReceiver {
     //暂停下载
     fun pauseDownloadFile(f: CustomFileBean) {
         val i = Intent(CustomFileDownloadManager.FLAG_PAUSE_DOWNLOAD)
-        i.setClass(getContext(), FileDownloadService::class.java)
+        i.setClass(context, FileDownloadService::class.java)
         i.putExtra("fileBean", f)
         startService(i)
     }
@@ -111,7 +111,7 @@ class FileDownActivity : BaseTitleBarActivity(), EventReceiver {
     //新下载任务
     fun newDownloadFile(f: CustomFileBean) {
         val i = Intent(CustomFileDownloadManager.FLAG_NEW_DOWNLOAD)
-        i.setClass(getContext(), FileDownloadService::class.java)
+        i.setClass(context, FileDownloadService::class.java)
         i.putExtra("fileBean", f)
         startService(i)
     }
@@ -119,7 +119,7 @@ class FileDownActivity : BaseTitleBarActivity(), EventReceiver {
     //暂停后继续下载
     fun continueDownloadFile(f: CustomFileBean) {
         val i = Intent(CustomFileDownloadManager.FLAG_CONTINUE_DOWNLOAD)
-        i.setClass(getContext(), FileDownloadService::class.java)
+        i.setClass(context, FileDownloadService::class.java)
         i.putExtra("fileBean", f)
         startService(i)
     }

@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.xiajun.ui.StatusBarHelper
 import dagger.hilt.android.AndroidEntryPoint
-import example.base.ReplacementTheme
 
 @AndroidEntryPoint
 class HomeActivity : ComponentActivity() {

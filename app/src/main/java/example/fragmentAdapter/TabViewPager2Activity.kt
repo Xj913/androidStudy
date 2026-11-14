@@ -19,7 +19,6 @@ class TabViewPager2Activity : BaseTitleBarActivity() {
         super.onCreate(arg0)
         bd = TablayoutWithViewpager2ActivityBinding.inflate(layoutInflater)
         setContentView(bd.root)
-        setFullScreenStableDarkMode(true)
         setTitleBarTitle("FragmentStateAdapter")
         for (i in 0..4) {
             titles.add(i.toString())

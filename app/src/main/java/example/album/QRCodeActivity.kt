@@ -31,7 +31,7 @@ class QRCodeActivity : BaseTitleBarActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        logE(tAG, "onNewIntent")
+        logE(tag, "onNewIntent")
     }
 
     private fun init() {
@@ -47,7 +47,7 @@ class QRCodeActivity : BaseTitleBarActivity() {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), 2)
         } else {
             //权限已经被授予，在这里直接写要执行的相应方法即可
-            startActivityForResult(Intent(getContext(), CaptureActivity::class.java), REQ_QRCODE)
+            startActivityForResult(Intent(context, CaptureActivity::class.java), REQ_QRCODE)
         }
     }
 
@@ -60,9 +60,9 @@ class QRCodeActivity : BaseTitleBarActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQ_CAMERA_PERMISSION) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                startActivityForResult(Intent(getContext(), CaptureActivity::class.java), REQ_QRCODE)
+                startActivityForResult(Intent(context, CaptureActivity::class.java), REQ_QRCODE)
             } else {
-                Toast.makeText(getContext(), "Permission Denied", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Permission Denied", Toast.LENGTH_SHORT).show()
             }
         }
     }

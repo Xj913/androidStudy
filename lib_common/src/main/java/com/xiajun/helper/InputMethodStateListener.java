@@ -7,12 +7,6 @@ import android.view.ViewTreeObserver;
 
 import com.xiajun.utils.DeviceInfoUtil;
 
-/**
- * Created by xiajun on 2018/7/13.
- * 布局可视区域监听器，可监听软键盘状态
- * 注：activity不能设置全屏主题
- */
-
 public abstract class InputMethodStateListener implements ViewTreeObserver.OnGlobalLayoutListener {
     private static final String TAG = "InputMethodState";
 
@@ -25,7 +19,7 @@ public abstract class InputMethodStateListener implements ViewTreeObserver.OnGlo
 
     public InputMethodStateListener(View root) {
         this.target = root;
-        //竖屏时：不包括状态栏和底部导航栏高度
+        //竖屏时：不包括状态栏和导航栏
         screenHeight = target.getContext().getResources().getDisplayMetrics().heightPixels;
         statusBarHeight = DeviceInfoUtil.getStatusHeight(target.getContext());
         keyHeight = DeviceInfoUtil.dp2px(target.getContext(), 100);
@@ -33,7 +27,7 @@ public abstract class InputMethodStateListener implements ViewTreeObserver.OnGlo
 
     @Override
     public void onGlobalLayout() {
-        //rect是view以屏幕左上角为原点的可见区域坐标
+        //排除系统栏的可见区域尺寸
         target.getWindowVisibleDisplayFrame(rect);
         int invisibleHeight = screenHeight + statusBarHeight - rect.bottom;//计算软键盘占有的高度  = 屏幕高度 - 视图可见高度
         Log.e("onGlobalLayout", "屏幕可用高度-> " + screenHeight + "   底部坐标-> " + rect.bottom + "  被遮挡高度-> " + invisibleHeight);

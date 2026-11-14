@@ -1,81 +1,81 @@
-package com.xiajun.base;
+package com.xiajun.base
 
-import android.graphics.Color;
+import android.graphics.Color
+import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
+import android.view.ViewGroup.MarginLayoutParams
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
+import android.widget.TextView
+import androidx.annotation.StringRes
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
+import com.xiajun.lib.common.R
+import com.xiajun.ui.StatusBarHelper.setup2edge
 
-import androidx.annotation.StringRes;
+abstract class BaseTitleBarActivity : BaseActivity() {
+    private lateinit var layoutRoot: LinearLayout
+    private lateinit var statusBar: View
+    private lateinit var layoutTitle: RelativeLayout
+    private lateinit var viewBack: ImageView
+    private lateinit var tvTitle: TextView
 
-import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import com.xiajun.lib.common.R;
-import com.xiajun.ui.StatusBarHelper;
-
-import org.jetbrains.annotations.Nullable;
-
-public abstract class BaseTitleBarActivity extends BaseActivity {
-
-    private LinearLayout layoutRoot;
-    private View statusBar;
-    private RelativeLayout layoutTitle;
-    private ImageView viewBack;
-    private TextView tvTitle;
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        StatusBarHelper.INSTANCE.setup2edge(this, true, true);
-        super.onCreate(savedInstanceState);
+    protected override fun onCreate(savedInstanceState: Bundle?) {
+        setup2edge(this)
+        super.onCreate(savedInstanceState)
     }
 
-    @Override
-    public void setContentView(View view) {
-        super.setContentView(view);
-        initTitleBar(view);
+    override fun setContentView(view: View?) {
+        super.setContentView(view)
+        initTitleBar(view!!)
     }
 
-    protected void initTitleBar(View mContentView) {
-        layoutRoot = mContentView.findViewById(R.id.base_title_bar_layout_root);
-        statusBar = mContentView.findViewById(R.id.base_title_bar_status_bar);
-        layoutTitle = mContentView.findViewById(R.id.base_title_bar_layout_title);
-        viewBack = mContentView.findViewById(R.id.base_title_bar_iv_back);
-        tvTitle = mContentView.findViewById(R.id.base_title_bar_tv_title);
-        viewBack.setOnClickListener(view -> onClickTitleBack());
-        statusBar.getLayoutParams().height = getStatusHeight();
+    protected fun initTitleBar(mContentView: View) {
+        layoutRoot = mContentView.findViewById(R.id.base_title_bar_layout_root)
+        statusBar = mContentView.findViewById(R.id.base_title_bar_status_bar)
+        layoutTitle = mContentView.findViewById(R.id.base_title_bar_layout_title)
+        viewBack = mContentView.findViewById(R.id.base_title_bar_iv_back)
+        tvTitle = mContentView.findViewById(R.id.base_title_bar_tv_title)
+        viewBack.setOnClickListener { view: View? -> onClickTitleBack() }
+        statusBar.layoutParams.height = 0
+        ViewCompat.setOnApplyWindowInsetsListener(layoutRoot) { v, insets ->
+            val top = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
+            v.updatePadding(top = top)
+            insets
+        }
     }
 
-    protected void onClickTitleBack() {
-        onBackPressed();
+    protected fun onClickTitleBack() {
+        onBackPressed()
     }
 
-    protected void setTitleBarTitle(String title) {
-        tvTitle.setText(title);
+    protected fun setTitleBarTitle(title: String?) {
+        tvTitle.text = title
     }
 
-    protected void setTitleBarTitle(@StringRes int resId) {
-        tvTitle.setText(getContext().getString(resId));
+    protected fun setTitleBarTitle(@StringRes resId: Int) {
+        tvTitle.text = context.getString(resId)
     }
 
-    protected TextView addRightMenu(String text, boolean whiteText) {
-        TextView menu = (TextView) getLayoutInflater().inflate(R.layout.title_bar_menu_single_text, null);
-        menu.setText(text);
-        if (whiteText)
-            menu.setTextColor(Color.WHITE);
-        else
-            menu.setTextColor(Color.GRAY);
-        ViewGroup.MarginLayoutParams mlp = new ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, dp2px(40f));
-        mlp.setMarginEnd(dp2px(6f));
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(mlp);
-        lp.addRule(RelativeLayout.ALIGN_PARENT_END);
-        lp.addRule(RelativeLayout.CENTER_VERTICAL);
-        layoutTitle.addView(menu, lp);
-        menu.setOnClickListener(view -> onClickTitleOption());
-        return menu;
+    protected fun addRightMenu(text: String?, whiteText: Boolean): TextView {
+        val menu =
+            layoutInflater.inflate(R.layout.title_bar_menu_single_text, null) as TextView
+        menu.text = text
+        if (whiteText) menu.setTextColor(Color.WHITE)
+        else menu.setTextColor(Color.GRAY)
+        val mlp = MarginLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, dp2px(40f))
+        mlp.setMarginEnd(dp2px(6f))
+        val lp = RelativeLayout.LayoutParams(mlp)
+        lp.addRule(RelativeLayout.ALIGN_PARENT_END)
+        lp.addRule(RelativeLayout.CENTER_VERTICAL)
+        layoutTitle.addView(menu, lp)
+        menu.setOnClickListener { _: View? -> onClickTitleOption() }
+        return menu
     }
 
-    protected void onClickTitleOption() {
-
+    protected fun onClickTitleOption() {
     }
 }

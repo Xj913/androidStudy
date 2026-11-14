@@ -57,12 +57,9 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Re
 
     public void setOnItemLongClickListener(View holder, int position) {
         if (onItemLongClickListener != null) {
-            holder.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-                    onItemLongClickListener.onItemLongClick(view, position, getList().get(position));
-                    return true;
-                }
+            holder.setOnLongClickListener(view -> {
+                onItemLongClickListener.onItemLongClick(view, position, getList().get(position));
+                return true;
             });
         }
     }

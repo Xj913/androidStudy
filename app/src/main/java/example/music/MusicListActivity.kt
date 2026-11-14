@@ -97,13 +97,13 @@ class MusicListActivity : BaseTitleBarActivity() {
     var myBinder: MyBinder? = null
     private val mConnection: ServiceConnection = object : ServiceConnection {
         override fun onServiceConnected(className: ComponentName?, service: IBinder?) {
-            Log.e(getTAG(), "onServiceConnected")
+            Log.e(tag, "onServiceConnected")
             myBinder = service as MyBinder
         }
 
         //连接意外断开时调用,unbindservice不触发此回调
         override fun onServiceDisconnected(className: ComponentName?) {
-            Log.e(getTAG(), "onServiceDisconnected")
+            Log.e(tag, "onServiceDisconnected")
         }
     }
 }
